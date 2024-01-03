@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
-		DE9AC6422B43AB7D004D50EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6412B43AB7D004D50EF /* ViewController.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
 		DE9AC64A2B43AB7F004D50EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6482B43AB7F004D50EF /* LaunchScreen.storyboard */; };
 		DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6522B43AD90004D50EF /* RxCocoa */; };
@@ -23,13 +22,18 @@
 		DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66A2B45337C004D50EF /* BaseViewController.swift */; };
 		DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */; };
 		DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6722B45648F004D50EF /* SF-Pro.ttf */; };
+		DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */; };
+		DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */; };
+		DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */; };
+		DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */; };
+		DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */; };
+		DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF42B45911000C9A71C /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DE9AC6412B43AB7D004D50EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DE9AC6462B43AB7F004D50EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9AC6492B43AB7F004D50EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9AC64B2B43AB7F004D50EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,6 +42,12 @@
 		DE9AC66A2B45337C004D50EF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 		DE9AC6722B45648F004D50EF /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionButton.swift; sourceTree = "<group>"; };
+		DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapButton.swift; sourceTree = "<group>"; };
+		DEAB5CF42B45911000C9A71C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +86,7 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DEAB5CE62B456EA500C9A71C /* CustomView */,
 				DEAB5CE32B456AC000C9A71C /* App */,
 				DE9AC6702B4563D2004D50EF /* Font */,
 				DE9AC6672B4519CE004D50EF /* Extension */,
@@ -90,7 +101,7 @@
 		DE9AC6632B4518E8004D50EF /* Sceene */ = {
 			isa = PBXGroup;
 			children = (
-				DE9AC6412B43AB7D004D50EF /* ViewController.swift */,
+				DEAB5CEB2B45893100C9A71C /* Onboarding */,
 				DE9AC6642B4518F3004D50EF /* Base */,
 			);
 			path = Sceene;
@@ -99,6 +110,7 @@
 		DE9AC6642B4518F3004D50EF /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				DEAB5CF42B45911000C9A71C /* ViewModelType.swift */,
 				DE9AC6652B451900004D50EF /* BaseView.swift */,
 				DE9AC66A2B45337C004D50EF /* BaseViewController.swift */,
 			);
@@ -110,6 +122,7 @@
 			children = (
 				DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */,
 				DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */,
+				DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -129,6 +142,24 @@
 				DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		DEAB5CE62B456EA500C9A71C /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */,
+				DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		DEAB5CEB2B45893100C9A71C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */,
+				DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,12 +248,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
-				DE9AC6422B43AB7D004D50EF /* ViewController.swift in Sources */,
+				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
+				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
+				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
+				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
+				DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

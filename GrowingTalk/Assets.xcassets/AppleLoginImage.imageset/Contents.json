@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "kakao_login_large_wide 2.png",
+      "filename" : "Property 1=Apple ID Login.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "kakao_login_large_wide 1.png",
+      "filename" : "Property 1=Apple ID Login@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "kakao_login_large_wide.png",
+      "filename" : "Property 1=Apple ID Login@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
