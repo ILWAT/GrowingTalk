@@ -13,6 +13,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         configure()
         configureNavigation()
+        bind()
     }
     
     
@@ -22,9 +23,11 @@ class BaseViewController: UIViewController {
         configureViewHierarchy()
         configureViewConstraints()
     }
+    func bind() { }
     func configureNavigation() { }
     
+    
     //MARK: - ConfigureView
-    func configureViewHierarchy() { }
+    func configureViewHierarchy() { self.view.backgroundColor = .BackgroundColor.backgroundPrimaryColor }
     func configureViewConstraints() { }
 }
