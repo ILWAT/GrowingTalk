@@ -21,6 +21,8 @@
 		DE9AC6662B451900004D50EF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6652B451900004D50EF /* BaseView.swift */; };
 		DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */; };
 		DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66A2B45337C004D50EF /* BaseViewController.swift */; };
+		DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */; };
+		DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6722B45648F004D50EF /* SF-Pro.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		DE9AC6652B451900004D50EF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		DE9AC66A2B45337C004D50EF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
+		DE9AC6722B45648F004D50EF /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +76,10 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DEAB5CE32B456AC000C9A71C /* App */,
+				DE9AC6702B4563D2004D50EF /* Font */,
 				DE9AC6672B4519CE004D50EF /* Extension */,
 				DE9AC6632B4518E8004D50EF /* Sceene */,
-				DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */,
-				DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */,
-				DE9AC6412B43AB7D004D50EF /* ViewController.swift */,
 				DE9AC6462B43AB7F004D50EF /* Assets.xcassets */,
 				DE9AC6482B43AB7F004D50EF /* LaunchScreen.storyboard */,
 				DE9AC64B2B43AB7F004D50EF /* Info.plist */,
@@ -87,6 +90,7 @@
 		DE9AC6632B4518E8004D50EF /* Sceene */ = {
 			isa = PBXGroup;
 			children = (
+				DE9AC6412B43AB7D004D50EF /* ViewController.swift */,
 				DE9AC6642B4518F3004D50EF /* Base */,
 			);
 			path = Sceene;
@@ -105,8 +109,26 @@
 			isa = PBXGroup;
 			children = (
 				DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */,
+				DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		DE9AC6702B4563D2004D50EF /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				DE9AC6722B45648F004D50EF /* SF-Pro.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		DEAB5CE32B456AC000C9A71C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */,
+				DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9AC64A2B43AB7F004D50EF /* LaunchScreen.storyboard in Resources */,
+				DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */,
 				DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DE9AC6422B43AB7D004D50EF /* ViewController.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
@@ -347,7 +371,6 @@
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -375,7 +398,6 @@
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
