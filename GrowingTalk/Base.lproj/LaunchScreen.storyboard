@@ -8,7 +8,7 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="SF-Pro.ttf">
-            <string>SFPro-Bold</string>
+            <string>SFPro-Heavy</string>
         </array>
     </customFonts>
     <scenes>
@@ -30,7 +30,7 @@
                                 <rect key="frame" x="17.333333333333343" y="129.66666666666666" width="334.33333333333326" height="52.666666666666657"/>
                                 <string key="text">새싹톡을 사용하면 어디서나
 팀을 모을 수 있습니다</string>
-                                <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="SFPro-Heavy" family="SF Pro" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>

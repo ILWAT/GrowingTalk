@@ -9,7 +9,7 @@ import UIKit
 
 extension UIFont {
     
-    enum AppCustom {
+    enum Custom {
         static let appTitle1 = UIFont(name: "SFPro-Bold", size: 22)
         static let appTitle2 = UIFont(name: "SFPro-Bold", size: 14)
         static let bodyBold = UIFont(name: "SFPro-Bold", size: 13)
