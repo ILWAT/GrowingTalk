@@ -29,8 +29,28 @@ final class OnboardingViewController: BaseViewController {
     
     
     //MARK: - RxProperties
+    let disposeBag = DisposeBag()
     
     
+    //MARK: - override
+    override func bind() {
+        startButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                let nextVC = AuthViewController()
+                let customDetentIdentifier = UISheetPresentationController.Detent.Identifier("authSheet")
+                
+                let customDetent = UISheetPresentationController.Detent.custom(identifier: customDetentIdentifier) { context in
+                    return 290
+                }
+                if let sheet = nextVC.sheetPresentationController {
+                    sheet.detents = [customDetent]
+                    sheet.prefersGrabberVisible = true
+                }
+                self.present(nextVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
     //MARK: - configureUI
     override func configureViewHierarchy() {
         super.configureViewHierarchy()
