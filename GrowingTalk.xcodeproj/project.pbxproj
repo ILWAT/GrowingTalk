@@ -18,6 +18,9 @@
 		DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6592B43AD9F004D50EF /* Then */; };
 		DE9AC65D2B43ADAB004D50EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC65C2B43ADAB004D50EF /* Kingfisher */; };
 		DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC65F2B43ADBF004D50EF /* SnapKit */; };
+		DE9AC6662B451900004D50EF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6652B451900004D50EF /* BaseView.swift */; };
+		DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */; };
+		DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66A2B45337C004D50EF /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		DE9AC6462B43AB7F004D50EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE9AC6492B43AB7F004D50EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE9AC64B2B43AB7F004D50EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE9AC6652B451900004D50EF /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		DE9AC66A2B45337C004D50EF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,8 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DE9AC6672B4519CE004D50EF /* Extension */,
+				DE9AC6632B4518E8004D50EF /* Sceene */,
 				DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */,
 				DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */,
 				DE9AC6412B43AB7D004D50EF /* ViewController.swift */,
@@ -74,6 +82,31 @@
 				DE9AC64B2B43AB7F004D50EF /* Info.plist */,
 			);
 			path = GrowingTalk;
+			sourceTree = "<group>";
+		};
+		DE9AC6632B4518E8004D50EF /* Sceene */ = {
+			isa = PBXGroup;
+			children = (
+				DE9AC6642B4518F3004D50EF /* Base */,
+			);
+			path = Sceene;
+			sourceTree = "<group>";
+		};
+		DE9AC6642B4518F3004D50EF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				DE9AC6652B451900004D50EF /* BaseView.swift */,
+				DE9AC66A2B45337C004D50EF /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		DE9AC6672B4519CE004D50EF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,8 +194,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9AC6422B43AB7D004D50EF /* ViewController.swift in Sources */,
+				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
+				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
+				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
