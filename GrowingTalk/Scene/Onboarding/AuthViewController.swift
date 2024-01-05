@@ -18,25 +18,18 @@ final class AuthViewController: BaseViewController {
     
     private let emailLoginButton = InteractionButton(titleString: "이메일로 시작하기", imageString: "EmailIcon")
     
-    private let orLabel = UILabel().then { label in
-        label.text = "또는"
-        label.font = .Custom.appTitle2
-        label.textColor = .black
-    }
-    
     private let signUpButton = UIButton().then { btn in
-        btn.setTitle("새롭게 회원가입하기", for: .normal)
-        btn.setTitleColor(.BrandColor.brandGreen, for: .normal)
+        let titleString = "또는 새롭게 회원가입 하기"
+        let attributedString = NSMutableAttributedString(string: titleString)
+        let range = (titleString as NSString).range(of: "새롭게 회원가입 하기")
+        attributedString.addAttribute(.foregroundColor, value: UIColor.BrandColor.brandGreen, range: range)
+        
+        btn.setAttributedTitle(attributedString, for: .normal)
+        btn.titleLabel?.font = .Custom.appTitle2
+        btn.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
     
-    private lazy var signUpStackView = UIStackView(arrangedSubviews: [self.orLabel, self.signUpButton]).then { view in
-        view.axis = .horizontal
-        view.spacing = 0
-        view.alignment = .fill
-        view.distribution = .equalSpacing
-    }
-    
-    private lazy var authStackView = UIStackView(arrangedSubviews: [appleLoginButton, kakaoLoginButton, emailLoginButton, signUpStackView]).then { view in
+    private lazy var authStackView = UIStackView(arrangedSubviews: [appleLoginButton, kakaoLoginButton, emailLoginButton, signUpButton]).then { view in
         view.axis = .vertical
         view.spacing = 16
         view.alignment = .fill
@@ -64,7 +57,9 @@ final class AuthViewController: BaseViewController {
         signUpButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
-                print("signUpButton")
+                let nextVC = SignupViewController()
+                let nav = UINavigationController(rootViewController: nextVC)
+                self.present(nav, animated: true)
             }
             .disposed(by: disposeBag)
         
@@ -79,8 +74,7 @@ final class AuthViewController: BaseViewController {
     
     override func configureViewConstraints() {
         authStackView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(27)
-            make.horizontalEdges.equalToSuperview().inset(35)
+            make.center.equalToSuperview()
         }
         emailLoginButton.snp.makeConstraints { make in
             make.height.equalTo(44)

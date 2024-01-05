@@ -13,7 +13,7 @@ extension UIColor {
     enum BrandColor {
         static let brandGreen = UIColor(red: 74/255, green: 198/255, blue: 69/255, alpha: 1)
         static let brandError = UIColor(red: 233/255, green: 102/255, blue: 107/255, alpha: 1)
-        static let brandInactive = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
+        static let brandInactive = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)
         static let brandGray = UIColor(red: 221/255, green: 221/255, blue: 221/255, alpha: 1)
     }
     
