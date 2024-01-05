@@ -8,17 +8,9 @@
 import UIKit
 
 final class InteractionButton: UIButton {
-    var isValid: Bool = true{
-        didSet{
-            changedButtonValid()
-        }
-    }
+
     
     //MARK: - Initialization
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("cannot init using coder")
     }
@@ -27,14 +19,14 @@ final class InteractionButton: UIButton {
         super.init(frame: .zero)
         self.setTitle(titleString, for: .normal)
         self.setTitleColor(.white, for: .normal)
-        self.backgroundColor = .BrandColor.brandGreen
-        isValid = isActive
+        self.isEnabled = isActive
         if let imageString { self.setImage(UIImage(named: imageString), for: .normal) }
         self.layer.cornerRadius = 8
         versionSwitching()
+        changedButtonValid(newValue: isActive)
     }
     
-    func versionSwitching(){
+    private func versionSwitching(){
         if #available(iOS 15.0, *){
             var config = UIButton.Configuration.filled()
             config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
@@ -51,14 +43,14 @@ final class InteractionButton: UIButton {
         }
     }
     
-    private func changedButtonValid() {
-        if self.isValid {
-            if #available(iOS 15.0, *){ self.configuration?.baseBackgroundColor = .BrandColor.brandGreen}
-            else { self.backgroundColor = .BrandColor.brandGreen }}
+    func changedButtonValid(newValue: Bool) {
+        self.isEnabled = newValue
+        if self.isEnabled {
+            if #available(iOS 15.0, *){ self.configuration?.baseBackgroundColor = .BrandColor.brandGreen
+            } else { self.backgroundColor = .BrandColor.brandGreen } }
         else {
-            if #available(iOS 15.0, *) { self.configuration?.baseBackgroundColor = .BrandColor.brandInactive }
-            else { self.backgroundColor = .BrandColor.brandInactive }
-             }
+            if #available(iOS 15.0, *) { self.configuration?.baseBackgroundColor = .BrandColor.brandInactive
+            } else { self.backgroundColor = .BrandColor.brandInactive } }
     }
     
 }

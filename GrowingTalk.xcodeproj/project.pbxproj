@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
+		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
+		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
+		DE91F0712B4818D300F44E01 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DE91F0702B4818D300F44E01 /* Toast */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -31,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
+		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +67,7 @@
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
 				DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */,
 				DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */,
+				DE91F0712B4818D300F44E01 /* Toast in Frameworks */,
 				DE9AC65D2B43ADAB004D50EF /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE91F0662B46922500F44E01 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				DE91F0672B46923B00F44E01 /* SignupViewController.swift */,
+				DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
 		DE9AC6312B43AB7D004D50EF = {
 			isa = PBXGroup;
 			children = (
@@ -90,7 +107,7 @@
 				DEAB5CE32B456AC000C9A71C /* App */,
 				DE9AC6702B4563D2004D50EF /* Font */,
 				DE9AC6672B4519CE004D50EF /* Extension */,
-				DE9AC6632B4518E8004D50EF /* Sceene */,
+				DE9AC6632B4518E8004D50EF /* Scene */,
 				DE9AC6462B43AB7F004D50EF /* Assets.xcassets */,
 				DE9AC6482B43AB7F004D50EF /* LaunchScreen.storyboard */,
 				DE9AC64B2B43AB7F004D50EF /* Info.plist */,
@@ -98,13 +115,14 @@
 			path = GrowingTalk;
 			sourceTree = "<group>";
 		};
-		DE9AC6632B4518E8004D50EF /* Sceene */ = {
+		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
 				DE9AC6642B4518F3004D50EF /* Base */,
 			);
-			path = Sceene;
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		DE9AC6642B4518F3004D50EF /* Base */ = {
@@ -149,6 +167,7 @@
 			children = (
 				DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */,
 				DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */,
+				DE91F0692B46980900F44E01 /* LabelTextField.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 				DE9AC6592B43AD9F004D50EF /* Then */,
 				DE9AC65C2B43ADAB004D50EF /* Kingfisher */,
 				DE9AC65F2B43ADBF004D50EF /* SnapKit */,
+				DE91F0702B4818D300F44E01 /* Toast */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -219,6 +239,7 @@
 				DE9AC6582B43AD9F004D50EF /* XCRemoteSwiftPackageReference "Then" */,
 				DE9AC65B2B43ADAB004D50EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DE9AC65E2B43ADBF004D50EF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -249,13 +270,16 @@
 			files = (
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
+				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
+				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */,
@@ -473,6 +497,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		DE9AC6512B43AD90004D50EF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -508,6 +540,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE91F0702B4818D300F44E01 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		DE9AC6522B43AD90004D50EF /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE9AC6512B43AD90004D50EF /* XCRemoteSwiftPackageReference "RxSwift" */;
