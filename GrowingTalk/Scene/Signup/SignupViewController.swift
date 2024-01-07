@@ -21,9 +21,9 @@ final class SignupViewController: BaseViewController {
     
     private let phoneNumberLabelField = LabelTextField(labelString: "연락처", textFieldPlaceHolder: "전화번호를 입력하세요")
     
-    private let passwordLabelField = LabelTextField(labelString: "비밀번호", textFieldPlaceHolder: "비밀번호를 입력하세요")
+    private let passwordLabelField = LabelTextField(labelString: "비밀번호", textFieldPlaceHolder: "비밀번호를 입력하세요", isSecure: true)
     
-    private let checkPasswordLabelField = LabelTextField(labelString: "비밀번호 확인", textFieldPlaceHolder: "비밀번호를 입력하세요")
+    private let checkPasswordLabelField = LabelTextField(labelString: "비밀번호 확인", textFieldPlaceHolder: "비밀번호를 입력하세요", isSecure: true)
     
     private lazy var emailStackView = UIStackView().then { view in
         view.addArrangedSubview(emailLabelField)
@@ -44,7 +44,9 @@ final class SignupViewController: BaseViewController {
         view.backgroundColor = .BackgroundColor.backgroundPrimaryColor
     }
     
-    private let leftNavItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: nil)
+    private let leftNavItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: SignupViewController.self, action: nil).then { item in
+        item.tintColor = .black
+    }
     
     //MARK: - RxProperties
     
@@ -58,7 +60,6 @@ final class SignupViewController: BaseViewController {
     override func configureNavigation() {
         self.title = "회원가입"
         self.navigationItem.leftBarButtonItem = leftNavItem
-        self.navigationItem.leftBarButtonItem?.tintColor = .black
     }
     
     override func bind() {
@@ -68,16 +69,38 @@ final class SignupViewController: BaseViewController {
             inputPhoneNumber: phoneNumberLabelField.textField.rx.text.orEmpty,
             inputPassword: passwordLabelField.textField.rx.text.orEmpty,
             inputCheckPassword: checkPasswordLabelField.textField.rx.text.orEmpty,
-            signUpButtonTap: signUpButton.rx.tap
+            signUpButtonTap: signUpButton.rx.tap,
+            checkEmailButtonTap: emailValidButton.rx.tap
         )
         
         let output = viewModel.transform(input)
+        
+        leftNavItem.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
         
         output.activeCheckBtn
             .drive(with: self) { owner, activeCheck in
                 owner.emailValidButton.changedButtonValid(newValue: activeCheck)
             }
             .disposed(by: disposeBag)
+        
+        output.activeSignupBtn
+            .drive(with: self) { owner, active in
+                owner.signUpButton.changedButtonValid(newValue: active)
+            }
+            .disposed(by: disposeBag)
+        
+        output.checkEmailToast
+            .drive(with: self) { owner, emailCheckingResult in
+                owner.view.makeAppBottomToast(toastMessage: emailCheckingResult.rawValue, point: CGPoint(x: self.view.bounds.width / 2.0, y: self.view.bounds.minY + (self.buttonWrapperView.frame.minY - 16.0)))
+            }
+            .disposed(by: disposeBag)
+        
+        
     }
     
     deinit{
@@ -93,6 +116,7 @@ final class SignupViewController: BaseViewController {
     
     override func configureViewConstraints() {
         let componentInset = 24
+        
         emailStackView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(self.view.safeAreaLayoutGuide).inset(componentInset)
         }

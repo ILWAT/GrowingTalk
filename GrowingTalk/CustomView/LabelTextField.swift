@@ -20,7 +20,7 @@ final class LabelTextField: UIStackView {
         fatalError("cannot use coder")
     }
     
-    init(labelString: String, textFieldPlaceHolder: String?){
+    init(labelString: String, textFieldPlaceHolder: String?, isSecure: Bool = false){
         textField = UITextField(frame: .zero).then { view in
             view.placeholder = textFieldPlaceHolder
             view.layer.cornerRadius = 8
@@ -28,6 +28,7 @@ final class LabelTextField: UIStackView {
             view.snp.makeConstraints { make in
                 make.height.equalTo(44)
             }
+            view.isSecureTextEntry = isSecure
         }
         
         super.init(frame: .zero)
