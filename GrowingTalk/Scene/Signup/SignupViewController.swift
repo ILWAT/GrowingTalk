@@ -100,6 +100,12 @@ final class SignupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.filteringPhoneNUmber
+            .drive(with: self) { owner, phoneNumber in
+                owner.phoneNumberLabelField.textField.rx.text.orEmpty.onNext(phoneNumber)
+            }
+            .disposed(by: disposeBag)
+        
         
     }
     

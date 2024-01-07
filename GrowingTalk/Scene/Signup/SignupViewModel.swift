@@ -30,6 +30,7 @@ final class SignupViewModel: ViewModelType {
         let activeCheckBtn: Driver<Bool>
         let checkEmailToast: Driver<emailCheckingCase>
         let activeSignupBtn: Driver<Bool>
+        let filteringPhoneNUmber: Driver<String>
     }
     
     //MARK: - disposeBag Properties
@@ -41,6 +42,7 @@ final class SignupViewModel: ViewModelType {
         let isChecked = BehaviorSubject(value: false) //이메일 중복확인에 대한 값
         let checkEmailToast = PublishRelay<emailCheckingCase>() //이메일 중복 확인에 대한 결과 값
         let activeSignupBtn = PublishRelay<Bool>()
+        let patternedNumber = PublishRelay<String>()
         
         let inputEmail = input.inputEmail
             .asDriver()
@@ -65,9 +67,14 @@ final class SignupViewModel: ViewModelType {
         input.checkEmailButtonTap
             .withLatestFrom(requestable)
             .filter({ !$0 })
-            .debug("Check")
             .subscribe(with: self) { owner, _ in
                 checkEmailToast.accept(.notValid)
+            }
+            .disposed(by: disposeBag)
+        
+        input.inputPhoneNumber
+            .subscribe(with: self) { owner, phoneNumber in
+                patternedNumber.accept(phoneNumber.convertPhoneNumber())
             }
             .disposed(by: disposeBag)
         
@@ -85,7 +92,8 @@ final class SignupViewModel: ViewModelType {
         return Output(
             activeCheckBtn: activeCheckBtn.asDriver(onErrorJustReturn: false),
             checkEmailToast: checkEmailToast.asDriver(onErrorJustReturn: .notValid),
-            activeSignupBtn: activeSignupBtn.asDriver(onErrorJustReturn: false)
+            activeSignupBtn: activeSignupBtn.asDriver(onErrorJustReturn: false),
+            filteringPhoneNUmber: patternedNumber.asDriver(onErrorJustReturn: "")
         )
     }
 }
