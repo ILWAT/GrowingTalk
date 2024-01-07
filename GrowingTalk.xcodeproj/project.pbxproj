@@ -11,6 +11,8 @@
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
 		DE91F0712B4818D300F44E01 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = DE91F0702B4818D300F44E01 /* Toast */; };
+		DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0722B4826C600F44E01 /* Extension+UIViewController.swift */; };
+		DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0742B4A6AB300F44E01 /* SecretKeys.swift */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		DE91F0722B4826C600F44E01 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		DE91F0742B4A6AB300F44E01 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				DE9AC6462B43AB7F004D50EF /* Assets.xcassets */,
 				DE9AC6482B43AB7F004D50EF /* LaunchScreen.storyboard */,
 				DE9AC64B2B43AB7F004D50EF /* Info.plist */,
+				DE91F0742B4A6AB300F44E01 /* SecretKeys.swift */,
 			);
 			path = GrowingTalk;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				DE9AC6682B4519DC004D50EF /* Extension+UIColor.swift */,
 				DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */,
 				DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */,
+				DE91F0722B4826C600F44E01 /* Extension+UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
@@ -282,6 +289,7 @@
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
+				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,
 				DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
