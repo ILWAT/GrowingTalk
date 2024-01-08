@@ -14,6 +14,13 @@
 		DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0722B4826C600F44E01 /* Extension+UIViewController.swift */; };
 		DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0742B4A6AB300F44E01 /* SecretKeys.swift */; };
 		DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0762B4AA33200F44E01 /* Extension+String.swift */; };
+		DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0792B4AE75100F44E01 /* Router.swift */; };
+		DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = DE91F07C2B4AE78B00F44E01 /* Moya */; };
+		DE91F07F2B4AE78B00F44E01 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = DE91F07E2B4AE78B00F44E01 /* RxMoya */; };
+		DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0812B4BBFB400F44E01 /* SignupModel.swift */; };
+		DE91F0842B4C0BBC00F44E01 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0832B4C0BBC00F44E01 /* NetworkManger.swift */; };
+		DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0852B4C122B00F44E01 /* NetworkError.swift */; };
+		DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0872B4C17D500F44E01 /* NetworkErrorModel.swift */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -44,6 +51,11 @@
 		DE91F0722B4826C600F44E01 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		DE91F0742B4A6AB300F44E01 /* SecretKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKeys.swift; sourceTree = "<group>"; };
 		DE91F0762B4AA33200F44E01 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		DE91F0792B4AE75100F44E01 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		DE91F0812B4BBFB400F44E01 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		DE91F0832B4C0BBC00F44E01 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
+		DE91F0852B4C122B00F44E01 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		DE91F0872B4C17D500F44E01 /* NetworkErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorModel.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,9 +82,11 @@
 			files = (
 				DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */,
 				DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */,
+				DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */,
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
 				DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */,
 				DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */,
+				DE91F07F2B4AE78B00F44E01 /* RxMoya in Frameworks */,
 				DE91F0712B4818D300F44E01 /* Toast in Frameworks */,
 				DE9AC65D2B43ADAB004D50EF /* Kingfisher in Frameworks */,
 			);
@@ -88,6 +102,25 @@
 				DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */,
 			);
 			path = Signup;
+			sourceTree = "<group>";
+		};
+		DE91F0782B4AE74200F44E01 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DE91F0792B4AE75100F44E01 /* Router.swift */,
+				DE91F0832B4C0BBC00F44E01 /* NetworkManger.swift */,
+				DE91F0852B4C122B00F44E01 /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DE91F0802B4BBFA900F44E01 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DE91F0812B4BBFB400F44E01 /* SignupModel.swift */,
+				DE91F0872B4C17D500F44E01 /* NetworkErrorModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DE9AC6312B43AB7D004D50EF = {
@@ -109,6 +142,8 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DE91F0802B4BBFA900F44E01 /* Model */,
+				DE91F0782B4AE74200F44E01 /* Network */,
 				DEAB5CE62B456EA500C9A71C /* CustomView */,
 				DEAB5CE32B456AC000C9A71C /* App */,
 				DE9AC6702B4563D2004D50EF /* Font */,
@@ -214,6 +249,8 @@
 				DE9AC65C2B43ADAB004D50EF /* Kingfisher */,
 				DE9AC65F2B43ADBF004D50EF /* SnapKit */,
 				DE91F0702B4818D300F44E01 /* Toast */,
+				DE91F07C2B4AE78B00F44E01 /* Moya */,
+				DE91F07E2B4AE78B00F44E01 /* RxMoya */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -249,6 +286,7 @@
 				DE9AC65B2B43ADAB004D50EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DE9AC65E2B43ADBF004D50EF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -283,9 +321,14 @@
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
+				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
+				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
+				DE91F0842B4C0BBC00F44E01 /* NetworkManger.swift in Sources */,
 				DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
+				DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
@@ -517,6 +560,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 		DE9AC6512B43AD90004D50EF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
@@ -556,6 +607,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		DE91F07C2B4AE78B00F44E01 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		DE91F07E2B4AE78B00F44E01 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
 		};
 		DE9AC6522B43AD90004D50EF /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
