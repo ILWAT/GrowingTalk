@@ -9,8 +9,8 @@ import Foundation
 import Moya
 
 enum Router {
-    case email(email: String)
-    case signup(signupData: SignupModel)
+    case email(email: CheckEmailBodyModel)
+    case signup(signupData: SignupBodyModel)
     
 }
 
@@ -24,9 +24,9 @@ extension Router: TargetType {
     var path: String {
         switch self {
         case .signup:
-            return "users/join"
+            return "v1/users/join"
         case .email:
-            return "users/validation/email"
+            return "v1/users/validation/email"
         }
     }
     
