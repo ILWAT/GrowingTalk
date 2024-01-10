@@ -106,6 +106,34 @@ final class SignupViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        output.requiredData
+            .drive(with: self) { owner, requiredDatas in
+                guard let firstResponder = requiredDatas.first else { return }
+                owner.changeLabelColorToRed(type: firstResponder)
+                
+                owner.changeLabelColorOriginal()
+                for requiredData in requiredDatas {
+                    owner.changeLabelColorToRed(type: requiredData)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.signupResult
+            .drive(with: self) { owner, signupResult in
+                let nextNav = UINavigationController(rootViewController: WorkSpaceInitialViewController())
+                
+                guard let currentWindow = self.view.window, let nextVC = nextNav.topViewController as? WorkSpaceInitialViewController else {
+                    self.view.makeAppBottomToast(toastMessage: "알 수 없는 오류가 발생했습니다. 잠시후 시도해주세요", point: CGPoint(x: self.view.bounds.width / 2.0, y: self.view.bounds.minY + (self.buttonWrapperView.frame.minY - 16.0)))
+                    return
+                }
+                currentWindow.rootViewController = nextNav
+                nextVC.emitUserData(data: signupResult)
+                
+                UIView.transition(with: currentWindow, duration: 0.5,options: [.transitionCrossDissolve], animations: nil)
+            }
+            .disposed(by: disposeBag)
+        
         
     }
     
@@ -157,8 +185,41 @@ final class SignupViewController: BaseViewController {
         }
     }
     
+    //MARK: - Helper
     @objc
     func didTapCloseButton(){
         self.dismiss(animated: true)
+    }
+    
+    func TextFieldBecoeFirst(type: SignupRequiredCase) {
+        switch type {
+        case .email:
+            emailLabelField.textField.becomeFirstResponder()
+        case .nickname:
+            nicknameLabelField.textField.becomeFirstResponder()
+        case .password:
+            passwordLabelField.textField.becomeFirstResponder()
+        case .checkPassword:
+            checkPasswordLabelField.textField.becomeFirstResponder()
+        }
+    }
+    
+    func changeLabelColorToRed(type: SignupRequiredCase) {
+        switch type{
+        case .email:
+            emailLabelField.chageLabelColor(color: .red)
+        case .nickname:
+            nicknameLabelField.chageLabelColor(color: .red)
+        case .password:
+            passwordLabelField.chageLabelColor(color: .red)
+        case .checkPassword:
+            checkPasswordLabelField.chageLabelColor(color: .red)
+        }
+    }
+    
+    func changeLabelColorOriginal() {
+        [emailLabelField, nicknameLabelField, phoneNumberLabelField, passwordLabelField, checkPasswordLabelField].forEach { view in
+            view.chageLabelColor(color: .label)
+        }
     }
 }

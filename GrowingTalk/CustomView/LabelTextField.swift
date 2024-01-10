@@ -13,6 +13,7 @@ import Then
 
 final class LabelTextField: UIStackView {
     //MARK: - Component
+    private var label: UILabel
     
     var textField: UITextField
     
@@ -31,6 +32,13 @@ final class LabelTextField: UIStackView {
             view.isSecureTextEntry = isSecure
         }
         
+        label = UILabel().then { view in
+            view.font = .Custom.appTitle2
+            view.textAlignment = .left
+            view.textColor = .label
+            view.text = labelString
+        }
+        
         super.init(frame: .zero)
         
         self.axis = .vertical
@@ -38,18 +46,16 @@ final class LabelTextField: UIStackView {
         self.distribution = .equalSpacing
         self.alignment = .fill
         
-        let label = UILabel().then { view in
-            view.font = .Custom.appTitle2
-            view.textAlignment = .left
-            view.textColor = .label
-            view.text = labelString
-        }
+
         
         
         for view in [label, textField] {
             self.addArrangedSubview(view)
         }
-        
+    }
+    
+    func chageLabelColor(color: UIColor) {
+        self.label.textColor = color
     }
     
 }
