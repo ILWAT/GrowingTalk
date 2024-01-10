@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum SignupRequiredCase {
+    case email
+    case nickname
+    case password
+    case checkPassword
+}
