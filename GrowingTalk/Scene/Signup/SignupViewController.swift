@@ -56,6 +56,10 @@ final class SignupViewController: BaseViewController {
     
     let viewModel = SignupViewModel()
     
+    deinit{
+        print("SignupVC deinit")
+    }
+    
     //MARK: - configureVC
     override func configureNavigation() {
         self.title = "회원가입"
@@ -121,24 +125,24 @@ final class SignupViewController: BaseViewController {
         
         output.signupResult
             .drive(with: self) { owner, signupResult in
-                let nextNav = UINavigationController(rootViewController: WorkSpaceInitialViewController())
                 
-                guard let currentWindow = self.view.window, let nextVC = nextNav.topViewController as? WorkSpaceInitialViewController else {
+                
+                guard let currentWindow = self.view.window else {
                     self.view.makeAppBottomToast(toastMessage: "알 수 없는 오류가 발생했습니다. 잠시후 시도해주세요", point: CGPoint(x: self.view.bounds.width / 2.0, y: self.view.bounds.minY + (self.buttonWrapperView.frame.minY - 16.0)))
                     return
                 }
+                
+                let nextVC = WorkSpaceInitialViewController()
+                let nextNav = UINavigationController(rootViewController: nextVC)
                 currentWindow.rootViewController = nextNav
-                nextVC.emitUserData(data: signupResult)
                 
                 UIView.transition(with: currentWindow, duration: 0.5,options: [.transitionCrossDissolve], animations: nil)
+                
+                nextVC.changeSubTitle(nickName: signupResult.nickname)
             }
             .disposed(by: disposeBag)
         
         
-    }
-    
-    deinit{
-        print(#function, "deinit")
     }
     
     //MARK: - configureUI

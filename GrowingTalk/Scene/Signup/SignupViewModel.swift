@@ -59,12 +59,12 @@ final class SignupViewModel: ViewModelType {
         
         inputEmail
             .filter({ !$0.isEmpty })
+            .debug()
+            .distinctUntilChanged()
             .drive(with: self) { owner, email in
                 emailIsUsable.onNext(false)
                 checkBtnActive.onNext(true)
-                
                 emailRequestable.onNext(owner.isValidEmail(email)) //유효성 검사를 통한 request가능 여부
-                
             }
             .disposed(by: disposeBag)
         

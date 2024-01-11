@@ -28,7 +28,7 @@
 		DE91F0982B4D6A1B00F44E01 /* SignupRequiredCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0972B4D6A1B00F44E01 /* SignupRequiredCase.swift */; };
 		DE91F09A2B4E385600F44E01 /* TokenManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0992B4E385600F44E01 /* TokenManger.swift */; };
 		DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */; };
-		DE91F09E2B4E7FF200F44E01 /* WorkSpaceInitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F09D2B4E7FF200F44E01 /* WorkSpaceInitialViewModel.swift */; };
+		DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F09F2B5010E400F44E01 /* WorkSpaceInitialViewModel.swift */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -70,7 +70,7 @@
 		DE91F0972B4D6A1B00F44E01 /* SignupRequiredCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequiredCase.swift; sourceTree = "<group>"; };
 		DE91F0992B4E385600F44E01 /* TokenManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManger.swift; sourceTree = "<group>"; };
 		DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCase.swift; sourceTree = "<group>"; };
-		DE91F09D2B4E7FF200F44E01 /* WorkSpaceInitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceInitialViewModel.swift; sourceTree = "<group>"; };
+		DE91F09F2B5010E400F44E01 /* WorkSpaceInitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceInitialViewModel.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				DE91F0922B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift */,
-				DE91F09D2B4E7FF200F44E01 /* WorkSpaceInitialViewModel.swift */,
+				DE91F09F2B5010E400F44E01 /* WorkSpaceInitialViewModel.swift */,
 			);
 			path = Initial;
 			sourceTree = "<group>";
@@ -373,6 +373,7 @@
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
 				DE91F0962B4D69ED00F44E01 /* SignupToastMessageCase.swift in Sources */,
 				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
+				DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */,
 				DE91F08C2B4D154000F44E01 /* CheckEmailModel.swift in Sources */,
 				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* TokenManger.swift in Sources */,
@@ -388,7 +389,6 @@
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
-				DE91F09E2B4E7FF200F44E01 /* WorkSpaceInitialViewModel.swift in Sources */,
 				DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,

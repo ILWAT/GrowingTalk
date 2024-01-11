@@ -15,7 +15,9 @@ import SwiftUI
 
 final class WorkSpaceInitialViewController: BaseViewController {
     //MARK: - UIProperties
-//    private
+    private let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark")).then { item in
+        item.tintColor = .label
+    }
     
     private let mainTitle = UILabel().then { view in
         view.text = "출시 준비 완료!"
@@ -26,7 +28,7 @@ final class WorkSpaceInitialViewController: BaseViewController {
     
     private let subTitle = UILabel().then { view in
         view.font = .Custom.generalBody
-        view.text = "사용자님의 조직을 위해 새로운 새싹톡 워크스페이스를 시작할 준비가 완료되었어요!"
+        view.text = "사용자님의 조직을 위해 새로운 성장톡 워크스페이스를 시작할 준비가 완료되었어요!"
         view.numberOfLines = 2
         view.textAlignment = .center
     }
@@ -40,7 +42,7 @@ final class WorkSpaceInitialViewController: BaseViewController {
     //MARK: - Properties
     private let viewModel = WorkSpaceInitialViewModel()
     
-    private var userData = PublishRelay<SignupResultModel>()
+    private var userNickname = "사용자"
     
     let disposeBag = DisposeBag()
     
@@ -51,9 +53,15 @@ final class WorkSpaceInitialViewController: BaseViewController {
     
     override func configureNavigation() {
         self.title = "시작하기"
-        self.navigationController?.navigationBar.backgroundColor = .white
         
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .done, target: self, action: nil)
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        
+//        self.navigationController?.navigationBar.isTranslucent = false
+//        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.standardAppearance = appearance
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         navigationItem.leftBarButtonItem = closeButton
         
         
@@ -61,26 +69,23 @@ final class WorkSpaceInitialViewController: BaseViewController {
     
     override func bind() {
         let input = WorkSpaceInitialViewModel.Input(
-            userData: userData,
-            buttonTap: button.rx.tap
+            makingButtonTap: button.rx.tap,
+            closeButtonTap: closeButton.rx.tap
         )
         
         let output = viewModel.transform(input)
         
-        output.subTitleText
-            .debug("subTitle")
-            .drive(with: self) { owner, subTitleText in
-                self.subTitle.rx.text.onNext(subTitleText)
+        output.makingButtonTap
+            .bind(with: self) { owner, _ in
+                print("다음 페이지")
             }
             .disposed(by: disposeBag)
         
-        output.buttonTap
-            .subscribe(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(UIViewController(), animated: true)
+        output.closeButtonTap
+            .bind(with: self) { owner, _ in
+                print("close")
             }
             .disposed(by: disposeBag)
-        
-        
     }
     
     //MARK: - UIMethod
@@ -107,14 +112,11 @@ final class WorkSpaceInitialViewController: BaseViewController {
         }
         button.snp.makeConstraints { make in
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide).inset(24)
+            make.height.equalTo(44)
         }
     }
     
-    func emitUserData(data: SignupResultModel) {
-        self.userData.accept(data)
+    func changeSubTitle(nickName: String){
+        self.subTitle.text = "\(nickName)님의 조직을 위해 새로운 성장톡 워크스페이스를 시작할 준비가 완료되었어요!"
     }
-}
-
-#Preview{
-    UINavigationController(rootViewController: WorkSpaceInitialViewController())
 }
