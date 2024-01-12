@@ -63,4 +63,15 @@ enum NetworkError{
     }
     
     
+    enum loginError: String, NetworkErrorProtocol{
+        case failedLogin = "E03"
+        
+        var errorMessage: String {
+            switch self {
+            case .failedLogin:
+                return "로그인에 실패하였습니다."
+            }
+        }
+    }
+    
 }

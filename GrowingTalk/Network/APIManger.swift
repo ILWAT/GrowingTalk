@@ -15,7 +15,9 @@ final class APIManger {
     //MARK: - Properties
     static let shared = APIManger()
     
-    let provider = MoyaProvider<Router>()
+    let provider = MoyaProvider<Router>(plugins: [AccessTokenPlugin(tokenClosure: { _ in
+        TokenManger.shared.obtainTokenFromUserDefaults(tokenCase: .accessToken)
+    })])
     
     let disposeBag = DisposeBag()
     
