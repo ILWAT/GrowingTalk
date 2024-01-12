@@ -54,6 +54,19 @@ final class AuthViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
+        emailLoginButton.rx.tap
+            .asDriver()
+            .drive(with: self) { owner, _ in
+                let loginVC = LoginViewController()
+                let nvc = UINavigationController(rootViewController: loginVC)
+                if let sheet = nvc.sheetPresentationController {
+                    sheet.detents = [.large()]
+                    sheet.prefersGrabberVisible = true
+                }
+                owner.present(nvc, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
         signUpButton.rx.tap
             .asDriver()
             .drive(with: self) { owner, _ in
