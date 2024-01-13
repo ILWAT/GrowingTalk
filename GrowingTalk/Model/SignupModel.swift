@@ -16,22 +16,6 @@ struct SignupBodyModel: Encodable {
 }
 
 struct SignupResultModel: Decodable {
-    /*
-     {
-       "user_id": 61,
-       "email": "mooneo@test.com",
-       "nickname": "새싹",
-       "profileImage": null,
-       "phone": "010-1234-1234",
-       "vendor": null,
-       "createdAt": "2024-01-09T17:04:49.906Z",
-       "token": {
-         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2MSwibmlja25hbWUiOiLsg4jsi7kiLCJpYXQiOjE3MDQ3ODc0ODksImV4cCI6MTcwNDc5MTA4OSwiaXNzIjoic2xwIn0.jYLQow-P2Ptu69OXKCh-jm6KggycivvI8x4by2ERm1U",
-         "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2MSwiaWF0IjoxNzA0Nzg3NDg5LCJleHAiOjE3MDQ3OTQ2ODksImlzcyI6InNscCJ9.tUWLVLYbBHNXxkZUMZI0VtETA2q-aA56F3kb_ADQ7BU"
-       }
-     }
-     */
-    
     let userId: Int
     let email: String
     let nickname: String

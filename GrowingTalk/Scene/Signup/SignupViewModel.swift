@@ -64,7 +64,7 @@ final class SignupViewModel: ViewModelType {
             .drive(with: self) { owner, email in
                 emailIsUsable.onNext(false)
                 checkBtnActive.onNext(true)
-                emailRequestable.onNext(owner.isValidEmail(email)) //유효성 검사를 통한 request가능 여부
+                emailRequestable.onNext(email.isValidEmail) //유효성 검사를 통한 request가능 여부
             }
             .disposed(by: disposeBag)
         
@@ -145,7 +145,7 @@ final class SignupViewModel: ViewModelType {
         //비밀번호 정규식
         input.inputPassword
             .subscribe(with: self) { owner, password in
-                passwordCorrect.onNext(owner.isValidPassword(password))
+                passwordCorrect.onNext(password.isValidPassword)
             }
             .disposed(by: disposeBag)
         
@@ -255,21 +255,4 @@ final class SignupViewModel: ViewModelType {
             signupResult: signupResultSubject.asDriver(onErrorJustReturn: .init(userId: 0, email: "", nickname: "", profileImage: nil, phone: "", vendor: nil, createdAt: "", token: .init(accessToken: "", refreshToken: "")))
         )
     }
-}
-
-extension SignupViewModel {
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailPredicate.evaluate(with: email)
-    }
-    
-    private func isValidPassword(_ password: String) -> Bool {
-        let passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}$"
-        
-        let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
-        return passwordPredicate.evaluate(with: password)
-    }
-
 }

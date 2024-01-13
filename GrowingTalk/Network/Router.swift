@@ -11,6 +11,7 @@ import Moya
 enum Router {
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
+    case login_v2(body: LoginBodyModel)
     
 }
 
@@ -27,22 +28,27 @@ extension Router: TargetType {
             return "v1/users/join"
         case .email:
             return "v1/users/validation/email"
+        case .login_v2:
+            return "v2/users/login"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup:
+        case .email, .signup, .login_v2:
             return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
-        case .email(let email):
-            return .requestJSONEncodable(email)
-        case .signup(let signupData):
-            return .requestJSONEncodable(signupData)
+        case .email(let body):
+            return .requestJSONEncodable(body)
+        case .signup(let body):
+            return .requestJSONEncodable(body)
+        case .login_v2(let body):
+            return .requestJSONEncodable(body)
+            
         }
     }
     
@@ -54,4 +60,16 @@ extension Router: TargetType {
     }
     
     
+}
+
+
+extension Router: AccessTokenAuthorizable{
+    var authorizationType: Moya.AuthorizationType? {
+        switch self {
+        case .email, .login_v2, .signup:
+            return .none
+        default:
+            return .custom("")
+        }
+    }
 }

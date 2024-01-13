@@ -29,6 +29,10 @@
 		DE91F09A2B4E385600F44E01 /* TokenManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0992B4E385600F44E01 /* TokenManger.swift */; };
 		DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */; };
 		DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F09F2B5010E400F44E01 /* WorkSpaceInitialViewModel.swift */; };
+		DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A22B501DB600F44E01 /* LoginViewController.swift */; };
+		DE91F0A52B510E6400F44E01 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A42B510E6400F44E01 /* LoginViewModel.swift */; };
+		DE91F0A72B511D4D00F44E01 /* LoginWrongTypeCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */; };
+		DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A82B51543E00F44E01 /* LoginModel.swift */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -71,6 +75,10 @@
 		DE91F0992B4E385600F44E01 /* TokenManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManger.swift; sourceTree = "<group>"; };
 		DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsCase.swift; sourceTree = "<group>"; };
 		DE91F09F2B5010E400F44E01 /* WorkSpaceInitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceInitialViewModel.swift; sourceTree = "<group>"; };
+		DE91F0A22B501DB600F44E01 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DE91F0A42B510E6400F44E01 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWrongTypeCase.swift; sourceTree = "<group>"; };
+		DE91F0A82B51543E00F44E01 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +144,7 @@
 				DE91F0812B4BBFB400F44E01 /* SignupModel.swift */,
 				DE91F08B2B4D154000F44E01 /* CheckEmailModel.swift */,
 				DE91F0872B4C17D500F44E01 /* NetworkErrorModel.swift */,
+				DE91F0A82B51543E00F44E01 /* LoginModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,8 +173,18 @@
 				DE91F0972B4D6A1B00F44E01 /* SignupRequiredCase.swift */,
 				DE91F0992B4E385600F44E01 /* TokenManger.swift */,
 				DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */,
+				DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		DE91F0A12B501DA800F44E01 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DE91F0A22B501DB600F44E01 /* LoginViewController.swift */,
+				DE91F0A42B510E6400F44E01 /* LoginViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		DE9AC6312B43AB7D004D50EF = {
@@ -206,9 +225,10 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DE91F0902B4D4DC100F44E01 /* WorkSpace */,
 				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
+				DE91F0A12B501DA800F44E01 /* Login */,
+				DE91F0902B4D4DC100F44E01 /* WorkSpace */,
 				DE9AC6642B4518F3004D50EF /* Base */,
 			);
 			path = Scene;
@@ -379,17 +399,21 @@
 				DE91F09A2B4E385600F44E01 /* TokenManger.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
+				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
 				DE91F0842B4C0BBC00F44E01 /* APIManger.swift in Sources */,
 				DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */,
 				DE91F0982B4D6A1B00F44E01 /* SignupRequiredCase.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
+				DE91F0A52B510E6400F44E01 /* LoginViewModel.swift in Sources */,
 				DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
+				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 				DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */,
+				DE91F0A72B511D4D00F44E01 /* LoginWrongTypeCase.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,
 				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,
@@ -542,8 +566,9 @@
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,9 +576,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -569,8 +596,9 @@
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,9 +606,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
