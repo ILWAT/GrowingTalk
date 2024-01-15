@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkErrorProtocol: Error {
+protocol NetworkErrorProtocol: RawRepresentable, Error where RawValue == String{
     var errorMessage: String { get }
 }
 
@@ -21,8 +21,8 @@ enum NetworkError{
         case unknownAccount = "E03"
         case overRequest = "E98"
         case ServerError = "E99"
-        case decodedError
-        case unknownError
+        case decodedError = "decodedError"
+        case unknownError = "unknownError"
         
         var errorMessage: String{
             switch self {
@@ -48,7 +48,7 @@ enum NetworkError{
         }
     }
     
-    enum checkEmailError: String, NetworkErrorProtocol{
+    enum checkEmail_SignupError: String, NetworkErrorProtocol{
         case wrongRequest = "E11"
         case duplicatedData = "E12"
         
@@ -58,6 +58,23 @@ enum NetworkError{
                 return "잘못된 요청입니다."
             case .duplicatedData:
                 return "중복된 이메일입니다."
+            }
+        }
+    }
+    
+    enum AddWorkSpaceErrorCase: String, NetworkErrorProtocol {
+        case wrongRequest = "E11"
+        case duplicated = "E12"
+        case noCoin = "E21"
+        
+        var errorMessage: String {
+            switch self {
+            case .wrongRequest:
+                return "잘못된 요청입니다."
+            case .duplicated:
+                return "존재하는 스페이스 이름이 있습니다."
+            case .noCoin:
+                return "코인이 부족합니다."
             }
         }
     }

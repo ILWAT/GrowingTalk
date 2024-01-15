@@ -11,8 +11,12 @@ import Moya
 enum Router {
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
+<<<<<<< HEAD
     case login_v2(body: LoginBodyModel)
     
+=======
+    case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
+>>>>>>> ab57151 ([Feat] - #15 워크스페이스 생성 기능 구현 백업)
 }
 
 extension Router: TargetType {
@@ -28,20 +32,30 @@ extension Router: TargetType {
             return "v1/users/join"
         case .email:
             return "v1/users/validation/email"
+<<<<<<< HEAD
         case .login_v2:
             return "v2/users/login"
+=======
+        case .addWorkSpace:
+            return"v1/workspaces"
+>>>>>>> ab57151 ([Feat] - #15 워크스페이스 생성 기능 구현 백업)
         }
     }
     
     var method: Moya.Method {
         switch self {
+<<<<<<< HEAD
         case .email, .signup, .login_v2:
+=======
+        case .email, .signup, .addWorkSpace:
+>>>>>>> ab57151 ([Feat] - #15 워크스페이스 생성 기능 구현 백업)
             return .post
         }
     }
     
     var task: Moya.Task {
         switch self {
+<<<<<<< HEAD
         case .email(let body):
             return .requestJSONEncodable(body)
         case .signup(let body):
@@ -49,6 +63,23 @@ extension Router: TargetType {
         case .login_v2(let body):
             return .requestJSONEncodable(body)
             
+=======
+        case .email(let email):
+            return .requestJSONEncodable(email)
+        case .signup(let signupData):
+            return .requestJSONEncodable(signupData)
+        case .addWorkSpace(let addWorkSpaceData):
+            let imageData = MultipartFormData(provider: .data(addWorkSpaceData.image), name: "image", fileName: "\(addWorkSpaceData.name).jpeg", mimeType: "image/jpeg")
+            let nameData = MultipartFormData(provider: .data(addWorkSpaceData.name.data(using: .utf8)!), name: "name")
+            
+            var multipartData: [MultipartFormData] = [nameData, imageData]
+            
+            if let description = addWorkSpaceData.description?.data(using: .utf8) {
+                let descriptionData = MultipartFormData(provider: .data(description), name: "description")
+                multipartData.append(descriptionData)
+            }
+            return .uploadMultipart(multipartData)
+>>>>>>> ab57151 ([Feat] - #15 워크스페이스 생성 기능 구현 백업)
         }
     }
     

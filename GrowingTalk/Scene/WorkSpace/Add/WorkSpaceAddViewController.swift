@@ -170,7 +170,3 @@ extension WorkSpaceAddViewController: PHPickerViewControllerDelegate{
     
 
 }
-
-#Preview{
-    UINavigationController(rootViewController: WorkSpaceAddViewController())
-}

@@ -17,4 +17,17 @@ extension UIImage {
         
         return newImageWithTintColor
     }
+    
+    func compressionUnderMBjpegData(megabyteSize: Int) -> Data?{
+        let targetMegabyte = megabyteSize*1024*1024
+        var compressionValue: CGFloat = 1
+        guard var compressedImageDataResult = self.jpegData(compressionQuality: compressionValue) else { return nil }
+        
+        while compressedImageDataResult.count > targetMegabyte {
+            compressionValue /= 2
+            guard let compressedImageData = self.jpegData(compressionQuality: compressionValue) else { return nil }
+            compressedImageDataResult = compressedImageData
+        }
+        return compressedImageDataResult
+    }
 }

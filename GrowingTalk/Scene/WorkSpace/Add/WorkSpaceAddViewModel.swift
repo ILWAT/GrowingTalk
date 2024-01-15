@@ -23,7 +23,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
         let closeButtonTap: ControlEvent<()>
         let imgAddReactive: Driver<Void>
         let buttonActive: Driver<Bool>
-        let toastMessage: Driver<ToastMessageCase.WorkSpaceAdd>
+        let toastMessage: Driver<String>
         let spaceImage: SharedSequence<DriverSharingStrategy, UIImage?>
     }
     
@@ -34,7 +34,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
         let isValidSpaceImage = PublishSubject<Bool>()
         let buttonActive = PublishRelay<Bool>()
         let imgAddReactive = PublishRelay<Void>()
-        let toastMessage = PublishRelay<ToastMessageCase.WorkSpaceAdd>()
+        let toastMessage = PublishRelay<String>()
         let requestSuccess = PublishRelay<Bool>()
         
         let spaceImage = input.spaceImage.asDriver(onErrorJustReturn: UIImage(named: "WorkSpace"))
@@ -48,7 +48,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
                     isValidSpaceName.onNext(true)
                 } else {
                     isValidSpaceName.onNext(false)
-                    toastMessage.accept(.nameIsNotValid)
+                    toastMessage.accept(ToastMessageCase.WorkSpaceAdd.nameIsNotValid.rawValue)
                 }
             }
             .disposed(by: disposeBag)
@@ -81,10 +81,26 @@ final class WorkSpaceAddViewModel: ViewModelType {
         
         Observable.combineLatest(isValidSpaceName, isValidSpaceImage)
             .filter({ $0.0 && $0.1 })
-            .withLatestFrom(Observable.combineLatest(input.spaceNameText, input.spaceDiscriptionText, input.spaceDiscriptionText))
-//            .flatMap { allBodyValue in
-//                <#code#>
-//            }
+            .withLatestFrom(Observable.combineLatest(input.spaceNameText, input.spaceDiscriptionText, input.spaceImage))
+            .flatMap { allBodyValue in
+                guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else { 
+                    toastMessage.accept(ToastMessageCase.WorkSpaceAdd.imageRequired.rawValue)
+                    return Single<Result<AddWorkSpaceResultModel, Error>>.just(.failure(NetworkError.AddWorkSpaceErrorCase.wrongRequest))
+                }
+                
+                return APIManger.shared.requestByRx(requestType: .addWorkSpace(addWorkSpaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: AddWorkSpaceResultModel.self, defaultErrorType: NetworkError.AddWorkSpaceErrorCase.self)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result{
+                case .success(let resultData):
+                    print(resultData)
+                case .failure(let error):
+                    if let commonError  = error as? NetworkError.commonError{
+                        toastMessage.accept(commonError.errorMessage)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
         
         
         
@@ -93,7 +109,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
             closeButtonTap: input.closeButtonTap,
             imgAddReactive:imgAddReactive.asDriver(onErrorJustReturn: ()),
             buttonActive: buttonActive.asDriver(onErrorJustReturn: false),
-            toastMessage: toastMessage.asDriver(onErrorJustReturn: .etc),
+            toastMessage: toastMessage.asDriver(onErrorJustReturn: NetworkError.commonError.unknownError.errorMessage),
             spaceImage: spaceImage
         )
     }

@@ -23,7 +23,7 @@ final class SignupViewModel: ViewModelType {
     
     struct Output {
         let activeCheckBtn: Driver<Bool>
-        let checkEmailToast: Driver<SignupToastMessageCase>
+        let checkEmailToast: Driver<ToastMessageCase.Signup>
         let activeSignupBtn: Driver<Bool>
         let filteringPhoneNUmber: Driver<String>
         let requiredData: Driver<[SignupRequiredCase]>
@@ -37,7 +37,7 @@ final class SignupViewModel: ViewModelType {
         let checkBtnActive = PublishSubject<Bool>() //이메일 체크 버튼 활성화: 한글자도 입력받으면 활성화됨
         let emailRequestable = BehaviorSubject(value: false) //유효성 검사 통과에 대한 값
         let emailIsUsable = BehaviorSubject(value: false) //이메일 중복확인에 대한 값
-        let toastMessage = PublishRelay<SignupToastMessageCase>() //이메일 중복 확인에 대한 결과 값
+        let toastMessage = PublishRelay<ToastMessageCase.Signup>() //이메일 중복 확인에 대한 결과 값
         let signupBtnActive = BehaviorRelay(value: false)
         let patternedNumber = PublishRelay<String>() //"-" 들어간 전화번호
         let passwordMatch = BehaviorSubject(value: false)
@@ -113,7 +113,7 @@ final class SignupViewModel: ViewModelType {
                     if let errorType = error as? NetworkError.commonError {
                         print(errorType.errorMessage)
                     }
-                    if let errorType = error as? NetworkError.checkEmailError {
+                    if let errorType = error as? NetworkError.checkEmail_SignupError {
                         switch errorType {
                         case .wrongRequest:
                             toastMessage.accept(.emilNotValid)
@@ -204,7 +204,7 @@ final class SignupViewModel: ViewModelType {
             }
             .withLatestFrom(Observable.combineLatest(input.inputEmail, input.inputPassword, input.inputNickname, input.inputPhoneNumber))
             .flatMapLatest { userData in
-                APIManger.shared.requestByRx(requestType: .signup(signupData: SignupBodyModel(email: userData.0, password: userData.1, nickname: userData.2, phone: userData.3, deviceToken: nil)), decodableType: SignupResultModel.self)
+                APIManger.shared.requestByRx(requestType: .signup(signupData: SignupBodyModel(email: userData.0, password: userData.1, nickname: userData.2, phone: userData.3, deviceToken: nil)), decodableType: SignupResultModel.self, defaultErrorType: NetworkError.checkEmail_SignupError.self)
             }
             .subscribe(with: self) { owner, response in
                 switch response{
@@ -219,7 +219,7 @@ final class SignupViewModel: ViewModelType {
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
-                    } else if let signupError = error as? NetworkError.checkEmailError {
+                    } else if let signupError = error as? NetworkError.checkEmail_SignupError {
                         print(signupError, signupError.errorMessage)
                     }
                     toastMessage.accept(.etc)
