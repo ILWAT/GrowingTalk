@@ -77,7 +77,13 @@ final class WorkSpaceInitialViewController: BaseViewController {
         
         output.makingButtonTap
             .bind(with: self) { owner, _ in
-                print("다음 페이지")
+                let addWorkSpace = WorkSpaceAddViewController()
+                let navVC = UINavigationController(rootViewController: addWorkSpace)
+                if let sheet = navVC.sheetPresentationController {
+                    sheet.detents = [.large()]
+                    sheet.prefersGrabberVisible = true
+                }
+                owner.present(navVC, animated: true)
             }
             .disposed(by: disposeBag)
         

@@ -72,7 +72,8 @@ final class WorkSpaceAddViewController: BaseViewController {
             imgAddButtonTap: imgAddButton.rx.tap,
             spaceNameText: spaceNameLabelField.textField.rx.text.orEmpty,
             spaceDiscriptionText: spaceDiscription.textField.rx.text.orEmpty,
-            spaceImage: spaceImage
+            spaceImage: spaceImage,
+            completeButtonTap: completeButton.rx.tap
         )
         let output = viewModel.transform(input)
         
@@ -103,6 +104,12 @@ final class WorkSpaceAddViewController: BaseViewController {
                     return
                 }
                 owner.workSpaceImage.setImage(image, for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
+        output.buttonActive
+            .drive(with: self) { owner, bool in
+                owner.completeButton.changedButtonValid(newValue: bool)
             }
             .disposed(by: disposeBag)
         

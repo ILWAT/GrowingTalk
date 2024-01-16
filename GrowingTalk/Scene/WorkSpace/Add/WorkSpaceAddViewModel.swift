@@ -17,6 +17,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
         let spaceNameText: ControlProperty<String>
         let spaceDiscriptionText: ControlProperty<String>
         let spaceImage: PublishRelay<UIImage?>
+        let completeButtonTap: ControlEvent<Void>
     }
     
     struct Output{
@@ -67,8 +68,6 @@ final class WorkSpaceAddViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        
-        
         spaceImage
             .drive(with: self) { owner, image in
                 guard image != nil else {
@@ -79,24 +78,36 @@ final class WorkSpaceAddViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        
         Observable.combineLatest(isValidSpaceName, isValidSpaceImage)
             .filter({ $0.0 && $0.1 })
+            .subscribe(with: self) { onwer, value in
+                buttonActive.accept(true)
+            }
+            .disposed(by: disposeBag)
+        
+        input.completeButtonTap
             .withLatestFrom(Observable.combineLatest(input.spaceNameText, input.spaceDiscriptionText, input.spaceImage))
             .flatMap { allBodyValue in
-                guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else { 
+                //이미지 용량 Compression
+                guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else {
                     toastMessage.accept(ToastMessageCase.WorkSpaceAdd.imageRequired.rawValue)
                     return Single<Result<AddWorkSpaceResultModel, Error>>.just(.failure(NetworkError.AddWorkSpaceErrorCase.wrongRequest))
                 }
                 
+                //
                 return APIManger.shared.requestByRx(requestType: .addWorkSpace(addWorkSpaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: AddWorkSpaceResultModel.self, defaultErrorType: NetworkError.AddWorkSpaceErrorCase.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{
                 case .success(let resultData):
                     print(resultData)
+                    requestSuccess.accept(true)
                 case .failure(let error):
                     if let commonError  = error as? NetworkError.commonError{
                         toastMessage.accept(commonError.errorMessage)
+                    } else if let addError = error as? NetworkError.AddWorkSpaceErrorCase{
+                        toastMessage.accept(addError.errorMessage)
                     }
                 }
             }
