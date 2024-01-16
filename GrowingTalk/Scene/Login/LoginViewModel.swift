@@ -100,7 +100,7 @@ final class LoginViewModel: ViewModelType {
             .filter({ $0.0 && $0.1 })
             .withLatestFrom(allText)
             .flatMapLatest { loginValue in
-                APIManger.shared.requestByRx(requestType: .login_v2(body: LoginBodyModel(email: loginValue.0, password: loginValue.1, deviceToken: nil)), decodableType: LoginResultModel_V2.self)
+                APIManger.shared.requestByRx(requestType: .login_v2(body: LoginBodyModel(email: loginValue.0, password: loginValue.1, deviceToken: nil)), decodableType: LoginResultModel_V2.self, defaultErrorType: NetworkError.loginError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{
