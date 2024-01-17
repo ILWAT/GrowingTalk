@@ -52,6 +52,8 @@
 		DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66A2B45337C004D50EF /* BaseViewController.swift */; };
 		DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */; };
 		DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6722B45648F004D50EF /* SF-Pro.ttf */; };
+		DEA2F70B2B57CC2700C4D0AA /* HomeEmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */; };
+		DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */; };
 		DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */; };
 		DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */; };
 		DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */; };
@@ -98,6 +100,8 @@
 		DE9AC66A2B45337C004D50EF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		DE9AC66E2B454BBA004D50EF /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 		DE9AC6722B45648F004D50EF /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
+		DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewController.swift; sourceTree = "<group>"; };
+		DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeEmptyViewModel.swift; sourceTree = "<group>"; };
 		DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionButton.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DEA2F7092B57CBDF00C4D0AA /* Home */,
 				DE62BDC02B52EF120008F463 /* Add */,
 				DE91F0912B4D4DF000F44E01 /* Initial */,
 			);
@@ -282,6 +287,15 @@
 				DE9AC6722B45648F004D50EF /* SF-Pro.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		DEA2F7092B57CBDF00C4D0AA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */,
+				DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		DEAB5CE32B456AC000C9A71C /* App */ = {
@@ -407,6 +421,7 @@
 				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
+				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
@@ -415,6 +430,7 @@
 				DE91F0962B4D69ED00F44E01 /* ToastMessageCase.swift in Sources */,
 				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
 				DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */,
+				DEA2F70B2B57CC2700C4D0AA /* HomeEmptyViewController.swift in Sources */,
 				DE91F08C2B4D154000F44E01 /* CheckEmailModel.swift in Sources */,
 				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* TokenManger.swift in Sources */,
