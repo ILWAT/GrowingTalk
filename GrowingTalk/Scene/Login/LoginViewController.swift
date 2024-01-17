@@ -9,8 +9,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-import SwiftUI
-
 final class LoginViewController: BaseViewController {
     //MARK: - UIProperties
     private let closeButton = {

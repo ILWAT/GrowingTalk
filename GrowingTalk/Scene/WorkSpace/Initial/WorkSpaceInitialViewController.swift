@@ -11,8 +11,6 @@ import RxSwift
 import SnapKit
 import Then
 
-import SwiftUI
-
 final class WorkSpaceInitialViewController: BaseViewController {
     //MARK: - UIProperties
     private let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark")).then { item in

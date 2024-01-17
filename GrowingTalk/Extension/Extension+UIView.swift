@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 extension UIView {
     func addSubViews(_ views: [UIView]) {
@@ -13,4 +14,12 @@ extension UIView {
             self.addSubview(view)
         }
     }
+    
+    func makeAppBottomToast(toastMessage: String, point: CGPoint) {
+        var toastStyle = ToastStyle()
+        toastStyle.backgroundColor = .BrandColor.brandGreen.withAlphaComponent(0.8)
+        
+        self.makeToast(toastMessage, point: point, title: nil, image: nil, style: toastStyle, completion: nil)
+    }
+    
 }
