@@ -12,7 +12,7 @@ import Then
 
 import SwiftUI
 
-final class HomeEmptyViewController: BaseViewController {
+final class HomeEmptyViewController: BaseHomeViewController {
     //MARK: - UI Properties
     private let titleLabel = UILabel().then { label in
         label.font = .Custom.appTitle1
@@ -41,7 +41,7 @@ final class HomeEmptyViewController: BaseViewController {
     }
     
     override func configureNavigation() {
-    
+        makeHomeNavigationBar(title: "No WorkSpace")
     }
     
     override func bind() {
@@ -79,5 +79,5 @@ final class HomeEmptyViewController: BaseViewController {
 }
 
 #Preview{
-    HomeEmptyViewController()
+    UINavigationController(rootViewController: HomeEmptyViewController())
 }

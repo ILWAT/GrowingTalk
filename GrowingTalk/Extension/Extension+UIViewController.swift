@@ -6,13 +6,7 @@
 //
 
 import UIKit
-import Toast
 
-extension UIView {
-    func makeAppBottomToast(toastMessage: String, point: CGPoint) {
-        var toastStyle = ToastStyle()
-        toastStyle.backgroundColor = .BrandColor.brandGreen.withAlphaComponent(0.8)
-        
-        self.makeToast(toastMessage, point: point, title: nil, image: nil, style: toastStyle, completion: nil)
-    }
+extension UIViewController {
+
 }

@@ -211,8 +211,7 @@ final class SignupViewModel: ViewModelType {
                 case .success(let resultModel):
                     print(resultModel)
                     
-                    TokenManger.shared.saveTokenInUserDefaults(tokenData: resultModel.token.accessToken, tokenCase: .accessToken)
-                    TokenManger.shared.saveTokenInUserDefaults(tokenData: resultModel.token.refreshToken, tokenCase: .refreshToken)
+                    UserDefaultsManager.shared.savingSignupUserDefaults(data: resultModel)
                     
                     signupResultSubject.onNext(resultModel)
                     
