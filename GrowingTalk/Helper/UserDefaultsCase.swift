@@ -10,4 +10,5 @@ import Foundation
 enum UserDefaultsCase: String {
     case accessToken = "accessToken"
     case refreshToken = "refreshToken"
+    case userProfileImageURL = "UserProfileImage"
 }
