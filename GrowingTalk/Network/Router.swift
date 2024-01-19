@@ -13,6 +13,8 @@ enum Router {
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
     case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
+    case getAllWorkSpace
+    case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
 }
 
 extension Router: TargetType {
@@ -30,8 +32,10 @@ extension Router: TargetType {
             return "v1/users/validation/email"
         case .login_v2:
             return "v2/users/login"
-        case .addWorkSpace:
+        case .addWorkSpace, .getAllWorkSpace:
             return"v1/workspaces"
+        case .refreshAccessToken:
+            return "/v1/auth/refresh"
         }
     }
     
@@ -39,6 +43,8 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
+        case .refreshAccessToken, .getAllWorkSpace:
+            return .get
         }
     }
     
@@ -61,6 +67,10 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
+        case .refreshAccessToken(let bodyModel):
+            return .requestJSONEncodable(bodyModel)
+        case .getAllWorkSpace:
+            return .requestPlain
         }
     }
     
