@@ -34,6 +34,9 @@ final class HomeEmptyViewController: BaseHomeViewController {
     
     
     //MARK: - Properties
+    private let viewModel = HomeEmptyViewModel()
+    
+    private let disposeBag = DisposeBag()
     
     //MARK: - VC Method
     override func configure() {
@@ -45,7 +48,17 @@ final class HomeEmptyViewController: BaseHomeViewController {
     }
     
     override func bind() {
+        let input = HomeEmptyViewModel.Input(
+            addWorkSpaceButtonTap: addSpaceButton.rx.tap
+        )
         
+        let output = viewModel.transform(input)
+        
+        output.addWorkSpaceButtonTap
+            .bind(with: self) { owner, _ in
+                owner.showNavVCSheetController(nextVC: WorkSpaceAddViewController.self)
+            }
+            .disposed(by: disposeBag)
     }
     //MARK: - UI Method
     override func configureViewHierarchy() {
