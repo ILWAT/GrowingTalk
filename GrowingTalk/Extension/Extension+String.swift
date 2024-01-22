@@ -8,6 +8,15 @@
 import Foundation
 
 extension String {
+    //MARK: - Date
+    var stringToDate: Date? {
+        get {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            
+            return dateFormatter.date(from: self)
+        }
+    }
     //MARK: - Validation
     var isValidEmail: Bool {
         let emailRegex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|co\.kr)$"#

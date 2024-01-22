@@ -100,7 +100,7 @@ final class LoginViewModel: ViewModelType {
             .filter({ $0.0 && $0.1 })
             .withLatestFrom(allText)
             .flatMapLatest { loginValue in
-                APIManger.shared.requestByRx(requestType: .login_v2(body: LoginBodyModel(email: loginValue.0, password: loginValue.1, deviceToken: nil)), decodableType: LoginResultModel_V2.self, defaultErrorType: NetworkError.loginError.self)
+                APIManger.shared.requestByRx(requestType: .login_v2(body: LoginBodyModel(email: loginValue.0, password: loginValue.1, deviceToken: nil)), decodableType: LoginResultModel_V2.self, defaultErrorType: NetworkError.LoginError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{
@@ -110,7 +110,7 @@ final class LoginViewModel: ViewModelType {
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
-                    } else if let failedLogin = error as? NetworkError.loginError {
+                    } else if let failedLogin = error as? NetworkError.LoginError {
                         print(failedLogin, failedLogin.errorMessage)
                     }
                 }

@@ -110,4 +110,18 @@ enum NetworkError{
             }
         }
     }
+    
+    enum GetUserWorkSpaceError: String, NetworkErrorProtocol {
+        case unknwonError
+        case noneWorkspace
+        
+        var errorMessage: String {
+            switch self {
+            case .unknwonError:
+                return "알 수 없는 에러"
+            case .noneWorkspace:
+                return "워크 스페이스가 없습니다."
+            }
+        }
+    }
 }

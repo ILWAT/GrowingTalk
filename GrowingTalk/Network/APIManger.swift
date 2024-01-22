@@ -30,10 +30,12 @@ final class APIManger {
                 .filterSuccessfulStatusCodes()
                 .catch({ error in
                     guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
+                    
                     guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
                         single(.success(.failure(NetworkError.commonError.decodedError)))
                         throw moyaError
                     }
+                    
                     if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
                         if errorType == .expiredToken {
                             //토큰 갱신 로직 구현

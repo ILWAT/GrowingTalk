@@ -57,6 +57,8 @@
 		DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F70E2B58D93100C4D0AA /* Extension+Kingfisher.swift */; };
 		DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7102B593FD100C4D0AA /* BaseHomeViewController.swift */; };
 		DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */; };
+		DEA2F7192B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */; };
+		DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */; };
 		DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */; };
 		DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */; };
 		DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */; };
@@ -108,6 +110,8 @@
 		DEA2F70E2B58D93100C4D0AA /* Extension+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Kingfisher.swift"; sourceTree = "<group>"; };
 		DEA2F7102B593FD100C4D0AA /* BaseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeViewController.swift; sourceTree = "<group>"; };
 		DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshAccessTokenModel.swift; sourceTree = "<group>"; };
+		DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserWorkSpaceModel.swift; sourceTree = "<group>"; };
+		DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceError.swift; sourceTree = "<group>"; };
 		DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionButton.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				DE91F0A82B51543E00F44E01 /* LoginModel.swift */,
 				DE62BDC72B5504A60008F463 /* AddWorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
+				DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				DE91F0992B4E385600F44E01 /* UserDefaultsManager.swift */,
 				DE91F09B2B4E38C300F44E01 /* UserDefaultsCase.swift */,
 				DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */,
+				DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -464,8 +470,10 @@
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 				DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */,
 				DE91F0A72B511D4D00F44E01 /* LoginWrongTypeCase.swift in Sources */,
+				DEA2F7192B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift in Sources */,
 				DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
+				DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */,
 				DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,
 				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,

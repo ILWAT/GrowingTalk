@@ -17,4 +17,11 @@ extension UIViewController {
         }
         self.present(nav, animated: true)
     }
+    
+    func changeFirstVC(nextVC: UIViewController) throws {
+        guard let window = self.view.window else { throw DeviceError.changeViewError }
+        window.rootViewController = nextVC
+        
+        UIView.transition(with: window, duration: 0.5,options: [.transitionCrossDissolve], animations: nil)
+    }
 }

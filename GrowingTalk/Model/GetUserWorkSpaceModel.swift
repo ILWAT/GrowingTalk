@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct GetUserWorkSpaceResultModel: Decodable {
+    let workspace_id: Int
+    let name: String
+    let description: String
+    let thumbnail: String
+    let owner_id: Int
+    let createdAt: String
+}
