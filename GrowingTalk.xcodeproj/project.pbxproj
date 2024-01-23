@@ -59,6 +59,8 @@
 		DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */; };
 		DEA2F7192B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */; };
 		DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */; };
+		DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */; };
+		DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */; };
 		DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */; };
 		DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */; };
 		DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */; };
@@ -112,6 +114,8 @@
 		DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshAccessTokenModel.swift; sourceTree = "<group>"; };
 		DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserWorkSpaceModel.swift; sourceTree = "<group>"; };
 		DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceError.swift; sourceTree = "<group>"; };
+		DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewController.swift; sourceTree = "<group>"; };
+		DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewModel.swift; sourceTree = "<group>"; };
 		DEAB5CE42B456E9C00C9A71C /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DEAB5CE72B456FCB00C9A71C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		DEAB5CE92B4570E600C9A71C /* InteractionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractionButton.swift; sourceTree = "<group>"; };
@@ -309,6 +313,8 @@
 			children = (
 				DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */,
 				DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */,
+				DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */,
+				DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
 				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
@@ -466,6 +473,7 @@
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
+				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
 				DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */,
