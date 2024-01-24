@@ -15,6 +15,8 @@ enum Router {
     case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
     case getAllWorkSpace
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
+    case specificChannelInfo(workSpaceID: Int, channelName: String)
+    case myAllChannel(workSpaceID: Int)
 }
 
 extension Router: TargetType {
@@ -36,6 +38,12 @@ extension Router: TargetType {
             return"v1/workspaces"
         case .refreshAccessToken:
             return "/v1/auth/refresh"
+        case .specificChannelInfo(let workSpaceID, let workSpaceName):
+            let workSpaceNameParameter = workSpaceName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? workSpaceName
+            
+            return "/v1/workspaces/\(workSpaceID)/channels/\(workSpaceNameParameter)"
+        case .myAllChannel(let workSpaceID):
+            return "/v1/workspaces/\(workSpaceID)/channels/my"
         }
     }
     
@@ -43,7 +51,7 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .myAllChannel:
             return .get
         }
     }
@@ -69,7 +77,7 @@ extension Router: TargetType {
             return .uploadMultipart(multipartData)
         case .refreshAccessToken(let bodyModel):
             return .requestJSONEncodable(bodyModel)
-        case .getAllWorkSpace:
+        case .getAllWorkSpace, .specificChannelInfo, .myAllChannel:
             return .requestPlain
         }
     }

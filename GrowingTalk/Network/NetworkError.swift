@@ -124,4 +124,15 @@ enum NetworkError{
             }
         }
     }
+    
+    enum GetMyChannelError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        
+        var errorMessage: String{
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터 입니다."
+            }
+        }
+    }
 }

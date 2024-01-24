@@ -67,6 +67,7 @@
 		DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */; };
 		DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */; };
 		DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF42B45911000C9A71C /* ViewModelType.swift */; };
+		DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapButton.swift; sourceTree = "<group>"; };
 		DEAB5CF42B45911000C9A71C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyChannelModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				DE62BDC72B5504A60008F463 /* AddWorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
 				DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */,
+				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */,
 				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
