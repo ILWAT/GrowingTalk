@@ -91,6 +91,24 @@ final class LoginViewController: BaseViewController {
                 owner.loginButton.changedButtonValid(newValue: active)
             }
             .disposed(by: disposeBag)
+        
+        output.userHaveWorkspace
+            .filter({ $0 })
+            .withLatestFrom(output.usersOwnWorkspace.asDriver(onErrorJustReturn: [] ))
+            .drive(with: self) { owner, value in
+                if let workspaceID = value.first?.workspace_id{
+                    try? owner.changeFirstVC(nextVC: HomeInitialViewController(workspaceID: workspaceID))
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        output.userHaveWorkspace
+            .filter({ !$0 })
+            .drive(with: self) { owner, value in
+                if !value { try? owner.changeFirstVC(nextVC: HomeEmptyViewController()) }
+            }
+            .disposed(by: disposeBag)
     }
     
     //MARK: - UI Method
