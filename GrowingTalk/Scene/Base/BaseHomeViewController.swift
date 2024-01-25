@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import Then
+import SnapKit
 
 class BaseHomeViewController: BaseViewController{
     //MARK: - UI Properties
@@ -28,6 +29,7 @@ class BaseHomeViewController: BaseViewController{
         view.image = UIImage(systemName: "person")
         view.tintColor = .black
         view.contentMode = .scaleAspectFit
+        
     }
     
     let workSpaceImageView = UIImageView().then { view in
@@ -36,7 +38,9 @@ class BaseHomeViewController: BaseViewController{
         view.clipsToBounds = true
         view.image = UIImage(named: "WorkSpace")
         view.tintColor = .black
+        view.backgroundColor = .label
         view.contentMode = .scaleAspectFit
+        view.autoresizingMask = .flexibleWidth
     }
     
     lazy var profileImageBarButton = UIBarButtonItem(customView: profileImageButton)
@@ -84,8 +88,8 @@ class BaseHomeViewController: BaseViewController{
         }
         
         self.navigationItem.setRightBarButton(profileImageBarButton, animated: true)
+
         self.navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
-        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
         

@@ -19,7 +19,7 @@ final class WorkSpaceAddViewController: BaseViewController {
     }
     
     private let workSpaceImage = UIButton().then { view in
-        view.setImage(UIImage(named: "WorkSpace")?.resizingByRenderer(size: CGSize(width: 50, height: 60)), for: .normal)
+        view.setImage(UIImage(named: "WorkSpace")?.resizingByRenderer(size: CGSize(width: 50, height: 60), tintColor: .white), for: .normal)
         view.backgroundColor = .BrandColor.brandGreen
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -30,7 +30,7 @@ final class WorkSpaceAddViewController: BaseViewController {
         item.backgroundColor = .BrandColor.brandGreen
         item.layer.borderWidth = 3
         item.layer.borderColor = UIColor.white.cgColor
-        let image = UIImage(systemName: "camera.fill")?.resizingByRenderer(size: CGSize(width: 12, height:12))
+        let image = UIImage(systemName: "camera.fill")?.resizingByRenderer(size: CGSize(width: 12, height:12), tintColor: .white)
         item.setImage(image, for: .normal)
         item.clipsToBounds = true
     }
