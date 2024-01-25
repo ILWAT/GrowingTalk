@@ -37,6 +37,7 @@
 		DE91F0A52B510E6400F44E01 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A42B510E6400F44E01 /* LoginViewModel.swift */; };
 		DE91F0A72B511D4D00F44E01 /* LoginWrongTypeCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */; };
 		DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0A82B51543E00F44E01 /* LoginModel.swift */; };
+		DE9A0F6A2B61611000AF24CF /* GetMyDMmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */; };
 		DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */; };
 		DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */; };
 		DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE9AC6462B43AB7F004D50EF /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		DE91F0A42B510E6400F44E01 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		DE91F0A62B511D4D00F44E01 /* LoginWrongTypeCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWrongTypeCase.swift; sourceTree = "<group>"; };
 		DE91F0A82B51543E00F44E01 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyDMmodel.swift; sourceTree = "<group>"; };
 		DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrowingTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE9AC63D2B43AB7D004D50EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE9AC63F2B43AB7D004D50EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
 				DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */,
 				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
+				DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */,
+				DE9A0F6A2B61611000AF24CF /* GetMyDMmodel.swift in Sources */,
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
 				DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */,
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,

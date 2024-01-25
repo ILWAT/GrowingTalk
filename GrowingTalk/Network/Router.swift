@@ -16,7 +16,8 @@ enum Router {
     case getAllWorkSpace
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
     case specificChannelInfo(workSpaceID: Int, channelName: String)
-    case myAllChannel(workSpaceID: Int)
+    case getMyAllChannelInWorkspace(workSpaceID: Int)
+    case getMyAllDMInWorkspace(workspaceID: Int)
 }
 
 extension Router: TargetType {
@@ -42,8 +43,10 @@ extension Router: TargetType {
             let workSpaceNameParameter = workSpaceName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? workSpaceName
             
             return "/v1/workspaces/\(workSpaceID)/channels/\(workSpaceNameParameter)"
-        case .myAllChannel(let workSpaceID):
+        case .getMyAllChannelInWorkspace(let workSpaceID):
             return "/v1/workspaces/\(workSpaceID)/channels/my"
+        case .getMyAllDMInWorkspace(let workspaceID):
+            return "/v1/workspaces/\(workspaceID)/dms"
         }
     }
     
@@ -51,7 +54,7 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .myAllChannel:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace:
             return .get
         }
     }
@@ -77,7 +80,7 @@ extension Router: TargetType {
             return .uploadMultipart(multipartData)
         case .refreshAccessToken(let bodyModel):
             return .requestJSONEncodable(bodyModel)
-        case .getAllWorkSpace, .specificChannelInfo, .myAllChannel:
+        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace:
             return .requestPlain
         }
     }

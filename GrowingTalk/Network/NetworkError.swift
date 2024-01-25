@@ -131,7 +131,18 @@ enum NetworkError{
         var errorMessage: String{
             switch self {
             case .noneData:
-                return "존재하지 않는 데이터 입니다."
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
+    
+    enum GetMyAllDMInWorkspaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self{
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
             }
         }
     }
