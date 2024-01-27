@@ -47,7 +47,6 @@ class BaseHomeViewController: BaseViewController{
     lazy var workSpaceImageBarButton = UIBarButtonItem(customView: workSpaceImageView)
     
     
-    
     //MARK: - Properties
     
     //MARK: - VC Method
@@ -56,7 +55,7 @@ class BaseHomeViewController: BaseViewController{
     }
     
     override func configureNavigation() {
-        
+        super.configureNavigation()
     }
     
     //MARK: - UI Method
@@ -67,34 +66,34 @@ class BaseHomeViewController: BaseViewController{
     //MARK: - Helper
     
     func makeHomeNavigationBar(title: String?, workSpaceImageURL: String? = nil) {
-        self.navTitleLabel.text = title
+        navTitleLabel.text = title
         
-        self.navigationItem.titleView = navTitleLabel
+        navigationItem.titleView = navTitleLabel
         
         let downSamplingProcessor = DownsamplingImageProcessor(size: CGSize(width: 30, height: 30))
         
         let kingfisherOptions: KingfisherOptionsInfo = [.processor(downSamplingProcessor), .cacheOriginalImage]
         
         if let profileImageURL = UserDefaults.standard.string(forKey: UserDefaultsCase.userProfileImageURL.rawValue){
-            let url = URL(string: SecretKeys.severURL+profileImageURL)
+            let url = URL(string: SecretKeys.severURL_V1+profileImageURL)
             
-            profileImageButton.kf.setImage(with: url, options: kingfisherOptions)
+            profileImageButton.kf.setImageWithHeader(with: url, options: kingfisherOptions)
         }
         
         if let workSpaceImageURL {
-            let url = URL(string: SecretKeys.severURL+workSpaceImageURL)
+            let url = URL(string: SecretKeys.severURL_V1+workSpaceImageURL)
             
             workSpaceImageView.kf.setImageWithHeader(with: url, options: kingfisherOptions)
         }
         
-        self.navigationItem.setRightBarButton(profileImageBarButton, animated: true)
-
-        self.navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
+        navigationItem.setRightBarButton(profileImageBarButton, animated: true)
+        navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
+        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
         
-        self.navigationItem.standardAppearance = appearance
-        self.navigationItem.scrollEdgeAppearance = appearance
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
     
     }
 }

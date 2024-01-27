@@ -30,13 +30,13 @@ extension Router: TargetType {
     var path: String {
         switch self {
         case .signup:
-            return "v1/users/join"
+            return "/v1/users/join"
         case .email:
-            return "v1/users/validation/email"
+            return "/v1/users/validation/email"
         case .login_v2:
-            return "v2/users/login"
+            return "/v2/users/login"
         case .addWorkSpace, .getAllWorkSpace:
-            return"v1/workspaces"
+            return"/v1/workspaces"
         case .refreshAccessToken:
             return "/v1/auth/refresh"
         case .specificChannelInfo(let workSpaceID, let workSpaceName):

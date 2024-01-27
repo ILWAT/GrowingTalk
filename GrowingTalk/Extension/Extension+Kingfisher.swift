@@ -17,8 +17,8 @@ extension KingfisherWrapper where Base: UIImageView {
     ) {
         let modifier = AnyModifier { request in
             var r = request
-            r.addValue(UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .accessToken), forHTTPHeaderField: "AccessToken")
-            r.addValue(SecretKeys.serverSecretKey, forHTTPHeaderField: "Authorization")
+            r.addValue(UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .accessToken), forHTTPHeaderField: "Authorization")
+            r.addValue(SecretKeys.serverSecretKey, forHTTPHeaderField: "SesacKey")
             return r
         }
         
