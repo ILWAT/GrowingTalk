@@ -151,6 +151,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE3ADE622B67C5FD00C81271 /* Empty */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */,
+				DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */,
+			);
+			path = Empty;
+			sourceTree = "<group>";
+		};
+		DE3ADE632B67C60E00C81271 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */,
+				DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
 		DE62BDC02B52EF120008F463 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,10 +337,8 @@
 		DEA2F7092B57CBDF00C4D0AA /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				DEA2F70A2B57CC2700C4D0AA /* HomeEmptyViewController.swift */,
-				DEA2F70C2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift */,
-				DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */,
-				DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */,
+				DE3ADE632B67C60E00C81271 /* Initial */,
+				DE3ADE622B67C5FD00C81271 /* Empty */,
 				DE3ADE602B62739A00C81271 /* HomeTabBarController.swift */,
 			);
 			path = Home;
