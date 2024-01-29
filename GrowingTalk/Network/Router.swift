@@ -13,6 +13,12 @@ enum Router {
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
     case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
+    case getAllWorkSpace
+    case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
+    case specificChannelInfo(workSpaceID: Int, channelName: String)
+    case getMyAllChannelInWorkspace(workSpaceID: Int)
+    case getMyAllDMInWorkspace(workspaceID: Int)
+    case getUserProfile
 }
 
 extension Router: TargetType {
@@ -25,13 +31,25 @@ extension Router: TargetType {
     var path: String {
         switch self {
         case .signup:
-            return "v1/users/join"
+            return "/v1/users/join"
         case .email:
-            return "v1/users/validation/email"
+            return "/v1/users/validation/email"
         case .login_v2:
-            return "v2/users/login"
-        case .addWorkSpace:
-            return"v1/workspaces"
+            return "/v2/users/login"
+        case .addWorkSpace, .getAllWorkSpace:
+            return"/v1/workspaces"
+        case .refreshAccessToken:
+            return "/v1/auth/refresh"
+        case .specificChannelInfo(let workSpaceID, let workSpaceName):
+            let workSpaceNameParameter = workSpaceName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? workSpaceName
+            
+            return "/v1/workspaces/\(workSpaceID)/channels/\(workSpaceNameParameter)"
+        case .getMyAllChannelInWorkspace(let workSpaceID):
+            return "/v1/workspaces/\(workSpaceID)/channels/my"
+        case .getMyAllDMInWorkspace(let workspaceID):
+            return "/v1/workspaces/\(workspaceID)/dms"
+        case .getUserProfile:
+            return "/v1/users/my"
         }
     }
     
@@ -39,6 +57,8 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+            return .get
         }
     }
     
@@ -61,6 +81,10 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
+        case .refreshAccessToken(let bodyModel):
+            return .requestJSONEncodable(bodyModel)
+        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+            return .requestPlain
         }
     }
     

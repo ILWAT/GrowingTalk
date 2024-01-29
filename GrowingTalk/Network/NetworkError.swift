@@ -80,7 +80,7 @@ enum NetworkError{
     }
     
     
-    enum loginError: String, NetworkErrorProtocol{
+    enum LoginError: String, NetworkErrorProtocol{
         case failedLogin = "E03"
         
         var errorMessage: String {
@@ -91,4 +91,59 @@ enum NetworkError{
         }
     }
     
+    enum RefreshAccessTokenError: String, NetworkErrorProtocol {
+        case validToken = "E04"
+        case unknownAccount = "E03"
+        case expiredRefreshToken = "E06"
+        case failedValidation = "E02"
+        
+        var errorMessage: String{
+            switch self {
+            case .validToken:
+                return "토큰이 아직 유효합니다."
+            case .unknownAccount:
+                return "알 수 없는 계정입니다."
+            case .expiredRefreshToken:
+                return "다시 로그인해주세요."
+            case .failedValidation:
+                return "인증에 실패하였습니다."
+            }
+        }
+    }
+    
+    enum GetUserWorkSpaceError: String, NetworkErrorProtocol {
+        case unknwonError
+        case noneWorkspace
+        
+        var errorMessage: String {
+            switch self {
+            case .unknwonError:
+                return "알 수 없는 에러"
+            case .noneWorkspace:
+                return "워크 스페이스가 없습니다."
+            }
+        }
+    }
+    
+    enum GetMyChannelError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        
+        var errorMessage: String{
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
+    
+    enum GetMyAllDMInWorkspaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self{
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
 }

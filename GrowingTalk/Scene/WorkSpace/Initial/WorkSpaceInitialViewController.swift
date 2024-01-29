@@ -11,8 +11,6 @@ import RxSwift
 import SnapKit
 import Then
 
-import SwiftUI
-
 final class WorkSpaceInitialViewController: BaseViewController {
     //MARK: - UIProperties
     private let closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark")).then { item in
@@ -87,9 +85,23 @@ final class WorkSpaceInitialViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.closeButtonTap
-            .bind(with: self) { owner, _ in
-                print("close")
+        output.workSpaceIsExist
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let workspaceData):
+                    break
+                case .failure(let error):
+                    let nextVC = HomeEmptyViewController()
+                    do {
+                        try owner.changeFirstVC(nextVC: nextVC)
+                    } catch let error {
+                        if let deviceError = error as? DeviceError {
+                            owner.view.makeToast(deviceError.errorMessage)
+                        } else {
+                            owner.view.makeToast(DeviceError.unknownError.errorMessage)
+                        }
+                    }
+                }
             }
             .disposed(by: disposeBag)
     }

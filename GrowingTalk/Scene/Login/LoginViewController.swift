@@ -9,8 +9,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-import SwiftUI
-
 final class LoginViewController: BaseViewController {
     //MARK: - UIProperties
     private let closeButton = {
@@ -91,6 +89,26 @@ final class LoginViewController: BaseViewController {
         output.LoginButtonActive
             .drive(with: self) { owner, active in
                 owner.loginButton.changedButtonValid(newValue: active)
+            }
+            .disposed(by: disposeBag)
+        
+        output.userHaveWorkspace
+            .filter({ $0 })
+            .withLatestFrom(output.usersOwnWorkspace.asDriver(onErrorJustReturn: []))
+            .drive(with: self) { owner, value in
+                if let workspaceInfo = value.first {
+                    let tabBarVC = HomeTabBarController()
+                    tabBarVC.appendNavigationWrappingVC(viewControllers: [HomeInitialViewController(workspaceInfo: workspaceInfo)])
+                    try? owner.changeFirstVC(nextVC: tabBarVC)
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        output.userHaveWorkspace
+            .filter({ !$0 })
+            .drive(with: self) { owner, value in
+                if !value { try? owner.changeFirstVC(nextVC: UINavigationController(rootViewController: HomeEmptyViewController())) }
             }
             .disposed(by: disposeBag)
     }

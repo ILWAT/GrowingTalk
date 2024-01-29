@@ -16,7 +16,7 @@ final class APIManger {
     static let shared = APIManger()
     
     let provider = MoyaProvider<Router>(plugins: [AccessTokenPlugin(tokenClosure: { _ in
-        TokenManger.shared.obtainTokenFromUserDefaults(tokenCase: .accessToken)
+        UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .accessToken)
     })])
     
     let disposeBag = DisposeBag()
@@ -30,14 +30,44 @@ final class APIManger {
                 .filterSuccessfulStatusCodes()
                 .catch({ error in
                     guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
+                    
                     guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
                         single(.success(.failure(NetworkError.commonError.decodedError)))
                         throw moyaError
                     }
+                    
                     if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
                         if errorType == .expiredToken {
                             //토큰 갱신 로직 구현
-                            throw errorType
+                            var refreshTokenError: MoyaError?
+                            
+                            self.provider.request(.refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel(RefreshToken: UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .refreshToken)))) { result in
+                                switch result {
+                                case .success(let response):
+                                    do {
+                                        let successResponse = try response.filterSuccessfulStatusCodes()
+                                        guard let decodedData = try? successResponse.map(RefreshAccessTokenResultModel.self) else { return }
+                                        UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: decodedData.accessToken, tokenCase: .accessToken)
+                                    } catch let error {
+                                        refreshTokenError = moyaError
+                                    }
+                                case .failure(let moyaError):
+                                    refreshTokenError = moyaError
+                                }
+                            }
+                            if let refreshMoyaError = refreshTokenError {
+                                guard let decodedError = try? refreshMoyaError.response?.map(NetworkErrorModel.self) else { throw NetworkError.commonError.decodedError }
+                                if let commonError = NetworkError.commonError(rawValue: decodedError.errorCode) {
+                                    throw commonError
+                                } else if let refreshTokenError = NetworkError.RefreshAccessTokenError(rawValue: decodedError.errorCode) {
+                                    throw refreshTokenError
+                                } else {
+                                    throw NetworkError.commonError.unknownError
+                                }
+                            } else {
+                                throw errorType
+                            }
+                            
                         } else {
                             single(.success(.failure(errorType)))
                             throw errorType
