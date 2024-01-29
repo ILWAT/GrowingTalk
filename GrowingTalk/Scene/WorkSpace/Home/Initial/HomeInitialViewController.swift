@@ -86,7 +86,6 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        print(workSpaceInfo.name, workSpaceInfo.thumbnail)
         makeHomeNavigationBar(title: workSpaceInfo.name, workSpaceImageURL: workSpaceInfo.thumbnail)
         self.tabBarItem.title = "홈"
         self.tabBarItem.image = UIImage(named: "InactiveHome")
@@ -110,6 +109,14 @@ final class HomeInitialViewController: BaseHomeViewController {
         output.dmCell
             .drive(with: self) { owner, dmCell in
                 owner.regenerateSectionSnapshot(sectionType: .directMessage, subItems: dmCell, item: [])
+            }
+            .disposed(by: disposeBag)
+        
+        output.profileImage
+            .drive(with: self) { owner, image in
+                if let image {
+                    owner.profileImageButton.image = image
+                }
             }
             .disposed(by: disposeBag)
 

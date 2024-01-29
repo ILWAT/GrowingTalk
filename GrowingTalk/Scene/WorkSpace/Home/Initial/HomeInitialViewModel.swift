@@ -20,12 +20,14 @@ final class HomeInitialViewModel: ViewModelType {
     struct Output {
         let channelCell: Driver<[HomeItemModel]>
         let dmCell: Driver<[HomeItemModel]>
+        let profileImage: Driver<UIImage?>
     }
     
     func transform(_ input: Input) -> Output {
         let cellDefaultImage = UIImage(named: "ThinTag")
         let channelCellData = PublishRelay<[HomeItemModel]>()
         let directMessageCellData = PublishRelay<[HomeItemModel]>()
+        let profileImage = BehaviorRelay(value: UIImage(named: "person"))
         
         APIManger.shared.requestByRx(requestType: .getMyAllChannelInWorkspace(workSpaceID: input.workSpaceID), decodableType: [GetMyAllChannelResultModel].self, defaultErrorType: NetworkError.GetMyChannelError.self)
             .subscribe(with: self) { owner, result in
@@ -53,17 +55,7 @@ final class HomeInitialViewModel: ViewModelType {
                     for dmCelldata in resultModel{
                         var image: UIImage?
                         if let userProfileURL = dmCelldata.user.profileImage {
-                            if let imageURL = URL(string: SecretKeys.severURL+userProfileURL){
-                                KingfisherManager.shared.retrieveImage(with: imageURL) { result in
-                                    switch result{
-                                    case .success(let imageResult):
-                                        let resizeImage = imageResult.image.resizingByRenderer(size: CGSize(width: 24, height: 24), tintColor: nil)
-                                        image = resizeImage
-                                    case .failure(let error):
-                                        print(error)
-                                    }
-                                }
-                            }
+                            image = owner.getImages(imageURLString: userProfileURL)
                         } else {
                             image = UIImage(named: "DefaultProfile_A")
                         }
@@ -75,11 +67,47 @@ final class HomeInitialViewModel: ViewModelType {
                 }
             }
             .disposed(by: disposeBag)
+        
+        APIManger.shared.requestByRx(requestType: .getUserProfile, decodableType: GetUserProfileModel.self, defaultErrorType: NetworkError.commonError.self)
+            .debug("HomeInitialViewModel ProfileImage")
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let userProfile):
+                    if let imageURL = userProfile.profileImage {
+                        profileImage.accept(owner.getImages(imageURLString: imageURL))
+                    } else {
+                        profileImage.accept(UIImage(named: "DefaultProfile_A"))
+                    }
+                    
+                case .failure(let error):
+                    if let commonError = error as? NetworkError.commonError {
+                        print(commonError)
+                    }
+                }
+            }
+            .disposed(by: disposeBag)
             
         
         return Output(
             channelCell: channelCellData.asDriver(onErrorJustReturn: []),
-            dmCell: directMessageCellData.asDriver(onErrorJustReturn: [])
+            dmCell: directMessageCellData.asDriver(onErrorJustReturn: []),
+            profileImage: profileImage.asDriver()
         )
+    }
+    
+    func getImages(imageURLString: String) -> UIImage? {
+        var image: UIImage?
+        if let imageURL = URL(string: SecretKeys.severURL+imageURLString){
+            KingfisherManager.shared.retrieveImage(with: imageURL) { result in
+                switch result{
+                case .success(let imageResult):
+                    let resizeImage = imageResult.image.resizingByRenderer(size: CGSize(width: 24, height: 24), tintColor: nil)
+                    image = resizeImage
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+        return image
     }
 }
