@@ -119,6 +119,15 @@ final class HomeInitialViewController: BaseHomeViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        self.workSpaceImageButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let nextVC = SideBarController()
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.modalTransitionStyle = .crossDissolve
+                owner.present(nextVC, animated: true)
+            }
+            .disposed(by: disposeBag)
 
     }
     
