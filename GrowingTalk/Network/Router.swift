@@ -81,8 +81,8 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
-        case .refreshAccessToken(let bodyModel):
-            return .requestJSONEncodable(bodyModel)
+        case .refreshAccessToken:
+            return .requestPlain
         case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
             return .requestPlain
         }
@@ -90,6 +90,11 @@ extension Router: TargetType {
     
     var headers: [String : String]? {
         switch self {
+        case .refreshAccessToken:
+            return [
+                "SesacKey": SecretKeys.serverSecretKey,
+                "RefreshToken" : UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .refreshToken)
+            ]
         default:
             return ["SesacKey": SecretKeys.serverSecretKey]
         }

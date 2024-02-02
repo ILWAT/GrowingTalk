@@ -96,6 +96,7 @@ enum NetworkError{
         case unknownAccount = "E03"
         case expiredRefreshToken = "E06"
         case failedValidation = "E02"
+        case intentionalError
         
         var errorMessage: String{
             switch self {
@@ -107,6 +108,8 @@ enum NetworkError{
                 return "다시 로그인해주세요."
             case .failedValidation:
                 return "인증에 실패하였습니다."
+            case .intentionalError:
+                return "retry를 위한 의도적 에러입니다."
             }
         }
     }
