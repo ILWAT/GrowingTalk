@@ -21,23 +21,30 @@ final class SideBarController: BaseViewController {
     
     private let addWorkspaceButton = UIButton().then { button in
         var config = UIButton.Configuration.plain()
-        config.baseBackgroundColor = .white
-        let plusimage = UIImage(systemName: "plus")?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .BrandColor.brandGray)
-        config.baseForegroundColor = .BrandColor.brandGray
+        let plusimage = UIImage(systemName: "plus")//?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .BrandColor.brandGray)
+        config.image = plusimage
+        config.baseForegroundColor = .TextColor.textSecondaryColor
         config.imagePadding = CGFloat(16)
         button.configuration = config
+        
+        button.backgroundColor = .white
         button.setTitle("워크스페이스 추가", for: .normal)
+        button.contentHorizontalAlignment = .leading
+        
     }
     
     private let infoButton = UIButton().then { button in
         var config = UIButton.Configuration.plain()
         config.baseBackgroundColor = .white
-        let plusimage = UIImage(systemName: "questionmark.circle")?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .BrandColor.brandGray)
-        config.baseForegroundColor = .BrandColor.brandGray
+        let questionIcon = UIImage(systemName: "questionmark.circle")//?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .BrandColor.brandGray)
+        config.image = questionIcon
+        config.baseForegroundColor = .TextColor.textSecondaryColor
         config.imagePadding = CGFloat(16)
-        config.imagePlacement = .leading
         button.configuration = config
+        
+        button.backgroundColor = .white
         button.setTitle("도움말", for: .normal)
+        button.contentHorizontalAlignment = .leading
     }
     
     private lazy var sideBarView = UIView().then { view in
@@ -53,8 +60,30 @@ final class SideBarController: BaseViewController {
     
     private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
     
+    private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture)).then { gesture in
+        gesture.minimumNumberOfTouches = 1
+    }
+    
+    private lazy var emptyView = EmptyWorkSpaceSideView()
+    
     //MARK: - Properties
     
+    private var workSpaceInfo: [GetUserWorkSpaceResultModel] = []
+    
+    //MARK: - Initialization
+    init(userOwnWorkSpaceInfo: [GetUserWorkSpaceResultModel]? = nil) {
+        if let userOwnWorkSpaceInfo {
+            for item in userOwnWorkSpaceInfo {
+                self.workSpaceInfo.append(item)
+            }
+        }
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     //MARK: - Override
     override func configure() {
         super.configure()
@@ -64,7 +93,9 @@ final class SideBarController: BaseViewController {
     override func configureViewHierarchy() {
         self.view.backgroundColor = .black.withAlphaComponent(0.5)
         self.view.addSubViews([backgroundView, sideBarView])
+        self.view.addGestureRecognizer(panGesture)
         self.backgroundView.addGestureRecognizer(tapGesture)
+        self.collectionView.addSubview(emptyView)
     }
     
     override func configureViewConstraints() {
@@ -90,11 +121,14 @@ final class SideBarController: BaseViewController {
             make.horizontalEdges.equalTo(self.sideBarView)
         }
         collectionView.snp.makeConstraints { make in
-            make.horizontalEdges.bottom.equalTo(sideBarView)
+            make.horizontalEdges.equalTo(sideBarView)
             make.top.equalTo(titleLabel.snp.bottom).offset(16)
             make.bottom.equalTo(addWorkspaceButton.snp.top)
         }
-        
+        emptyView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.horizontalEdges.equalToSuperview().inset(24)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,7 +150,7 @@ final class SideBarController: BaseViewController {
     }
     
     func sideBarAppearAnimation() {
-        self.view.layoutIfNeeded()
+        self.view.layoutIfNeeded() //AutoLayout을 통해 뷰의 초기 위치와 크기를 잡았기에 애니메이션을 해당 메서드 실행 -> 뷰가 실제로 보여지기 전까지 초기 AutoLayout은 실행되지 않음
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view)
         }
@@ -137,4 +171,34 @@ final class SideBarController: BaseViewController {
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
         self.dismiss(animated: true)
     }
+    
+    @objc func panGesture(_ sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: self.view)
+        let sidebarWidth = sideBarView.frame.width
+        switch sender.state {
+        case .changed:
+            if abs(translation.x) <= sidebarWidth, sideBarView.frame.maxX <= sidebarWidth{
+                let changedMinX = sideBarView.frame.minX + translation.x
+                guard changedMinX <= 0, changedMinX >= -sidebarWidth else { return }
+                updateSidebarOffset(delta: changedMinX)
+            }
+        @unknown default:
+            if sideBarView.frame.maxX <= (sidebarWidth/2) {
+                self.dismiss(animated: true)
+            } else {
+                updateSidebarOffset(delta: 0)
+            }
+        }
+        sender.setTranslation(CGPoint.zero, in: self.view)
+    }
+    
+    func updateSidebarOffset(delta: CGFloat) {
+        sideBarView.snp.updateConstraints { make in
+            make.leading.equalTo(self.view).offset(delta)
+        }
+        UIView.animate(withDuration: 0) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
+

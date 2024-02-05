@@ -11,6 +11,7 @@
 		DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */; };
 		DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE672B6905FA00C81271 /* SideBarController.swift */; };
 		DE3ADE6A2B6915C600C81271 /* Extension+KingfisherManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE692B6915C600C81271 /* Extension+KingfisherManger.swift */; };
+		DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
@@ -80,6 +81,7 @@
 		DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileModel.swift; sourceTree = "<group>"; };
 		DE3ADE672B6905FA00C81271 /* SideBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarController.swift; sourceTree = "<group>"; };
 		DE3ADE692B6915C600C81271 /* Extension+KingfisherManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+KingfisherManger.swift"; sourceTree = "<group>"; };
+		DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWorkSpaceSideView.swift; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				DE3ADE672B6905FA00C81271 /* SideBarController.swift */,
+				DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
+				DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
 				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
