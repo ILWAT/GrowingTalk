@@ -32,19 +32,17 @@ final class APIManger {
                     guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
                     
                     guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
-                        single(.success(.failure(NetworkError.commonError.decodedError)))
-                        throw moyaError
+                        throw NetworkError.commonError.decodedError
                     }
                     
                     if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
                         if errorType == .expiredToken {
                             return try self!.requestRefreshTokenAPI()
-                        } else {                            single(.success(.failure(errorType)))
+                        } else {
                             throw errorType
                         }
                         
                     } else if let errorType = E.init(rawValue: decodedError.errorCode) {
-                        single(.success(.failure(errorType)))
                         throw errorType
                     } else {
                         throw moyaError
