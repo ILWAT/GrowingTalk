@@ -12,6 +12,9 @@
 		DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE672B6905FA00C81271 /* SideBarController.swift */; };
 		DE3ADE6A2B6915C600C81271 /* Extension+KingfisherManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE692B6915C600C81271 /* Extension+KingfisherManger.swift */; };
 		DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */; };
+		DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE6F2B71E57500C81271 /* SideBarViewModel.swift */; };
+		DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE712B71E9A100C81271 /* SideBarCell.swift */; };
+		DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE732B71F17300C81271 /* Extension+Date.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
@@ -82,6 +85,9 @@
 		DE3ADE672B6905FA00C81271 /* SideBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarController.swift; sourceTree = "<group>"; };
 		DE3ADE692B6915C600C81271 /* Extension+KingfisherManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+KingfisherManger.swift"; sourceTree = "<group>"; };
 		DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyWorkSpaceSideView.swift; sourceTree = "<group>"; };
+		DE3ADE6F2B71E57500C81271 /* SideBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewModel.swift; sourceTree = "<group>"; };
+		DE3ADE712B71E9A100C81271 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
+		DE3ADE732B71F17300C81271 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
@@ -182,6 +188,8 @@
 			children = (
 				DE3ADE672B6905FA00C81271 /* SideBarController.swift */,
 				DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */,
+				DE3ADE6F2B71E57500C81271 /* SideBarViewModel.swift */,
+				DE3ADE712B71E9A100C81271 /* SideBarCell.swift */,
 			);
 			path = SideBar;
 			sourceTree = "<group>";
@@ -341,6 +349,7 @@
 				DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */,
 				DEA2F70E2B58D93100C4D0AA /* Extension+Kingfisher.swift */,
 				DE3ADE692B6915C600C81271 /* Extension+KingfisherManger.swift */,
+				DE3ADE732B71F17300C81271 /* Extension+Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -490,6 +499,7 @@
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
 				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
+				DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */,
 				DE9A0F6A2B61611000AF24CF /* GetMyDMmodel.swift in Sources */,
@@ -522,6 +532,8 @@
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
 				DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */,
+				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
+				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
 				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,

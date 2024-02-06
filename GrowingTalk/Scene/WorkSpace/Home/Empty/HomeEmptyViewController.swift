@@ -36,8 +36,6 @@ final class HomeEmptyViewController: BaseHomeViewController {
     //MARK: - Properties
     private let viewModel = HomeEmptyViewModel()
     
-    private let disposeBag = DisposeBag()
-    
     //MARK: - VC Method
     override func configure() {
         super.configure()
@@ -48,6 +46,7 @@ final class HomeEmptyViewController: BaseHomeViewController {
     }
     
     override func bind() {
+        super.bind()
         let input = HomeEmptyViewModel.Input(
             addWorkSpaceButtonTap: addSpaceButton.rx.tap
         )

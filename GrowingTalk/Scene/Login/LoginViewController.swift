@@ -92,23 +92,19 @@ final class LoginViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        output.userHaveWorkspace
-            .filter({ $0 })
-            .withLatestFrom(output.usersOwnWorkspace.asDriver(onErrorJustReturn: []))
+        Observable.zip(output.usersOwnWorkspace, output.loginResult)
+            .debug("HomeInitialView transition")
+            .asDriver(onErrorJustReturn: ([], .init(user_id: 0, email: "", nickname: "", profileImage: nil, phone: nil, vendor: nil, createdAt: "", token: Tokens(accessToken: "", refreshToken: ""))))
             .drive(with: self) { owner, value in
-                if let workspaceInfo = value.first {
-                    let tabBarVC = HomeTabBarController()
-                    tabBarVC.appendNavigationWrappingVC(viewControllers: [HomeInitialViewController(workspaceInfo: workspaceInfo)])
-                    try? owner.changeFirstVC(nextVC: tabBarVC)
+                if value.0.count == 0 {
+                    try? owner.changeFirstVC(nextVC: UINavigationController(rootViewController: HomeEmptyViewController()))
+                } else {
+                    if let workspaceInfo = value.0.first {
+                        let tabBarVC = HomeTabBarController()
+                        tabBarVC.appendNavigationWrappingVC(viewControllers: [HomeInitialViewController(currentWorkspaceInfo: workspaceInfo, userId:value.1.user_id)])
+                        try? owner.changeFirstVC(nextVC: tabBarVC)
+                    }
                 }
-                
-            }
-            .disposed(by: disposeBag)
-        
-        output.userHaveWorkspace
-            .filter({ !$0 })
-            .drive(with: self) { owner, value in
-                if !value { try? owner.changeFirstVC(nextVC: UINavigationController(rootViewController: HomeEmptyViewController())) }
             }
             .disposed(by: disposeBag)
     }

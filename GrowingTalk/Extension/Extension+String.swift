@@ -12,7 +12,7 @@ extension String {
     var stringToDate: Date? {
         get {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
             
             return dateFormatter.date(from: self)
         }

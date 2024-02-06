@@ -21,8 +21,9 @@ final class LoginViewModel: ViewModelType {
         let closebuttonTap: Driver<()>
         let wrongType: Driver<Result<Void, LoginWrongTypeCase>>
         let LoginButtonActive: Driver<Bool>
-        let userHaveWorkspace: Driver<Bool>
+//        let userHaveWorkspace: Driver<Bool>
         let usersOwnWorkspace: PublishSubject<[GetUserWorkSpaceResultModel]>
+        let loginResult: PublishSubject<LoginResultModel_V2>
     }
     
     let disposeBag = DisposeBag()
@@ -32,8 +33,7 @@ final class LoginViewModel: ViewModelType {
         let passwordValidation = PublishSubject<Bool>()
         let wrongType = PublishRelay<Result<Void,LoginWrongTypeCase>>()
         let loginButtonActive = BehaviorRelay(value: false)
-        let loginResult = PublishRelay<LoginResultModel_V2>()
-        let userHaveWorkspace = PublishRelay<Bool>()
+        let loginResult = PublishSubject<LoginResultModel_V2>()
         let usersWorkspaces = PublishSubject<[GetUserWorkSpaceResultModel]>()
         
         let inputIDText = input.idText.share()
@@ -112,7 +112,7 @@ final class LoginViewModel: ViewModelType {
                     print("response", response)
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.accessToken, tokenCase: .accessToken)
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.refreshToken, tokenCase: .refreshToken)
-                    loginResult.accept(response)
+                    loginResult.onNext(response)
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
@@ -130,13 +130,8 @@ final class LoginViewModel: ViewModelType {
             .subscribe(with: self) { owner, result in
                 switch result{
                 case .success(let response):
-                    if response.count > 0 {
-                        usersWorkspaces.onNext(response)
-                        userHaveWorkspace.accept(true)
-                        
-                    } else {
-                        userHaveWorkspace.accept(false)
-                    }
+                    usersWorkspaces.onNext(response)
+
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
@@ -148,12 +143,15 @@ final class LoginViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         
+        
+        
         return Output (
             closebuttonTap: input.closeButtonTap.asDriver(),
             wrongType: wrongType.asDriver(onErrorJustReturn: .failure(.all)), 
             LoginButtonActive: loginButtonActive.asDriver(),
-            userHaveWorkspace: userHaveWorkspace.asDriver(onErrorJustReturn: false),
-            usersOwnWorkspace: usersWorkspaces
+//            userHaveWorkspace: userHaveWorkspace.asDriver(onErrorJustReturn: false),
+            usersOwnWorkspace: usersWorkspaces,
+            loginResult: loginResult
         )
     }
 }

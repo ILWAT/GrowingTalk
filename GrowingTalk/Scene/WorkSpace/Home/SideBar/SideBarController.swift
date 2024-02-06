@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -67,27 +69,53 @@ final class SideBarController: BaseViewController {
     private lazy var emptyView = EmptyWorkSpaceSideView()
     
     //MARK: - Properties
+    private var shownWorkspaceID: Int?
     
-    private var workSpaceInfo: [GetUserWorkSpaceResultModel] = []
+    private var userId: Int?
+    
+    private let viewModel = SideBarViewModel()
+    
+    private var dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>!
+    
+    private let disposeBag = DisposeBag()
+
     
     //MARK: - Initialization
-    init(userOwnWorkSpaceInfo: [GetUserWorkSpaceResultModel]? = nil) {
-        if let userOwnWorkSpaceInfo {
-            for item in userOwnWorkSpaceInfo {
-                self.workSpaceInfo.append(item)
-            }
-        }
+    init(userId: Int? = nil, currentWorkspaceId: Int? = nil, dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>! = nil) {
+        self.dataSource = dataSource
+        self.shownWorkspaceID = currentWorkspaceId
+        self.userId = userId
         super.init(nibName: nil, bundle: nil)
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    
+    
     //MARK: - Override
     override func configure() {
         super.configure()
-//        addChildVC()
+        configureDataSource()
+    }
+    
+    override func bind() {
+        let input = SideBarViewModel.Input()
+        
+        let output = viewModel.transform(input)
+        
+        output.userOwnWorkspace
+            .drive(with: self) { owner, workspaces in
+                if workspaces.count == 0 {
+                    owner.emptyView.isHidden = false
+                } else {
+                    owner.emptyView.isHidden = true
+                }
+                owner.cellUpdate(data: workspaces)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureViewHierarchy() {
@@ -142,14 +170,48 @@ final class SideBarController: BaseViewController {
     }
     
     //MARK: - Helper
-    func createUICollectionViewLayout() -> UICollectionViewLayout {
-        var listConfig = UICollectionLayoutListConfiguration(appearance: .plain)
-        listConfig.backgroundColor = .white
-        let layout = UICollectionViewCompositionalLayout.list(using: listConfig)
+    private func createUICollectionViewLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(72)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 8, bottom: 3, trailing: 8)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(72))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = NSCollectionLayoutSpacing.fixed(8)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
         return layout
+        
     }
     
-    func sideBarAppearAnimation() {
+    private func configureDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<SideBarCell, GetUserWorkSpaceResultModel> {[weak self] cell, indexPath, itemIdentifier in
+            let isCurrentWorkspace = (self?.shownWorkspaceID == itemIdentifier.workspace_id)
+            
+            cell.configureCellItem(imageString: itemIdentifier.thumbnail, titleText: itemIdentifier.name, initialDateString: itemIdentifier.createdAt, isSelectedCell: isCurrentWorkspace)
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        })
+    }
+    
+    private func cellUpdate(data: [GetUserWorkSpaceResultModel]) {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<GetUserWorkSpaceResultModel>()
+        snapshot.append(data)
+        dataSource.apply(snapshot, to: 0)
+    }
+    private func sideBarAppearAnimation() {
         self.view.layoutIfNeeded() //AutoLayout을 통해 뷰의 초기 위치와 크기를 잡았기에 애니메이션을 해당 메서드 실행 -> 뷰가 실제로 보여지기 전까지 초기 AutoLayout은 실행되지 않음
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view)
@@ -159,7 +221,7 @@ final class SideBarController: BaseViewController {
         }
     }
     
-    func sideBarDisAppearAnimation() {
+    private func sideBarDisAppearAnimation() {
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view).offset(-self.sideBarView.frame.width)
         }
@@ -177,7 +239,7 @@ final class SideBarController: BaseViewController {
         let sidebarWidth = sideBarView.frame.width
         switch sender.state {
         case .changed:
-            if abs(translation.x) <= sidebarWidth, sideBarView.frame.maxX <= sidebarWidth{
+            if abs(translation.x) <= sidebarWidth{
                 let changedMinX = sideBarView.frame.minX + translation.x
                 guard changedMinX <= 0, changedMinX >= -sidebarWidth else { return }
                 updateSidebarOffset(delta: changedMinX)
@@ -192,7 +254,7 @@ final class SideBarController: BaseViewController {
         sender.setTranslation(CGPoint.zero, in: self.view)
     }
     
-    func updateSidebarOffset(delta: CGFloat) {
+    private func updateSidebarOffset(delta: CGFloat) {
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view).offset(delta)
         }
