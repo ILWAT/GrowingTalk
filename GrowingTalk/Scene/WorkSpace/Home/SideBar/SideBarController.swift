@@ -77,6 +77,8 @@ final class SideBarController: BaseViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>!
     
+    private var moreActionBTNObservable = PublishSubject<GetUserWorkSpaceResultModel?>()
+    
     private let disposeBag = DisposeBag()
 
     
@@ -92,7 +94,7 @@ final class SideBarController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    deinit { print("Sidebar deinit") }
     
     
     //MARK: - Override
@@ -116,6 +118,13 @@ final class SideBarController: BaseViewController {
                 owner.cellUpdate(data: workspaces)
             }
             .disposed(by: disposeBag)
+        
+        moreActionBTNObservable.bind(with: self) { owner, model in
+            if let data = model {
+                owner.tappedWorkspaceActionButton(data)
+            }
+        }
+        .disposed(by: disposeBag)
     }
     
     override func configureViewHierarchy() {
@@ -169,7 +178,7 @@ final class SideBarController: BaseViewController {
         sideBarDisAppearAnimation()
     }
     
-    //MARK: - Helper
+    //MARK: - CollectionView
     private func createUICollectionViewLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -194,11 +203,15 @@ final class SideBarController: BaseViewController {
         
     }
     
+    
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<SideBarCell, GetUserWorkSpaceResultModel> {[weak self] cell, indexPath, itemIdentifier in
             let isCurrentWorkspace = (self?.shownWorkspaceID == itemIdentifier.workspace_id)
-            
-            cell.configureCellItem(imageString: itemIdentifier.thumbnail, titleText: itemIdentifier.name, initialDateString: itemIdentifier.createdAt, isSelectedCell: isCurrentWorkspace)
+            cell.configureCellItem(cellData: itemIdentifier, isSelectedCell: isCurrentWorkspace)
+            cell.makingObservableSequence().bind(with: cell.self) { owner, model in
+                self?.moreActionBTNObservable.onNext(model)
+            }
+            .disposed(by: cell.disposeBag)
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -211,6 +224,8 @@ final class SideBarController: BaseViewController {
         snapshot.append(data)
         dataSource.apply(snapshot, to: 0)
     }
+    
+    //MARK: - Animation Function
     private func sideBarAppearAnimation() {
         self.view.layoutIfNeeded() //AutoLayout을 통해 뷰의 초기 위치와 크기를 잡았기에 애니메이션을 해당 메서드 실행 -> 뷰가 실제로 보여지기 전까지 초기 AutoLayout은 실행되지 않음
         sideBarView.snp.updateConstraints { make in
@@ -254,6 +269,7 @@ final class SideBarController: BaseViewController {
         sender.setTranslation(CGPoint.zero, in: self.view)
     }
     
+    //MARK: - Helper
     private func updateSidebarOffset(delta: CGFloat) {
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view).offset(delta)
@@ -261,6 +277,40 @@ final class SideBarController: BaseViewController {
         UIView.animate(withDuration: 0) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    private func tappedWorkspaceActionButton(_ input: GetUserWorkSpaceResultModel) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        var alertActions: [UIAlertAction]
+        if userId == input.owner_id {
+            let editWorkspace = UIAlertAction(title: "워크스페이스 편집", style: .default) { action in
+                
+            }
+            let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { action in
+                print("나가기")
+            }
+            let modifyAdmin = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { action in
+                
+            }
+            let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive)
+            
+            alertActions = [editWorkspace, exitWorkspace, modifyAdmin, delete]
+        } else {
+            let getOutWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { action in
+                print("나가기")
+            }
+            alertActions = [getOutWorkspace]
+        }
+        
+        alertActions.append(cancelAction)
+        
+        for action in alertActions {
+            alert.addAction(action)
+        }
+        
+        self.present(alert, animated: true)
     }
 }
 

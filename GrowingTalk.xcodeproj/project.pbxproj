@@ -186,12 +186,20 @@
 		DE3ADE662B68E94500C81271 /* SideBar */ = {
 			isa = PBXGroup;
 			children = (
+				DE3ADE752B7264D100C81271 /* Cell */,
 				DE3ADE672B6905FA00C81271 /* SideBarController.swift */,
-				DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */,
 				DE3ADE6F2B71E57500C81271 /* SideBarViewModel.swift */,
-				DE3ADE712B71E9A100C81271 /* SideBarCell.swift */,
 			);
 			path = SideBar;
+			sourceTree = "<group>";
+		};
+		DE3ADE752B7264D100C81271 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE3ADE712B71E9A100C81271 /* SideBarCell.swift */,
+				DE3ADE6D2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		DE62BDC02B52EF120008F463 /* Add */ = {

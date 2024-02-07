@@ -7,8 +7,10 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
 
 final class SideBarCell: UICollectionViewCell {
+    //MARK: - UI Properties
     private let workspaceImage = UIImageView().then { view in
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -25,7 +27,7 @@ final class SideBarCell: UICollectionViewCell {
         label.textAlignment = .left
     }
     
-    private let actionButton = UIButton().then { view in
+    let actionButton = UIButton().then { view in
         view.frame = CGRect(origin: .zero, size: CGSize(width: 20, height: 20))
         view.backgroundColor = .clear
         view.setImage(UIImage(systemName: "ellipsis"), for: .normal)
@@ -33,6 +35,17 @@ final class SideBarCell: UICollectionViewCell {
         view.isHidden = true
     }
     
+    var cellOwnData: GetUserWorkSpaceResultModel?
+    
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        cellOwnData = nil
+        disposeBag = DisposeBag()
+    }
+    
+    //MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCellHierarchy()
@@ -42,7 +55,7 @@ final class SideBarCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    //MARK: - Cell Hierarchy & Constraints
     private func configureCellHierarchy() {
         self.contentView.addSubViews([workspaceImage, workSpaceTitleLabel, workspaceInitDateLabel, actionButton])
         self.contentView.layer.cornerRadius = 8
@@ -68,14 +81,24 @@ final class SideBarCell: UICollectionViewCell {
         }
     }
     
-    func configureCellItem(imageString: String, titleText: String, initialDateString: String, isSelectedCell: Bool = false) {
+    //MARK: - Helper
+    
+    func configureCellItem(cellData: GetUserWorkSpaceResultModel, isSelectedCell: Bool = false) {
+        self.cellOwnData = cellData
+        guard let cellOwnData else {return}
+        
         let imageProcessor = DownsamplingImageProcessor(size: CGSize(width: 44, height: 44))
-        workspaceImage.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+imageString), options: [.processor(imageProcessor)])
-        workSpaceTitleLabel.text = titleText
-        workspaceInitDateLabel.text = initialDateString.stringToDate?.dateToString()
+        workspaceImage.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+cellOwnData.thumbnail), options: [.processor(imageProcessor)])
+        workSpaceTitleLabel.text = cellOwnData.name
+        workspaceInitDateLabel.text = cellOwnData.createdAt.stringToDate?.dateToString()
+        
         if isSelectedCell {
             self.contentView.backgroundColor = .BrandColor.brandGray
             self.actionButton.isHidden = false
         }
+    }
+    
+    func makingObservableSequence() -> Observable<GetUserWorkSpaceResultModel?> {
+        return actionButton.rx.tap.withUnretained(self).map({ $0.0.cellOwnData })
     }
 }
