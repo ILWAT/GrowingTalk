@@ -9,6 +9,8 @@ import Foundation
 import Moya
 
 enum Router {
+    
+    
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
@@ -19,6 +21,7 @@ enum Router {
     case getMyAllChannelInWorkspace(workSpaceID: Int)
     case getMyAllDMInWorkspace(workspaceID: Int)
     case getUserProfile
+    case exitWorkspace(workSpaceID: Int)
 }
 
 extension Router: TargetType {
@@ -50,6 +53,8 @@ extension Router: TargetType {
             return "/v1/workspaces/\(workspaceID)/dms"
         case .getUserProfile:
             return "/v1/users/my"
+        case .exitWorkspace(let id):
+            return "/v1/workspaces/\(id)/leave"
         }
     }
     
@@ -57,7 +62,7 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace:
             return .get
         }
     }
@@ -83,7 +88,7 @@ extension Router: TargetType {
             return .uploadMultipart(multipartData)
         case .refreshAccessToken:
             return .requestPlain
-        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace:
             return .requestPlain
         }
     }

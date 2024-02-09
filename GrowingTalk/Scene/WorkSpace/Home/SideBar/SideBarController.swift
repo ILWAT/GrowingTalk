@@ -79,6 +79,14 @@ final class SideBarController: BaseViewController {
     
     private var moreActionBTNObservable = PublishSubject<GetUserWorkSpaceResultModel?>()
     
+    private let exitAction = PublishSubject<Void>()
+    
+    private let editAction = PublishSubject<Void>()
+    
+    private let changeAdminAction = PublishSubject<Void>()
+    
+    private let deleteWorkspaceAction = PublishSubject<Void>()
+    
     private let disposeBag = DisposeBag()
 
     
@@ -104,7 +112,14 @@ final class SideBarController: BaseViewController {
     }
     
     override func bind() {
-        let input = SideBarViewModel.Input()
+        let input = SideBarViewModel.Input(
+            workspaceID: shownWorkspaceID,
+            ownerID: userId,
+            exitAction: exitAction,
+            editAction: editAction,
+            changeAdminAction: changeAdminAction,
+            deleteWorkspaceAction: deleteWorkspaceAction
+        )
         
         let output = viewModel.transform(input)
         
@@ -119,12 +134,21 @@ final class SideBarController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        moreActionBTNObservable.bind(with: self) { owner, model in
-            if let data = model {
-                owner.tappedWorkspaceActionButton(data)
-            }
+        moreActionBTNObservable
+            .bind(with: self) { owner, model in
+                if let data = model {
+                    owner.tappedWorkspaceActionButton(data)
+                }
         }
         .disposed(by: disposeBag)
+        
+        output.isUserAdmin
+            .drive(with: self) { owner, _ in
+                let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "회원님은 워크스페이스 관리자입니다. 워크스페이스 관리자를 다른 멤버로 변경한 후 나갈 수 있습니다.", colorButtonTitle: "확인", cancelButtonTitle: nil)
+                customAlert.transform(okObservable: nil)
+                owner.present(customAlert, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureViewHierarchy() {
@@ -288,13 +312,21 @@ final class SideBarController: BaseViewController {
             let editWorkspace = UIAlertAction(title: "워크스페이스 편집", style: .default) { action in
                 
             }
-            let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { action in
-                print("나가기")
+            let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { [weak self] action in
+                let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "정말 이 워크스페이스를 떠나시겠습니까?", colorButtonTitle: "나가기", cancelButtonTitle: "취소")
+                customAlert.modalTransitionStyle = .crossDissolve
+                customAlert.modalPresentationStyle = .overFullScreen
+                if let self = self {
+                    customAlert.transform(okObservable: self.exitAction)
+                }
+                self?.present(customAlert, animated: true)
             }
             let modifyAdmin = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { action in
                 
             }
-            let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive)
+            let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { action in
+                
+            }
             
             alertActions = [editWorkspace, exitWorkspace, modifyAdmin, delete]
         } else {

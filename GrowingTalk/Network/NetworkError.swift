@@ -149,4 +149,18 @@ enum NetworkError{
             }
         }
     }
+    
+    enum ExitWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case rejectRequest = "E15"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .rejectRequest:
+                return "워크스페이스와 워크스페이스에 속한 채널의 관리자 권한이 있는 경우에는 퇴장을 할 수 없습니다."
+            }
+        }
+    }
 }
