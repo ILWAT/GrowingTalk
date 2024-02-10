@@ -11,6 +11,11 @@ import RxSwift
 import SnapKit
 import Then
 
+protocol SideBarProtocol: AnyObject {
+    func changeWorkSpace(targetWorkSpaceInfo: GetUserWorkSpaceResultModel?)
+    func editWorkSpaceInfo(editedWorkspaceInfo: GetUserWorkSpaceResultModel)
+}
+
 final class SideBarController: BaseViewController {
     //MARK: - UIProperties
     private let backgroundView = UIView().then { view in
@@ -69,11 +74,13 @@ final class SideBarController: BaseViewController {
     private lazy var emptyView = EmptyWorkSpaceSideView()
     
     //MARK: - Properties
-    private var shownWorkspaceID: Int?
+    private var shownWorkspaceInfo: GetUserWorkSpaceResultModel?
     
     private var userId: Int?
     
     private let viewModel = SideBarViewModel()
+    
+    private let requestWorkspaceData =  BehaviorSubject<Void>(value: ())
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>!
     
@@ -88,12 +95,14 @@ final class SideBarController: BaseViewController {
     private let deleteWorkspaceAction = PublishSubject<Void>()
     
     private let disposeBag = DisposeBag()
+    
+    weak var delegate: SideBarProtocol?
 
     
     //MARK: - Initialization
-    init(userId: Int? = nil, currentWorkspaceId: Int? = nil, dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>! = nil) {
+    init(userId: Int? = nil, currentWorkspaceInfo: GetUserWorkSpaceResultModel? = nil, dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>! = nil) {
         self.dataSource = dataSource
-        self.shownWorkspaceID = currentWorkspaceId
+        self.shownWorkspaceInfo = currentWorkspaceInfo
         self.userId = userId
         super.init(nibName: nil, bundle: nil)
     }
@@ -104,6 +113,9 @@ final class SideBarController: BaseViewController {
     
     deinit { print("Sidebar deinit") }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear")
+    }
     
     //MARK: - Override
     override func configure() {
@@ -113,7 +125,8 @@ final class SideBarController: BaseViewController {
     
     override func bind() {
         let input = SideBarViewModel.Input(
-            workspaceID: shownWorkspaceID,
+            requestWorkspaceAPI: requestWorkspaceData,
+            workspaceID: shownWorkspaceInfo?.workspace_id,
             ownerID: userId,
             exitAction: exitAction,
             editAction: editAction,
@@ -147,6 +160,17 @@ final class SideBarController: BaseViewController {
                 let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "회원님은 워크스페이스 관리자입니다. 워크스페이스 관리자를 다른 멤버로 변경한 후 나갈 수 있습니다.", colorButtonTitle: "확인", cancelButtonTitle: nil)
                 customAlert.transform(okObservable: nil)
                 owner.present(customAlert, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.changeWorkspace
+            .drive(with: self) { owner, result in
+                switch result{
+                case .success(let workspaceInfo):
+                    owner.delegate?.changeWorkSpace(targetWorkSpaceInfo: workspaceInfo)
+                case .failure(_):
+                    break
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -230,8 +254,9 @@ final class SideBarController: BaseViewController {
     
     private func configureDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<SideBarCell, GetUserWorkSpaceResultModel> {[weak self] cell, indexPath, itemIdentifier in
-            let isCurrentWorkspace = (self?.shownWorkspaceID == itemIdentifier.workspace_id)
+            let isCurrentWorkspace = (self?.shownWorkspaceInfo?.workspace_id == itemIdentifier.workspace_id)
             cell.configureCellItem(cellData: itemIdentifier, isSelectedCell: isCurrentWorkspace)
+            //셀 버튼 event Stream 연결
             cell.makingObservableSequence().bind(with: cell.self) { owner, model in
                 self?.moreActionBTNObservable.onNext(model)
             }
@@ -309,13 +334,16 @@ final class SideBarController: BaseViewController {
         
         var alertActions: [UIAlertAction]
         if userId == input.owner_id {
-            let editWorkspace = UIAlertAction(title: "워크스페이스 편집", style: .default) { action in
-                
+            let editWorkspace = UIAlertAction(title: "워크스페이스 편집", style: .default) { [weak self] action in
+                let editVC = EditWorkSpaceViewController(workspaceID: input.workspace_id, userID: input.owner_id, workSpaceInfo: input)
+                let nextVC = UINavigationController(rootViewController: editVC)
+                if let owner = self {
+                    editVC.delegate = owner
+                    self?.present(nextVC, animated: true)
+                }
             }
             let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { [weak self] action in
                 let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "정말 이 워크스페이스를 떠나시겠습니까?", colorButtonTitle: "나가기", cancelButtonTitle: "취소")
-                customAlert.modalTransitionStyle = .crossDissolve
-                customAlert.modalPresentationStyle = .overFullScreen
                 if let self = self {
                     customAlert.transform(okObservable: self.exitAction)
                 }
@@ -346,3 +374,22 @@ final class SideBarController: BaseViewController {
     }
 }
 
+
+extension SideBarController: EditWorkSpaceProtocol {
+    func changeWorkSpaceInfo(changedWorkspaceInfo: GetUserWorkSpaceResultModel) {
+        var snapshot = dataSource.snapshot()
+        
+        let items = snapshot.itemIdentifiers(inSection: 0)
+        
+        for item in items {
+            if item.workspace_id == changedWorkspaceInfo.workspace_id {
+                snapshot.insertItems([changedWorkspaceInfo], beforeItem: item)
+                snapshot.deleteItems([item])
+            }
+        }
+        
+        dataSource.apply(snapshot)
+        
+        delegate?.editWorkSpaceInfo(editedWorkspaceInfo: changedWorkspaceInfo)
+    }
+}

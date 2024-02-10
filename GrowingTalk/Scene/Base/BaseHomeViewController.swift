@@ -74,9 +74,10 @@ class BaseHomeViewController: BaseViewController{
     override func bind() {
         self.workSpaceImageButton.rx.tap
             .bind(with: self) { owner, _ in
-                let nextVC = SideBarController(userId: owner.userId,currentWorkspaceId: owner.workspaceInfo?.workspace_id)
+                let nextVC = SideBarController(userId: owner.userId, currentWorkspaceInfo: owner.workspaceInfo)
                 nextVC.modalPresentationStyle = .overFullScreen
                 nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.delegate = self
                 owner.present(nextVC, animated: true)
             }
             .disposed(by: disposeBag)
@@ -85,9 +86,23 @@ class BaseHomeViewController: BaseViewController{
     //MARK: - Helper
     
     func makeHomeNavigationBar(title: String?, workSpaceImageURL: String? = nil) {
-        navTitleLabel.text = title
+        settingNavigationUI(title: title, workSpaceImagePath: workSpaceImageURL)
         
         navigationItem.titleView = navTitleLabel
+        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.setRightBarButton(profileImageBarButton, animated: true)
+        navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+    
+    }
+    
+    func settingNavigationUI(title: String?, workSpaceImagePath: String? = nil) {
+        navTitleLabel.text = title
         
         if let profileImageURL = UserDefaults.standard.string(forKey: UserDefaultsCase.userProfileImageURL.rawValue){
             KingfisherManager.shared.getImagesWithDownsampling(pathURL: profileImageURL) {[weak self] result in
@@ -101,8 +116,8 @@ class BaseHomeViewController: BaseViewController{
         }
     
         
-        if let workSpaceImageURL {
-            KingfisherManager.shared.getImagesWithDownsampling(pathURL: workSpaceImageURL) {[weak self] result in
+        if let workSpaceImagePath {
+            KingfisherManager.shared.getImagesWithDownsampling(pathURL: workSpaceImagePath) {[weak self] result in
                 switch result {
                 case .success(let image):
                     self?.workSpaceImageButton.setBackgroundImage(image.image, for: .normal)
@@ -111,16 +126,17 @@ class BaseHomeViewController: BaseViewController{
                 }
             }
         }
-        
-        navigationItem.leftItemsSupplementBackButton = true
-        navigationItem.setRightBarButton(profileImageBarButton, animated: true)
-        navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
-        
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .white
-        
-        navigationItem.standardAppearance = appearance
-        navigationItem.scrollEdgeAppearance = appearance
+    }
+}
+
+extension BaseHomeViewController: SideBarProtocol {
+    func editWorkSpaceInfo(editedWorkspaceInfo: GetUserWorkSpaceResultModel) {
+        makeHomeNavigationBar(title: editedWorkspaceInfo.name, workSpaceImageURL: editedWorkspaceInfo.thumbnail)
+    }
     
+    func changeWorkSpace(targetWorkSpaceInfo: GetUserWorkSpaceResultModel?) {
+        if let targetWorkSpaceInfo = targetWorkSpaceInfo, let userId = userId {
+            self.navigationController?.setViewControllers([HomeInitialViewController(currentWorkspaceInfo: targetWorkSpaceInfo, userId: userId)], animated: true)
+        }
     }
 }

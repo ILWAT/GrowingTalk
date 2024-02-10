@@ -14,7 +14,7 @@ enum Router {
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
-    case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
+    case addWorkSpace(addWorkSpaceData: WorkSpaceBodyModel)
     case getAllWorkSpace
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
     case specificChannelInfo(workSpaceID: Int, channelName: String)
@@ -22,6 +22,7 @@ enum Router {
     case getMyAllDMInWorkspace(workspaceID: Int)
     case getUserProfile
     case exitWorkspace(workSpaceID: Int)
+    case editWorkspace(workSpaceID:Int, workspaceData: WorkSpaceBodyModel)
 }
 
 extension Router: TargetType {
@@ -55,6 +56,8 @@ extension Router: TargetType {
             return "/v1/users/my"
         case .exitWorkspace(let id):
             return "/v1/workspaces/\(id)/leave"
+        case .editWorkspace(let id, _):
+            return "/v1/workspaces/\(id)"
         }
     }
     
@@ -64,6 +67,8 @@ extension Router: TargetType {
             return .post
         case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace:
             return .get
+        case .editWorkspace:
+            return .put
         }
     }
     
@@ -75,13 +80,13 @@ extension Router: TargetType {
             return .requestJSONEncodable(body)
         case .login_v2(let body):
             return .requestJSONEncodable(body)
-        case .addWorkSpace(let addWorkSpaceData):
-            let imageData = MultipartFormData(provider: .data(addWorkSpaceData.image), name: "image", fileName: "\(addWorkSpaceData.name).jpeg", mimeType: "image/jpeg")
-            let nameData = MultipartFormData(provider: .data(addWorkSpaceData.name.data(using: .utf8)!), name: "name")
+        case .addWorkSpace(let workspaceData), .editWorkspace(_,let workspaceData):
+            let imageData = MultipartFormData(provider: .data(workspaceData.image), name: "image", fileName: "\(workspaceData.name).jpeg", mimeType: "image/jpeg")
+            let nameData = MultipartFormData(provider: .data(workspaceData.name.data(using: .utf8)!), name: "name")
             
             var multipartData: [MultipartFormData] = [nameData, imageData]
             
-            if let description = addWorkSpaceData.description?.data(using: .utf8) {
+            if let description = workspaceData.description?.data(using: .utf8) {
                 let descriptionData = MultipartFormData(provider: .data(description), name: "description")
                 multipartData.append(descriptionData)
             }

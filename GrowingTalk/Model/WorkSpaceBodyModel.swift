@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct AddWorkSpaceBodyModel {
+struct WorkSpaceBodyModel {
     let name: String
     let description: String?
     let image: Data

@@ -163,4 +163,24 @@ enum NetworkError{
             }
         }
     }
+    
+    enum EditWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case duplicatedData = "E12"
+        case wrongRequest = "E11"
+        case noneAuthority = "E14"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .duplicatedData:
+                return "중복된 데이터입니다."
+            case .wrongRequest:
+                return "잘못된 요청입니다."
+            case .noneAuthority:
+                return "권한이 없습니다."
+            }
+        }
+    }
 }

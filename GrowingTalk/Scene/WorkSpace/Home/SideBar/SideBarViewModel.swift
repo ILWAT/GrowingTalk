@@ -11,6 +11,7 @@ import RxSwift
 
 final class SideBarViewModel: ViewModelType {
     struct Input {
+        let requestWorkspaceAPI: BehaviorSubject<Void>
         let workspaceID: Int?
         let ownerID: Int?
         let exitAction: PublishSubject<Void>
@@ -22,6 +23,7 @@ final class SideBarViewModel: ViewModelType {
     struct Output {
         let userOwnWorkspace: Driver<[GetUserWorkSpaceResultModel]>
         let isUserAdmin: Driver<Void>
+        let changeWorkspace: Driver<Result<GetUserWorkSpaceResultModel, Error>>
     }
     
     let disposeBag = DisposeBag()
@@ -29,8 +31,12 @@ final class SideBarViewModel: ViewModelType {
     func transform(_ input: Input) -> Output {
         let workSpaceData = BehaviorSubject<[GetUserWorkSpaceResultModel]>(value: [])
         let isUserAdmin = PublishSubject<Void>()
+        let changeWorkspace = PublishRelay<Result<GetUserWorkSpaceResultModel, Error>>()
         
-        APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+        input.requestWorkspaceAPI
+            .flatMapLatest { _ in
+                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+            }
             .subscribe(with: self) { owner, response in
                 switch response{
                 case .success(let workspaces):
@@ -52,7 +58,12 @@ final class SideBarViewModel: ViewModelType {
             .subscribe(with: self) { owner, response in
                 switch response {
                 case .success(let result):
-                    print("success")
+                    if let firstWorkspace = result.first {
+                        changeWorkspace.accept(.success(firstWorkspace))
+                    } else {
+                        changeWorkspace.accept(.failure(DeviceError.intentionalError))
+                    }
+                    
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError.errorMessage)
@@ -72,7 +83,8 @@ final class SideBarViewModel: ViewModelType {
         
         return Output(
             userOwnWorkspace: workSpaceData.asDriver(onErrorJustReturn: []),
-            isUserAdmin: isUserAdmin.asDriver(onErrorJustReturn: ())
+            isUserAdmin: isUserAdmin.asDriver(onErrorJustReturn: ()), 
+            changeWorkspace: changeWorkspace.asDriver(onErrorJustReturn: .failure(NetworkError.commonError.unknownError))
         )
     }
 }

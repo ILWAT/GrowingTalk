@@ -46,7 +46,7 @@ final class LabelTextField: UIStackView {
         self.distribution = .equalSpacing
         self.alignment = .fill
         
-
+        
         
         
         for view in [label, textField] {
@@ -56,6 +56,10 @@ final class LabelTextField: UIStackView {
     
     func chageLabelColor(color: UIColor) {
         self.label.textColor = color
+    }
+    
+    func fillText(inputText: String) {
+        self.textField.text = inputText
     }
     
 }

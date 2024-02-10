@@ -16,10 +16,12 @@
 		DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE712B71E9A100C81271 /* SideBarCell.swift */; };
 		DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE732B71F17300C81271 /* Extension+Date.swift */; };
 		DE3ADE782B73D1D400C81271 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE772B73D1D400C81271 /* CustomAlertViewController.swift */; };
+		DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7A2B76A53800C81271 /* EditWorkSpaceViewController.swift */; };
+		DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
-		DE62BDC82B5504A60008F463 /* AddWorkSpaceBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC72B5504A60008F463 /* AddWorkSpaceBodyModel.swift */; };
+		DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -90,10 +92,12 @@
 		DE3ADE712B71E9A100C81271 /* SideBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarCell.swift; sourceTree = "<group>"; };
 		DE3ADE732B71F17300C81271 /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
 		DE3ADE772B73D1D400C81271 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		DE3ADE7A2B76A53800C81271 /* EditWorkSpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkSpaceViewController.swift; sourceTree = "<group>"; };
+		DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkSpaceViewModel.swift; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
-		DE62BDC72B5504A60008F463 /* AddWorkSpaceBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkSpaceBodyModel.swift; sourceTree = "<group>"; };
+		DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceBodyModel.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -212,6 +216,15 @@
 			path = CustomAlert;
 			sourceTree = "<group>";
 		};
+		DE3ADE792B76A52800C81271 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				DE3ADE7A2B76A53800C81271 /* EditWorkSpaceViewController.swift */,
+				DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
 		DE62BDC02B52EF120008F463 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,7 +260,7 @@
 				DE91F08B2B4D154000F44E01 /* CheckEmailModel.swift */,
 				DE91F0872B4C17D500F44E01 /* NetworkErrorModel.swift */,
 				DE91F0A82B51543E00F44E01 /* LoginModel.swift */,
-				DE62BDC72B5504A60008F463 /* AddWorkSpaceBodyModel.swift */,
+				DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
 				DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */,
 				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
@@ -260,6 +273,7 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DE3ADE792B76A52800C81271 /* Edit */,
 				DEA2F7092B57CBDF00C4D0AA /* Home */,
 				DE62BDC02B52EF120008F463 /* Add */,
 				DE91F0912B4D4DF000F44E01 /* Initial */,
@@ -532,6 +546,7 @@
 				DE91F08C2B4D154000F44E01 /* CheckEmailModel.swift in Sources */,
 				DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */,
 				DE91F07A2B4AE75100F44E01 /* Router.swift in Sources */,
+				DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
 				DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */,
@@ -542,7 +557,7 @@
 				DE91F0842B4C0BBC00F44E01 /* APIManger.swift in Sources */,
 				DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */,
 				DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */,
-				DE62BDC82B5504A60008F463 /* AddWorkSpaceBodyModel.swift in Sources */,
+				DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */,
 				DE91F0982B4D6A1B00F44E01 /* SignupRequiredCase.swift in Sources */,
 				DE3ADE782B73D1D400C81271 /* CustomAlertViewController.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
@@ -555,6 +570,7 @@
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
+				DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */,
 				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,

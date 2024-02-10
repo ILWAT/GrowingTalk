@@ -9,9 +9,14 @@ import UIKit
 import Kingfisher
 
 extension KingfisherManager {
-    func getImagesWithDownsampling(pathURL: String, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)?) {
+    func getImagesWithDownsampling(pathURL: String, downSamplingSize: CGSize? = nil, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)?) {
         
-        let downSamplingProcessor = DownsamplingImageProcessor(size: CGSize(width: 30, height: 30))
+        let downSamplingProcessor: DownsamplingImageProcessor
+        if let size = downSamplingSize {
+            downSamplingProcessor = DownsamplingImageProcessor(size: size)
+        } else {
+            downSamplingProcessor = DownsamplingImageProcessor(size: CGSize(width: 30, height: 30))
+        }
         
         let modifier = AnyModifier { request in
             var r = request
