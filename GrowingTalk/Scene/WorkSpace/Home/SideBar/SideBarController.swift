@@ -12,8 +12,8 @@ import SnapKit
 import Then
 
 protocol SideBarProtocol: AnyObject {
-    func changeWorkSpace(targetWorkSpaceInfo: GetUserWorkSpaceResultModel?)
-    func editWorkSpaceInfo(editedWorkspaceInfo: GetUserWorkSpaceResultModel)
+    func changeWorkSpace(targetWorkSpaceInfo: WorkSpaceModel?)
+    func editWorkSpaceInfo(editedWorkspaceInfo: WorkSpaceModel)
 }
 
 final class SideBarController: BaseViewController {
@@ -74,7 +74,7 @@ final class SideBarController: BaseViewController {
     private lazy var emptyView = EmptyWorkSpaceSideView()
     
     //MARK: - Properties
-    private var shownWorkspaceInfo: GetUserWorkSpaceResultModel?
+    private var shownWorkspaceInfo: WorkSpaceModel?
     
     private var userId: Int?
     
@@ -82,9 +82,9 @@ final class SideBarController: BaseViewController {
     
     private let requestWorkspaceData =  BehaviorSubject<Void>(value: ())
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, WorkSpaceModel>!
     
-    private var moreActionBTNObservable = PublishSubject<GetUserWorkSpaceResultModel?>()
+    private var moreActionBTNObservable = PublishSubject<WorkSpaceModel?>()
     
     private let exitAction = PublishSubject<Void>()
     
@@ -100,7 +100,7 @@ final class SideBarController: BaseViewController {
 
     
     //MARK: - Initialization
-    init(userId: Int? = nil, currentWorkspaceInfo: GetUserWorkSpaceResultModel? = nil, dataSource: UICollectionViewDiffableDataSource<Int, GetUserWorkSpaceResultModel>! = nil) {
+    init(userId: Int? = nil, currentWorkspaceInfo: WorkSpaceModel? = nil, dataSource: UICollectionViewDiffableDataSource<Int, WorkSpaceModel>! = nil) {
         self.dataSource = dataSource
         self.shownWorkspaceInfo = currentWorkspaceInfo
         self.userId = userId
@@ -253,7 +253,7 @@ final class SideBarController: BaseViewController {
     
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<SideBarCell, GetUserWorkSpaceResultModel> {[weak self] cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<SideBarCell, WorkSpaceModel> {[weak self] cell, indexPath, itemIdentifier in
             let isCurrentWorkspace = (self?.shownWorkspaceInfo?.workspace_id == itemIdentifier.workspace_id)
             cell.configureCellItem(cellData: itemIdentifier, isSelectedCell: isCurrentWorkspace)
             //셀 버튼 event Stream 연결
@@ -268,8 +268,8 @@ final class SideBarController: BaseViewController {
         })
     }
     
-    private func cellUpdate(data: [GetUserWorkSpaceResultModel]) {
-        var snapshot = NSDiffableDataSourceSectionSnapshot<GetUserWorkSpaceResultModel>()
+    private func cellUpdate(data: [WorkSpaceModel]) {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<WorkSpaceModel>()
         snapshot.append(data)
         dataSource.apply(snapshot, to: 0)
     }
@@ -328,7 +328,7 @@ final class SideBarController: BaseViewController {
         }
     }
     
-    private func tappedWorkspaceActionButton(_ input: GetUserWorkSpaceResultModel) {
+    private func tappedWorkspaceActionButton(_ input: WorkSpaceModel) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
@@ -349,9 +349,14 @@ final class SideBarController: BaseViewController {
                 }
                 self?.present(customAlert, animated: true)
             }
-            let modifyAdmin = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) { action in
-                
+            let modifyAdmin = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) {[weak self] action in
+                guard let owner = self else {return}
+                guard let workspace_id = owner.shownWorkspaceInfo?.workspace_id else {return}
+                let nextVC = ChangeAdminViewController(workspaceID: workspace_id)
+                let nav = UINavigationController(rootViewController: nextVC)
+                owner.present(nav, animated: true)
             }
+            
             let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { action in
                 
             }
@@ -376,7 +381,7 @@ final class SideBarController: BaseViewController {
 
 
 extension SideBarController: EditWorkSpaceProtocol {
-    func changeWorkSpaceInfo(changedWorkspaceInfo: GetUserWorkSpaceResultModel) {
+    func changeWorkSpaceInfo(changedWorkspaceInfo: WorkSpaceModel) {
         var snapshot = dataSource.snapshot()
         
         let items = snapshot.itemIdentifiers(inSection: 0)
@@ -391,5 +396,7 @@ extension SideBarController: EditWorkSpaceProtocol {
         dataSource.apply(snapshot)
         
         delegate?.editWorkSpaceInfo(editedWorkspaceInfo: changedWorkspaceInfo)
+        
+        self.view.makeAppToast(toastMessage: "워크스페이스가 편집되었습니다.")
     }
 }

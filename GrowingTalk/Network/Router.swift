@@ -23,6 +23,7 @@ enum Router {
     case getUserProfile
     case exitWorkspace(workSpaceID: Int)
     case editWorkspace(workSpaceID:Int, workspaceData: WorkSpaceBodyModel)
+    case getWorkspaceMembers(workSpaceID: Int)
 }
 
 extension Router: TargetType {
@@ -58,6 +59,8 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/leave"
         case .editWorkspace(let id, _):
             return "/v1/workspaces/\(id)"
+        case .getWorkspaceMembers(let id):
+            return "/v1/workspaces/\(id)/members"
         }
     }
     
@@ -65,7 +68,7 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
             return .get
         case .editWorkspace:
             return .put
@@ -91,9 +94,7 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
-        case .refreshAccessToken:
-            return .requestPlain
-        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
             return .requestPlain
         }
     }

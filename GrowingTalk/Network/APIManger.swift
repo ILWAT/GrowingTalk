@@ -123,4 +123,14 @@ final class APIManger {
             return Disposables.create()
         }
     }
+    
+    func changeErrorToString<E: NetworkErrorProtocol>(error: Error, targetError: E.Type) -> String {
+        if let commonError = error as? NetworkError.commonError {
+            return commonError.errorMessage
+        } else if let targetError = error as? E {
+            return targetError.errorMessage
+        } else {
+            return NetworkError.commonError.unknownError.errorMessage
+        }
+    }
 }
