@@ -21,21 +21,21 @@ final class SideBarViewModel: ViewModelType {
     }
     
     struct Output {
-        let userOwnWorkspace: Driver<[GetUserWorkSpaceResultModel]>
+        let userOwnWorkspace: Driver<[WorkSpaceModel]>
         let isUserAdmin: Driver<Void>
-        let changeWorkspace: Driver<Result<GetUserWorkSpaceResultModel, Error>>
+        let changeWorkspace: Driver<Result<WorkSpaceModel, Error>>
     }
     
     let disposeBag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
-        let workSpaceData = BehaviorSubject<[GetUserWorkSpaceResultModel]>(value: [])
+        let workSpaceData = BehaviorSubject<[WorkSpaceModel]>(value: [])
         let isUserAdmin = PublishSubject<Void>()
-        let changeWorkspace = PublishRelay<Result<GetUserWorkSpaceResultModel, Error>>()
+        let changeWorkspace = PublishRelay<Result<WorkSpaceModel, Error>>()
         
         input.requestWorkspaceAPI
             .flatMapLatest { _ in
-                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, response in
                 switch response{
@@ -53,7 +53,7 @@ final class SideBarViewModel: ViewModelType {
         
         input.exitAction
             .flatMapLatest<PrimitiveSequence<SingleTrait, Result<[GetUserWorkSpaceResultModel], Error>>> { _ in
-                APIManger.shared.requestByRx(requestType: .exitWorkspace(workSpaceID: input.workspaceID!), decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.ExitWorkSpaceError.self)
+                APIManger.shared.requestByRx(requestType: .exitWorkspace(workSpaceID: input.workspaceID!), decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.ExitWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, response in
                 switch response {

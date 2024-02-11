@@ -28,7 +28,7 @@ final class EditWorkSpaceViewModel: ViewModelType {
         let buttonActive: Driver<Bool>
         let toastMessage: Driver<String>
         let spaceImage: SharedSequence<DriverSharingStrategy, UIImage?>
-        let editedWorkspaceInfo: Driver<GetUserWorkSpaceResultModel>
+        let editedWorkspaceInfo: Driver<WorkSpaceModel>
     }
     
     let disposeBag = DisposeBag()
@@ -39,7 +39,7 @@ final class EditWorkSpaceViewModel: ViewModelType {
         let buttonActive = PublishRelay<Bool>()
         let imgAddReactive = PublishRelay<Void>()
         let toastMessage = PublishRelay<String>()
-        let requestSuccess = PublishRelay<GetUserWorkSpaceResultModel>()
+        let requestSuccess = PublishRelay<WorkSpaceModel>()
         
         let spaceImage = input.spaceImage.asDriver(onErrorJustReturn: UIImage(named: "WorkSpace"))
         let spaceNameText = input.spaceNameText.share()
@@ -95,10 +95,10 @@ final class EditWorkSpaceViewModel: ViewModelType {
                 //이미지 용량 Compression
                 guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else {
                     toastMessage.accept(ToastMessageCase.WorkSpaceAdd.imageRequired.rawValue)
-                    return Single<Result<GetUserWorkSpaceResultModel, Error>>.just(.failure(NetworkError.EditWorkSpaceError.wrongRequest))
+                    return Single<Result<WorkSpaceModel, Error>>.just(.failure(NetworkError.EditWorkSpaceError.wrongRequest))
                 }
                 
-                return APIManger.shared.requestByRx(requestType: .editWorkspace(workSpaceID: input.workspaceID, workspaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: GetUserWorkSpaceResultModel.self, defaultErrorType: NetworkError.EditWorkSpaceError.self)
+                return APIManger.shared.requestByRx(requestType: .editWorkspace(workSpaceID: input.workspaceID, workspaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: WorkSpaceModel.self, defaultErrorType: NetworkError.EditWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{

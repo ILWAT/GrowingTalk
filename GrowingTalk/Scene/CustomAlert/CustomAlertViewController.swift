@@ -131,8 +131,8 @@ final class CustomAlertViewController: BaseViewController {
     
     func transform(okObservable: PublishSubject<Void>?){
         acceptButton.rx.tap.bind(with: self) { owner, _ in
-            okObservable?.onNext(())
             owner.dismiss(animated: true)
+            okObservable?.onNext(())
         }
         .disposed(by: disposeBag)
     }

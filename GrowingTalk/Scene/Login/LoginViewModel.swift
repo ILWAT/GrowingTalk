@@ -22,7 +22,7 @@ final class LoginViewModel: ViewModelType {
         let wrongType: Driver<Result<Void, LoginWrongTypeCase>>
         let LoginButtonActive: Driver<Bool>
 //        let userHaveWorkspace: Driver<Bool>
-        let usersOwnWorkspace: PublishSubject<[GetUserWorkSpaceResultModel]>
+        let usersOwnWorkspace: PublishSubject<[WorkSpaceModel]>
         let loginResult: PublishSubject<LoginResultModel_V2>
     }
     
@@ -34,7 +34,7 @@ final class LoginViewModel: ViewModelType {
         let wrongType = PublishRelay<Result<Void,LoginWrongTypeCase>>()
         let loginButtonActive = BehaviorRelay(value: false)
         let loginResult = PublishSubject<LoginResultModel_V2>()
-        let usersWorkspaces = PublishSubject<[GetUserWorkSpaceResultModel]>()
+        let usersWorkspaces = PublishSubject<[WorkSpaceModel]>()
         
         let inputIDText = input.idText.share()
         let inputPasswordText = input.passwordText.share()
@@ -125,7 +125,7 @@ final class LoginViewModel: ViewModelType {
         
         loginResult
             .flatMapLatest { resultModel in
-                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{

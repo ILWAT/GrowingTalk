@@ -64,7 +64,7 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     
     //MARK: - Initialization
-    init(currentWorkspaceInfo: GetUserWorkSpaceResultModel, userId: Int) {
+    init(currentWorkspaceInfo: WorkSpaceModel, userId: Int) {
         super.init(nibName: nil, bundle: nil)
         self.workspaceInfo = currentWorkspaceInfo
         self.userId = userId

@@ -8,16 +8,6 @@
 import Foundation
 
 struct GetUserProfileModel: Decodable {
-    /*{
-     "user_id": 1,
-     "email": "sesac@gmail.com",
-     "nickname": "새싹",
-     "profileImage": null,
-     "phone": null,
-     "vendor": null,
-     "sesacCoin": 0,
-     "createdAt": "2023-12-21T22:47:30.236Z"
-   }*/
     let userId: Int
     let email: String
     let nickname: String

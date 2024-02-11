@@ -92,11 +92,11 @@ final class WorkSpaceAddViewModel: ViewModelType {
                 //이미지 용량 Compression
                 guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else {
                     toastMessage.accept(ToastMessageCase.WorkSpaceAdd.imageRequired.rawValue)
-                    return Single<Result<AddWorkSpaceResultModel, Error>>.just(.failure(NetworkError.AddWorkSpaceErrorCase.wrongRequest))
+                    return Single<Result<WorkSpaceModel, Error>>.just(.failure(NetworkError.AddWorkSpaceErrorCase.wrongRequest))
                 }
                 
                 //
-                return APIManger.shared.requestByRx(requestType: .addWorkSpace(addWorkSpaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: AddWorkSpaceResultModel.self, defaultErrorType: NetworkError.AddWorkSpaceErrorCase.self)
+                return APIManger.shared.requestByRx(requestType: .addWorkSpace(addWorkSpaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: WorkSpaceModel.self, defaultErrorType: NetworkError.AddWorkSpaceErrorCase.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{

@@ -35,7 +35,7 @@ final class SideBarCell: UICollectionViewCell {
         view.isHidden = true
     }
     
-    var cellOwnData: GetUserWorkSpaceResultModel?
+    var cellOwnData: WorkSpaceModel?
     
     var disposeBag = DisposeBag()
     
@@ -83,7 +83,7 @@ final class SideBarCell: UICollectionViewCell {
     
     //MARK: - Helper
     
-    func configureCellItem(cellData: GetUserWorkSpaceResultModel, isSelectedCell: Bool = false) {
+    func configureCellItem(cellData: WorkSpaceModel, isSelectedCell: Bool = false) {
         self.cellOwnData = cellData
         guard let cellOwnData else {return}
         
@@ -98,7 +98,7 @@ final class SideBarCell: UICollectionViewCell {
         }
     }
     
-    func makingObservableSequence() -> Observable<GetUserWorkSpaceResultModel?> {
+    func makingObservableSequence() -> Observable<WorkSpaceModel?> {
         return actionButton.rx.tap.withUnretained(self).map({ $0.0.cellOwnData })
     }
 }

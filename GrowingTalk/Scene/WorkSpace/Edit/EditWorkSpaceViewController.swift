@@ -13,7 +13,7 @@ import Then
 import Kingfisher
 
 protocol EditWorkSpaceProtocol: AnyObject {
-    func changeWorkSpaceInfo(changedWorkspaceInfo: GetUserWorkSpaceResultModel)
+    func changeWorkSpaceInfo(changedWorkspaceInfo: WorkSpaceModel)
 }
 
 final class EditWorkSpaceViewController: BaseViewController {
@@ -62,7 +62,7 @@ final class EditWorkSpaceViewController: BaseViewController {
     private let disposeBag = DisposeBag()
     
     //MARK: - Initialization
-    init(workspaceID: Int, userID: Int, workSpaceInfo: GetUserWorkSpaceResultModel) {
+    init(workspaceID: Int, userID: Int, workSpaceInfo: WorkSpaceModel) {
         self.workspaceID = workspaceID
         self.userID = userID
         super.init(nibName: nil, bundle: nil)

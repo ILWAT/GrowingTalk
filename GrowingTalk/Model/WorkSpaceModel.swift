@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetUserWorkSpaceResultModel: Decodable, Hashable {
+struct WorkSpaceModel: Decodable, Hashable {
     let workspace_id: Int
     let name: String
     let description: String

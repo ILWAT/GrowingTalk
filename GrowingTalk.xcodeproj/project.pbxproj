@@ -18,6 +18,10 @@
 		DE3ADE782B73D1D400C81271 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE772B73D1D400C81271 /* CustomAlertViewController.swift */; };
 		DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7A2B76A53800C81271 /* EditWorkSpaceViewController.swift */; };
 		DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */; };
+		DE3ADE802B78EAB300C81271 /* ChangeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7F2B78EAB300C81271 /* ChangeAdminViewController.swift */; };
+		DE3ADE822B78ECDA00C81271 /* ChangeAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */; };
+		DE3ADE842B78F03400C81271 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE832B78F03400C81271 /* UserInfo.swift */; };
+		DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
@@ -69,7 +73,7 @@
 		DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F70E2B58D93100C4D0AA /* Extension+Kingfisher.swift */; };
 		DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7102B593FD100C4D0AA /* BaseHomeViewController.swift */; };
 		DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */; };
-		DEA2F7192B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */; };
+		DEA2F7192B5D66F700C4D0AA /* WorkSpaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F7182B5D66F700C4D0AA /* WorkSpaceModel.swift */; };
 		DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */; };
 		DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */; };
 		DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */; };
@@ -94,6 +98,10 @@
 		DE3ADE772B73D1D400C81271 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
 		DE3ADE7A2B76A53800C81271 /* EditWorkSpaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkSpaceViewController.swift; sourceTree = "<group>"; };
 		DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkSpaceViewModel.swift; sourceTree = "<group>"; };
+		DE3ADE7F2B78EAB300C81271 /* ChangeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewController.swift; sourceTree = "<group>"; };
+		DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewModel.swift; sourceTree = "<group>"; };
+		DE3ADE832B78F03400C81271 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
@@ -137,7 +145,7 @@
 		DEA2F70E2B58D93100C4D0AA /* Extension+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Kingfisher.swift"; sourceTree = "<group>"; };
 		DEA2F7102B593FD100C4D0AA /* BaseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeViewController.swift; sourceTree = "<group>"; };
 		DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshAccessTokenModel.swift; sourceTree = "<group>"; };
-		DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserWorkSpaceModel.swift; sourceTree = "<group>"; };
+		DEA2F7182B5D66F700C4D0AA /* WorkSpaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceModel.swift; sourceTree = "<group>"; };
 		DEA2F71A2B5E58ED00C4D0AA /* DeviceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceError.swift; sourceTree = "<group>"; };
 		DEA2F71C2B5E7D5600C4D0AA /* HomeInitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewController.swift; sourceTree = "<group>"; };
 		DEA2F71E2B5E7DC600C4D0AA /* HomeInitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInitialViewModel.swift; sourceTree = "<group>"; };
@@ -225,6 +233,24 @@
 			path = Edit;
 			sourceTree = "<group>";
 		};
+		DE3ADE7E2B78EA9F00C81271 /* ChangeAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				DE3ADE852B78F53E00C81271 /* Cell */,
+				DE3ADE7F2B78EAB300C81271 /* ChangeAdminViewController.swift */,
+				DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */,
+			);
+			path = ChangeAdmin;
+			sourceTree = "<group>";
+		};
+		DE3ADE852B78F53E00C81271 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DE62BDC02B52EF120008F463 /* Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,10 +288,11 @@
 				DE91F0A82B51543E00F44E01 /* LoginModel.swift */,
 				DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
-				DEA2F7182B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift */,
+				DEA2F7182B5D66F700C4D0AA /* WorkSpaceModel.swift */,
 				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
 				DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */,
 				DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */,
+				DE3ADE832B78F03400C81271 /* UserInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +300,7 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DE3ADE7E2B78EA9F00C81271 /* ChangeAdmin */,
 				DE3ADE792B76A52800C81271 /* Edit */,
 				DEA2F7092B57CBDF00C4D0AA /* Home */,
 				DE62BDC02B52EF120008F463 /* Add */,
@@ -542,6 +570,7 @@
 				DE91F0962B4D69ED00F44E01 /* ToastMessageCase.swift in Sources */,
 				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
 				DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */,
+				DE3ADE802B78EAB300C81271 /* ChangeAdminViewController.swift in Sources */,
 				DEA2F70B2B57CC2700C4D0AA /* HomeEmptyViewController.swift in Sources */,
 				DE91F08C2B4D154000F44E01 /* CheckEmailModel.swift in Sources */,
 				DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */,
@@ -569,6 +598,7 @@
 				DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */,
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
+				DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
 				DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */,
 				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,
@@ -578,13 +608,15 @@
 				DE3ADE612B62739A00C81271 /* HomeTabBarController.swift in Sources */,
 				DE3ADE6A2B6915C600C81271 /* Extension+KingfisherManger.swift in Sources */,
 				DE91F0A72B511D4D00F44E01 /* LoginWrongTypeCase.swift in Sources */,
-				DEA2F7192B5D66F700C4D0AA /* GetUserWorkSpaceModel.swift in Sources */,
+				DEA2F7192B5D66F700C4D0AA /* WorkSpaceModel.swift in Sources */,
 				DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */,
 				DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,
 				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,
+				DE3ADE822B78ECDA00C81271 /* ChangeAdminViewModel.swift in Sources */,
+				DE3ADE842B78F03400C81271 /* UserInfo.swift in Sources */,
 				DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

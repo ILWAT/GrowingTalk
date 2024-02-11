@@ -50,7 +50,7 @@ class BaseHomeViewController: BaseViewController{
     
     //MARK: - Properties
     
-    var workspaceInfo: GetUserWorkSpaceResultModel?
+    var workspaceInfo: WorkSpaceModel?
     
     var userId: Int?
     
@@ -130,11 +130,11 @@ class BaseHomeViewController: BaseViewController{
 }
 
 extension BaseHomeViewController: SideBarProtocol {
-    func editWorkSpaceInfo(editedWorkspaceInfo: GetUserWorkSpaceResultModel) {
+    func editWorkSpaceInfo(editedWorkspaceInfo: WorkSpaceModel) {
         makeHomeNavigationBar(title: editedWorkspaceInfo.name, workSpaceImageURL: editedWorkspaceInfo.thumbnail)
     }
     
-    func changeWorkSpace(targetWorkSpaceInfo: GetUserWorkSpaceResultModel?) {
+    func changeWorkSpace(targetWorkSpaceInfo: WorkSpaceModel?) {
         if let targetWorkSpaceInfo = targetWorkSpaceInfo, let userId = userId {
             self.navigationController?.setViewControllers([HomeInitialViewController(currentWorkspaceInfo: targetWorkSpaceInfo, userId: userId)], animated: true)
         }
