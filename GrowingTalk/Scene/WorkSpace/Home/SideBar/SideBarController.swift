@@ -274,6 +274,23 @@ final class SideBarController: BaseViewController {
         dataSource.apply(snapshot, to: 0)
     }
     
+    private func cellDataUpdate(changedWorkspaceInfo: WorkSpaceModel) {
+        var snapshot = dataSource.snapshot()
+        
+        let items = snapshot.itemIdentifiers(inSection: 0)
+        
+        for item in items {
+            if item.workspace_id == changedWorkspaceInfo.workspace_id {
+                snapshot.insertItems([changedWorkspaceInfo], beforeItem: item)
+                snapshot.deleteItems([item])
+            }
+        }
+        
+        dataSource.apply(snapshot)
+        
+        delegate?.editWorkSpaceInfo(editedWorkspaceInfo: changedWorkspaceInfo)
+    }
+    
     //MARK: - Animation Function
     private func sideBarAppearAnimation() {
         self.view.layoutIfNeeded() //AutoLayout을 통해 뷰의 초기 위치와 크기를 잡았기에 애니메이션을 해당 메서드 실행 -> 뷰가 실제로 보여지기 전까지 초기 AutoLayout은 실행되지 않음
@@ -332,7 +349,16 @@ final class SideBarController: BaseViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         
+        let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { [weak self] action in
+            let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "정말 이 워크스페이스를 떠나시겠습니까?", colorButtonTitle: "나가기", cancelButtonTitle: "취소")
+            if let self = self {
+                customAlert.transform(okObservable: self.exitAction)
+            }
+            self?.present(customAlert, animated: true)
+        }
+        
         var alertActions: [UIAlertAction]
+        
         if userId == input.owner_id {
             let editWorkspace = UIAlertAction(title: "워크스페이스 편집", style: .default) { [weak self] action in
                 let editVC = EditWorkSpaceViewController(workspaceID: input.workspace_id, userID: input.owner_id, workSpaceInfo: input)
@@ -342,17 +368,11 @@ final class SideBarController: BaseViewController {
                     self?.present(nextVC, animated: true)
                 }
             }
-            let exitWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { [weak self] action in
-                let customAlert = CustomAlertViewController(popUpTitle: "워크스페이스 나가기", popUpBody: "정말 이 워크스페이스를 떠나시겠습니까?", colorButtonTitle: "나가기", cancelButtonTitle: "취소")
-                if let self = self {
-                    customAlert.transform(okObservable: self.exitAction)
-                }
-                self?.present(customAlert, animated: true)
-            }
             let modifyAdmin = UIAlertAction(title: "워크스페이스 관리자 변경", style: .default) {[weak self] action in
                 guard let owner = self else {return}
                 guard let workspace_id = owner.shownWorkspaceInfo?.workspace_id else {return}
                 let nextVC = ChangeAdminViewController(workspaceID: workspace_id)
+                nextVC.delegate = owner
                 let nav = UINavigationController(rootViewController: nextVC)
                 owner.present(nav, animated: true)
             }
@@ -363,10 +383,7 @@ final class SideBarController: BaseViewController {
             
             alertActions = [editWorkspace, exitWorkspace, modifyAdmin, delete]
         } else {
-            let getOutWorkspace = UIAlertAction(title: "워크스페이스 나가기", style: .default) { action in
-                print("나가기")
-            }
-            alertActions = [getOutWorkspace]
+            alertActions = [exitWorkspace]
         }
         
         alertActions.append(cancelAction)
@@ -380,23 +397,16 @@ final class SideBarController: BaseViewController {
 }
 
 
-extension SideBarController: EditWorkSpaceProtocol {
+extension SideBarController: EditWorkSpaceProtocol, ChangeAdminProtocol {
     func changeWorkSpaceInfo(changedWorkspaceInfo: WorkSpaceModel) {
-        var snapshot = dataSource.snapshot()
-        
-        let items = snapshot.itemIdentifiers(inSection: 0)
-        
-        for item in items {
-            if item.workspace_id == changedWorkspaceInfo.workspace_id {
-                snapshot.insertItems([changedWorkspaceInfo], beforeItem: item)
-                snapshot.deleteItems([item])
-            }
-        }
-        
-        dataSource.apply(snapshot)
-        
-        delegate?.editWorkSpaceInfo(editedWorkspaceInfo: changedWorkspaceInfo)
+        cellDataUpdate(changedWorkspaceInfo: changedWorkspaceInfo)
         
         self.view.makeAppToast(toastMessage: "워크스페이스가 편집되었습니다.")
+    }
+    
+    func updateAdminData(workspaceInfo: WorkSpaceModel) {
+        cellDataUpdate(changedWorkspaceInfo: workspaceInfo)
+        
+        self.view.makeAppToast(toastMessage: "워크스페이스 관리자가 변경되었습니다.")
     }
 }

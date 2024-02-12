@@ -11,7 +11,7 @@ protocol NetworkErrorProtocol: RawRepresentable, Error where RawValue == String{
     var errorMessage: String { get }
 }
 
-enum NetworkError{
+enum NetworkError {
     
     enum commonError: String, NetworkErrorProtocol{
         case noneAccessAuth = "E01"
@@ -191,6 +191,20 @@ enum NetworkError{
             switch self {
             case .noneData:
                 return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
+    
+    enum changeAdminOfWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case noneAuthority = "E14"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .noneAuthority:
+                return "권한이 없습니다. 워크스페이스 관리자만 워크스페이스에 대한 권한을 양도할 수 있습니다."
             }
         }
     }

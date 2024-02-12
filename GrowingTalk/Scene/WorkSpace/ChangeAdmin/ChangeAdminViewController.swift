@@ -9,6 +9,10 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+protocol ChangeAdminProtocol: AnyObject {
+    func updateAdminData(workspaceInfo: WorkSpaceModel)
+}
+
 final class ChangeAdminViewController: BaseViewController {
     //MARK: - UI Properties
     private lazy var closeButton = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(tappedCloseButton)).then { item in
@@ -26,6 +30,8 @@ final class ChangeAdminViewController: BaseViewController {
     private let workspaceID: Int
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, UserInfo>?
+    
+    weak var delegate: ChangeAdminProtocol?
     
     private let disposeBag = DisposeBag()
     
@@ -52,10 +58,14 @@ final class ChangeAdminViewController: BaseViewController {
     
     override func bind() {
         let viewDismissTrigger = PublishSubject<Void>()
+        let changingAdminTrigger = PublishSubject<Void>()
+        let beAdminUserID = PublishSubject<Int>()
         
         let input = ChangeAdminViewModel.Input(
             viewUpdateTrigger: viewUpdateTrigger,
-            workspaceID: workspaceID
+            workspaceID: workspaceID,
+            changingAdminTrigger: changingAdminTrigger,
+            beAdminUserID: beAdminUserID
         )
         
         let output = viewModel.transform(input)
@@ -88,6 +98,25 @@ final class ChangeAdminViewController: BaseViewController {
             .bind(with: self) { owner, indexPath in
                 guard let dataSource = owner.dataSource, let cellData = dataSource.itemIdentifier(for: indexPath) else {return}
                 
+                let alert = CustomAlertViewController(popUpTitle: "\(cellData.nickname)님을 관리자로 지정하시겠습니까?", popUpBody: "워크스페이스 관리자는 다음과 같은 권한이 있습니다.\n-워크스페이스 이름 또는 설명 변경\n-워크스페이스 삭제\n-워크스페이스 멤버 초대", colorButtonTitle: "확인", cancelButtonTitle: "취소")
+                
+                alert.transform(okObservable: changingAdminTrigger)
+                beAdminUserID.onNext(cellData.userId)
+                
+                owner.present(alert, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.chagingAdimnResult
+            .drive(with: self) { owner, result in
+                switch result {
+                case .success(let workspaceInfo):
+                    //sideBar cell 업데이트 로직 구현
+                    owner.delegate?.updateAdminData(workspaceInfo: workspaceInfo)
+                    owner.dismiss(animated: true)
+                case .failure(let error):
+                    print(error)
+                }
             }
             .disposed(by: disposeBag)
     }
