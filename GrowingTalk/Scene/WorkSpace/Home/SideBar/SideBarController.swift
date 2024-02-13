@@ -168,6 +168,7 @@ final class SideBarController: BaseViewController {
                 switch result{
                 case .success(let workspaceInfo):
                     owner.delegate?.changeWorkSpace(targetWorkSpaceInfo: workspaceInfo)
+                    owner.dismiss(animated: true)
                 case .failure(_):
                     break
                 }
