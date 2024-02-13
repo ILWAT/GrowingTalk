@@ -66,7 +66,47 @@ final class APIManger {
         }
     }
     
-    func requestByRxNoResponse(requestType: Router) -> Single<Result<Bool, Error>>{
+    func requestNoresponseByRx<E: NetworkErrorProtocol>(requestType: Router, defaultErrorType: E.Type) -> Single<Result<Void, Error>>{
+        return Single.create { single -> Disposable in
+            self.provider.rx.request(requestType)
+                .filterSuccessfulStatusCodes()
+                .catch({ [weak self] error in
+                    guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
+                    
+                    guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
+                        throw NetworkError.commonError.decodedError
+                    }
+                    
+                    if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
+                        if errorType == .expiredToken {
+                            return try self!.requestRefreshTokenAPI()
+                        } else {
+                            throw errorType
+                        }
+                        
+                    } else if let errorType = E.init(rawValue: decodedError.errorCode) {
+                        throw errorType
+                    } else {
+                        throw moyaError
+                    }
+                })
+                .retry(3)
+                .subscribe({ event in
+                    switch event {
+                    case .success(let response):
+                        
+                        single(.success(.success(())))
+                        
+                    case .failure(let error):
+                        single(.success(.failure(error)))
+                    }
+                })
+                .disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
+    }
+    
+    func signUpRequestByRx(requestType: Router) -> Single<Result<Bool, Error>>{
         return Single.create { single -> Disposable in
             self.provider.rx.request(requestType)
                 .debug()

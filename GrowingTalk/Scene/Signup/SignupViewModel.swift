@@ -98,7 +98,7 @@ final class SignupViewModel: ViewModelType {
             .filter({ !$0 })
             .withLatestFrom(input.inputEmail)
             .flatMapLatest { email in
-                APIManger.shared.requestByRxNoResponse(requestType: .email(email: CheckEmailBodyModel(email: email)))
+                APIManger.shared.signUpRequestByRx(requestType: .email(email: CheckEmailBodyModel(email: email)))
             }
             .debug("ViewModel Network")
             .subscribe(with: self) { owner, result in

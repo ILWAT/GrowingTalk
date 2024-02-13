@@ -24,6 +24,7 @@ final class SideBarViewModel: ViewModelType {
         let userOwnWorkspace: Driver<[WorkSpaceModel]>
         let isUserAdmin: Driver<Void>
         let changeWorkspace: Driver<Result<WorkSpaceModel, Error>>
+        let toastMessage: Driver<String>
     }
     
     let disposeBag = DisposeBag()
@@ -32,6 +33,8 @@ final class SideBarViewModel: ViewModelType {
         let workSpaceData = BehaviorSubject<[WorkSpaceModel]>(value: [])
         let isUserAdmin = PublishSubject<Void>()
         let changeWorkspace = PublishRelay<Result<WorkSpaceModel, Error>>()
+        let deleteWorkspaceResult = PublishSubject<Void>()
+        let toastMessage = PublishRelay<String>()
         
         input.requestWorkspaceAPI
             .flatMapLatest { _ in
@@ -52,7 +55,7 @@ final class SideBarViewModel: ViewModelType {
             .disposed(by: disposeBag)
         
         input.exitAction
-            .flatMapLatest<PrimitiveSequence<SingleTrait, Result<[GetUserWorkSpaceResultModel], Error>>> { _ in
+            .flatMapLatest<Single<Result<[GetUserWorkSpaceResultModel], Error>>> { _ in
                 APIManger.shared.requestByRx(requestType: .exitWorkspace(workSpaceID: input.workspaceID!), decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.ExitWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, response in
@@ -79,12 +82,47 @@ final class SideBarViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        input.deleteWorkspaceAction
+            .flatMapLatest { _ in
+                APIManger.shared.requestNoresponseByRx(requestType: .deleteWorkspace(workSpaceID: input.workspaceID!), defaultErrorType: NetworkError.deleteWorkspaceError.self)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result{
+                case .success(_):
+                    deleteWorkspaceResult.onNext(())
+                case .failure(let error):
+                    let errorMessage = APIManger.shared.changeErrorToString(error: error, targetError: NetworkError.deleteWorkspaceError.self)
+                    toastMessage.accept(errorMessage)
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        deleteWorkspaceResult
+            .flatMapLatest { _ in
+                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+            }
+            .subscribe(with: self) { owner, result in
+                switch result {
+                case .success(let workspaces):
+                    if let firstWorkspace = workspaces.first {
+                        changeWorkspace.accept(.success(firstWorkspace))
+                    } else {
+                        changeWorkspace.accept(.failure(DeviceError.intentionalError))
+                    }
+                case .failure(let error):
+                    let errorMessage = APIManger.shared.changeErrorToString(error: error, targetError: NetworkError.GetUserWorkSpaceError.self)
+                    toastMessage.accept(errorMessage)
+                }
+            }
+            .disposed(by: disposeBag)
+        
         
         
         return Output(
             userOwnWorkspace: workSpaceData.asDriver(onErrorJustReturn: []),
             isUserAdmin: isUserAdmin.asDriver(onErrorJustReturn: ()), 
-            changeWorkspace: changeWorkspace.asDriver(onErrorJustReturn: .failure(NetworkError.commonError.unknownError))
+            changeWorkspace: changeWorkspace.asDriver(onErrorJustReturn: .failure(NetworkError.commonError.unknownError)),
+            toastMessage: toastMessage.asDriver(onErrorJustReturn: DeviceError.unknownError.errorMessage)
         )
     }
 }

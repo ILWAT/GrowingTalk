@@ -9,8 +9,6 @@ import Foundation
 import Moya
 
 enum Router {
-    
-    
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
@@ -25,6 +23,7 @@ enum Router {
     case editWorkspace(workSpaceID:Int, workspaceData: WorkSpaceBodyModel)
     case getWorkspaceMembers(workSpaceID: Int)
     case changeAdminOfWorkspace(workspaceID: Int, userID:Int)
+    case deleteWorkspace(workSpaceID: Int)
 }
 
 extension Router: TargetType {
@@ -58,7 +57,7 @@ extension Router: TargetType {
             return "/v1/users/my"
         case .exitWorkspace(let id):
             return "/v1/workspaces/\(id)/leave"
-        case .editWorkspace(let id, _):
+        case .editWorkspace(let id, _), .deleteWorkspace(let id):
             return "/v1/workspaces/\(id)"
         case .getWorkspaceMembers(let id):
             return "/v1/workspaces/\(id)/members"
@@ -75,6 +74,8 @@ extension Router: TargetType {
             return .get
         case .editWorkspace, .changeAdminOfWorkspace:
             return .put
+        case .deleteWorkspace:
+            return .delete
         }
     }
     
@@ -87,6 +88,7 @@ extension Router: TargetType {
         case .login_v2(let body):
             return .requestJSONEncodable(body)
         case .addWorkSpace(let workspaceData), .editWorkspace(_,let workspaceData):
+            
             let imageData = MultipartFormData(provider: .data(workspaceData.image), name: "image", fileName: "\(workspaceData.name).jpeg", mimeType: "image/jpeg")
             let nameData = MultipartFormData(provider: .data(workspaceData.name.data(using: .utf8)!), name: "name")
             
@@ -97,7 +99,8 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers, .changeAdminOfWorkspace:
+            
+        default:
             return .requestPlain
         }
     }

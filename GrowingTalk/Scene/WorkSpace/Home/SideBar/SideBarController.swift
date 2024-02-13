@@ -173,6 +173,14 @@ final class SideBarController: BaseViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                guard let itemIdentifier = owner.dataSource.itemIdentifier(for: indexPath) else {return}
+                owner.delegate?.changeWorkSpace(targetWorkSpaceInfo: itemIdentifier)
+                owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func configureViewHierarchy() {
@@ -377,8 +385,11 @@ final class SideBarController: BaseViewController {
                 owner.present(nav, animated: true)
             }
             
-            let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { action in
-                
+            let delete = UIAlertAction(title: "워크스페이스 삭제", style: .destructive) { [weak self] action in
+                guard let owner = self else {return}
+                let alert = CustomAlertViewController(popUpTitle: "워크스페이스 삭제", popUpBody: "정말 이 워크스페이스를 삭제하시겠습니까? 삭제 시 채널/멤버/채팅 등 워크스페이스 내의 모든 정보가 삭제되며 복구할 수 없습니다.", colorButtonTitle: "삭제", cancelButtonTitle: "취소")
+                alert.transform(okObservable: owner.deleteWorkspaceAction)
+                owner.present(alert, animated: true)
             }
             
             alertActions = [editWorkspace, exitWorkspace, modifyAdmin, delete]

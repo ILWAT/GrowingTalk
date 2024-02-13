@@ -208,4 +208,18 @@ enum NetworkError {
             }
         }
     }
+    
+    enum deleteWorkspaceError: String, NetworkErrorProtocol {
+        case noneAuthority = "E14"
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneAuthority:
+                return "권한이 없습니다."
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
 }
