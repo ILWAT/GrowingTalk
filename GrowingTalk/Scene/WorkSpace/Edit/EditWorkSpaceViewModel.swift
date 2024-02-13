@@ -1,16 +1,18 @@
 //
-//  WorkSpaceAddViewModel.swift
+//  EditWorkSpaceViewModel.swift
 //  GrowingTalk
 //
-//  Created by 문정호 on 1/14/24.
+//  Created by 문정호 on 2/10/24.
 //
 
 import UIKit
 import RxCocoa
 import RxSwift
 
-final class WorkSpaceAddViewModel: ViewModelType {
+final class EditWorkSpaceViewModel: ViewModelType {
     struct Input{
+        let workspaceID: Int
+        let userID: Int
         let closeButtonTap: ControlEvent<()>
         let imgButtonTap: ControlEvent<Void>
         let imgAddButtonTap: ControlEvent<Void>
@@ -26,6 +28,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
         let buttonActive: Driver<Bool>
         let toastMessage: Driver<String>
         let spaceImage: SharedSequence<DriverSharingStrategy, UIImage?>
+        let editedWorkspaceInfo: Driver<WorkSpaceModel>
     }
     
     let disposeBag = DisposeBag()
@@ -36,7 +39,7 @@ final class WorkSpaceAddViewModel: ViewModelType {
         let buttonActive = PublishRelay<Bool>()
         let imgAddReactive = PublishRelay<Void>()
         let toastMessage = PublishRelay<String>()
-        let requestSuccess = PublishRelay<Bool>()
+        let requestSuccess = PublishRelay<WorkSpaceModel>()
         
         let spaceImage = input.spaceImage.asDriver(onErrorJustReturn: UIImage(named: "WorkSpace"))
         let spaceNameText = input.spaceNameText.share()
@@ -92,21 +95,20 @@ final class WorkSpaceAddViewModel: ViewModelType {
                 //이미지 용량 Compression
                 guard let imageData = allBodyValue.2?.compressionUnderMBjpegData(megabyteSize: 1) else {
                     toastMessage.accept(ToastMessageCase.WorkSpaceAdd.imageRequired.rawValue)
-                    return Single<Result<WorkSpaceModel, Error>>.just(.failure(NetworkError.AddWorkSpaceErrorCase.wrongRequest))
+                    return Single<Result<WorkSpaceModel, Error>>.just(.failure(NetworkError.EditWorkSpaceError.wrongRequest))
                 }
                 
-                //
-                return APIManger.shared.requestByRx(requestType: .addWorkSpace(addWorkSpaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: WorkSpaceModel.self, defaultErrorType: NetworkError.AddWorkSpaceErrorCase.self)
+                return APIManger.shared.requestByRx(requestType: .editWorkspace(workSpaceID: input.workspaceID, workspaceData: .init(name: allBodyValue.0, description: allBodyValue.1, image: imageData)), decodableType: WorkSpaceModel.self, defaultErrorType: NetworkError.EditWorkSpaceError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{
                 case .success(let resultData):
                     print(resultData)
-                    requestSuccess.accept(true)
+                    requestSuccess.accept(resultData)
                 case .failure(let error):
                     if let commonError  = error as? NetworkError.commonError{
                         toastMessage.accept(commonError.errorMessage)
-                    } else if let addError = error as? NetworkError.AddWorkSpaceErrorCase{
+                    } else if let addError = error as? NetworkError.EditWorkSpaceError{
                         toastMessage.accept(addError.errorMessage)
                     }
                 }
@@ -121,7 +123,8 @@ final class WorkSpaceAddViewModel: ViewModelType {
             imgAddReactive:imgAddReactive.asDriver(onErrorJustReturn: ()),
             buttonActive: buttonActive.asDriver(onErrorJustReturn: false),
             toastMessage: toastMessage.asDriver(onErrorJustReturn: NetworkError.commonError.unknownError.errorMessage),
-            spaceImage: spaceImage
+            spaceImage: spaceImage,
+            editedWorkspaceInfo: requestSuccess.asDriver(onErrorJustReturn: .init(workspace_id: 0, name: "", description: "", thumbnail: "", owner_id: 0, createdAt: ""))
         )
     }
 }

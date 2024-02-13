@@ -16,18 +16,18 @@ final class WorkSpaceInitialViewModel: ViewModelType {
     }
     
     struct Output {
-        let workSpaceIsExist: Observable<Result<[GetUserWorkSpaceResultModel], NetworkError.GetUserWorkSpaceError>>
+        let workSpaceIsExist: Observable<Result<[WorkSpaceModel], NetworkError.GetUserWorkSpaceError>>
         let makingButtonTap: ControlEvent<Void>
     }
     
     let disposBag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
-        let existedOwnWorkspace = PublishSubject<Result<[GetUserWorkSpaceResultModel],NetworkError.GetUserWorkSpaceError>>()
+        let existedOwnWorkspace = PublishSubject<Result<[WorkSpaceModel],NetworkError.GetUserWorkSpaceError>>()
         
         input.closeButtonTap
             .flatMapLatest { _ in
-                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [GetUserWorkSpaceResultModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
+                APIManger.shared.requestByRx(requestType: .getAllWorkSpace, decodableType: [WorkSpaceModel].self, defaultErrorType: NetworkError.GetUserWorkSpaceError.self)
                     .debug()
             }
             .subscribe(with: self) { owner, result in

@@ -14,6 +14,7 @@ protocol DeviceErrorProtocol: Error {
 enum DeviceError: DeviceErrorProtocol {
     case changeViewError
     case unknownError
+    case intentionalError
     
     var errorMessage: String {
         get {
@@ -22,6 +23,8 @@ enum DeviceError: DeviceErrorProtocol {
                 return "화면 전환에 실패하였습니다."
             case .unknownError:
                 return "알 수없는 에러가 발생했습니다. 앱 종료후 다시 시도해주세요."
+            case .intentionalError:
+                return "의도적인 에러입니다."
             }
         }
     }

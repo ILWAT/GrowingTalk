@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 import Kingfisher
 import Then
 import SnapKit
@@ -13,10 +15,10 @@ import SnapKit
 class BaseHomeViewController: BaseViewController{
     //MARK: - UI Properties
     let navTitleLabel = UILabel().then { view in
+        view.frame = CGRect(x: .zero, y: .zero, width: 400, height: 30)
         view.font = .Custom.appTitle1
         view.textAlignment = .left
         view.autoresizingMask = .flexibleWidth
-        view.frame = CGRect(x: .zero, y: .zero, width: 400, height: 30)
     }
     
     
@@ -32,22 +34,28 @@ class BaseHomeViewController: BaseViewController{
         
     }
     
-    let workSpaceImageView = UIImageView().then { view in
-        view.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+    let workSpaceImageButton = UIButton().then { view in
+        view.frame = CGRect(origin: .zero, size: CGSize(width: 30, height: 30))
+        let defaultImage = UIImage(named: "WorkSpace")?.resizingByRenderer(size: CGSize(width: 30, height: 30), tintColor: .BackgroundColor.backgroundPrimaryColor)
+        view.setBackgroundImage(defaultImage, for: .normal)
+        view.backgroundColor = .clear
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
-        view.image = UIImage(named: "WorkSpace")
-        view.tintColor = .black
-        view.backgroundColor = .label
         view.contentMode = .scaleAspectFit
-        view.autoresizingMask = .flexibleWidth
     }
     
     lazy var profileImageBarButton = UIBarButtonItem(customView: profileImageButton)
-    lazy var workSpaceImageBarButton = UIBarButtonItem(customView: workSpaceImageView)
+    lazy var workSpaceImageBarButton =  UIBarButtonItem(customView: workSpaceImageButton)
     
     
     //MARK: - Properties
+    
+    var workspaceInfo: WorkSpaceModel?
+    
+    var userId: Int?
+    
+    let disposeBag = DisposeBag()
+    
     
     //MARK: - VC Method
     override func configure() {
@@ -63,29 +71,25 @@ class BaseHomeViewController: BaseViewController{
         super.configureViewHierarchy()
     }
     
+    override func bind() {
+        self.workSpaceImageButton.rx.tap
+            .bind(with: self) { owner, _ in
+                let nextVC = SideBarController(userId: owner.userId, currentWorkspaceInfo: owner.workspaceInfo)
+                nextVC.modalPresentationStyle = .overFullScreen
+                nextVC.modalTransitionStyle = .crossDissolve
+                nextVC.delegate = self
+                owner.present(nextVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+    }
+    
     //MARK: - Helper
     
     func makeHomeNavigationBar(title: String?, workSpaceImageURL: String? = nil) {
-        navTitleLabel.text = title
+        settingNavigationUI(title: title, workSpaceImagePath: workSpaceImageURL)
         
         navigationItem.titleView = navTitleLabel
-        
-        let downSamplingProcessor = DownsamplingImageProcessor(size: CGSize(width: 30, height: 30))
-        
-        let kingfisherOptions: KingfisherOptionsInfo = [.processor(downSamplingProcessor), .cacheOriginalImage]
-        
-        if let profileImageURL = UserDefaults.standard.string(forKey: UserDefaultsCase.userProfileImageURL.rawValue){
-            let url = URL(string: SecretKeys.severURL_V1+profileImageURL)
-            
-            profileImageButton.kf.setImageWithHeader(with: url, options: kingfisherOptions)
-        }
-        
-        if let workSpaceImageURL {
-            let url = URL(string: SecretKeys.severURL_V1+workSpaceImageURL)
-            
-            workSpaceImageView.kf.setImageWithHeader(with: url, options: kingfisherOptions)
-        }
-        
+        navigationItem.leftItemsSupplementBackButton = true
         navigationItem.setRightBarButton(profileImageBarButton, animated: true)
         navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
         
@@ -95,5 +99,44 @@ class BaseHomeViewController: BaseViewController{
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
     
+    }
+    
+    func settingNavigationUI(title: String?, workSpaceImagePath: String? = nil) {
+        navTitleLabel.text = title
+        
+        if let profileImageURL = UserDefaults.standard.string(forKey: UserDefaultsCase.userProfileImageURL.rawValue){
+            KingfisherManager.shared.getImagesWithDownsampling(pathURL: profileImageURL) {[weak self] result in
+                switch result {
+                case .success(let image):
+                    self?.profileImageButton.image = image.image
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    
+        
+        if let workSpaceImagePath {
+            KingfisherManager.shared.getImagesWithDownsampling(pathURL: workSpaceImagePath) {[weak self] result in
+                switch result {
+                case .success(let image):
+                    self?.workSpaceImageButton.setBackgroundImage(image.image, for: .normal)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+}
+
+extension BaseHomeViewController: SideBarProtocol {
+    func editWorkSpaceInfo(editedWorkspaceInfo: WorkSpaceModel) {
+        makeHomeNavigationBar(title: editedWorkspaceInfo.name, workSpaceImageURL: editedWorkspaceInfo.thumbnail)
+    }
+    
+    func changeWorkSpace(targetWorkSpaceInfo: WorkSpaceModel?) {
+        if let targetWorkSpaceInfo = targetWorkSpaceInfo, let userId = userId {
+            self.navigationController?.setViewControllers([HomeInitialViewController(currentWorkspaceInfo: targetWorkSpaceInfo, userId: userId)], animated: true)
+        }
     }
 }

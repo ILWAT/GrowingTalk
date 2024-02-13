@@ -12,13 +12,18 @@ enum Router {
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
-    case addWorkSpace(addWorkSpaceData: AddWorkSpaceBodyModel)
+    case addWorkSpace(addWorkSpaceData: WorkSpaceBodyModel)
     case getAllWorkSpace
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
     case specificChannelInfo(workSpaceID: Int, channelName: String)
     case getMyAllChannelInWorkspace(workSpaceID: Int)
     case getMyAllDMInWorkspace(workspaceID: Int)
     case getUserProfile
+    case exitWorkspace(workSpaceID: Int)
+    case editWorkspace(workSpaceID:Int, workspaceData: WorkSpaceBodyModel)
+    case getWorkspaceMembers(workSpaceID: Int)
+    case changeAdminOfWorkspace(workspaceID: Int, userID:Int)
+    case deleteWorkspace(workSpaceID: Int)
 }
 
 extension Router: TargetType {
@@ -50,6 +55,14 @@ extension Router: TargetType {
             return "/v1/workspaces/\(workspaceID)/dms"
         case .getUserProfile:
             return "/v1/users/my"
+        case .exitWorkspace(let id):
+            return "/v1/workspaces/\(id)/leave"
+        case .editWorkspace(let id, _), .deleteWorkspace(let id):
+            return "/v1/workspaces/\(id)"
+        case .getWorkspaceMembers(let id):
+            return "/v1/workspaces/\(id)/members"
+        case .changeAdminOfWorkspace(let id, let userID):
+            return "/v1/workspaces/\(id)/change/admin/\(userID)"
         }
     }
     
@@ -57,8 +70,12 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
             return .get
+        case .editWorkspace, .changeAdminOfWorkspace:
+            return .put
+        case .deleteWorkspace:
+            return .delete
         }
     }
     
@@ -70,26 +87,31 @@ extension Router: TargetType {
             return .requestJSONEncodable(body)
         case .login_v2(let body):
             return .requestJSONEncodable(body)
-        case .addWorkSpace(let addWorkSpaceData):
-            let imageData = MultipartFormData(provider: .data(addWorkSpaceData.image), name: "image", fileName: "\(addWorkSpaceData.name).jpeg", mimeType: "image/jpeg")
-            let nameData = MultipartFormData(provider: .data(addWorkSpaceData.name.data(using: .utf8)!), name: "name")
+        case .addWorkSpace(let workspaceData), .editWorkspace(_,let workspaceData):
+            
+            let imageData = MultipartFormData(provider: .data(workspaceData.image), name: "image", fileName: "\(workspaceData.name).jpeg", mimeType: "image/jpeg")
+            let nameData = MultipartFormData(provider: .data(workspaceData.name.data(using: .utf8)!), name: "name")
             
             var multipartData: [MultipartFormData] = [nameData, imageData]
             
-            if let description = addWorkSpaceData.description?.data(using: .utf8) {
+            if let description = workspaceData.description?.data(using: .utf8) {
                 let descriptionData = MultipartFormData(provider: .data(description), name: "description")
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
-        case .refreshAccessToken(let bodyModel):
-            return .requestJSONEncodable(bodyModel)
-        case .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile:
+            
+        default:
             return .requestPlain
         }
     }
     
     var headers: [String : String]? {
         switch self {
+        case .refreshAccessToken:
+            return [
+                "SesacKey": SecretKeys.serverSecretKey,
+                "RefreshToken" : UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .refreshToken)
+            ]
         default:
             return ["SesacKey": SecretKeys.serverSecretKey]
         }

@@ -56,10 +56,6 @@ final class HomeInitialViewController: BaseHomeViewController {
     //MARK: - Properties
     private let viewModel = HomeInitialViewModel()
     
-    private let disposeBag = DisposeBag()
-    
-    private var workSpaceInfo: GetUserWorkSpaceResultModel //현 워크스페이스 정보
-    
     private var channelTitleItem = HomeItemModel(title: "채널", notification: 0, itemType: .header, image: nil)
     
     private var directMessageTitle = HomeItemModel(title: "다이렉트 메세지", notification: 0, itemType: .header, image: nil)
@@ -68,9 +64,10 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     
     //MARK: - Initialization
-    init(workspaceInfo: GetUserWorkSpaceResultModel){
-        self.workSpaceInfo = workspaceInfo
+    init(currentWorkspaceInfo: WorkSpaceModel, userId: Int) {
         super.init(nibName: nil, bundle: nil)
+        self.workspaceInfo = currentWorkspaceInfo
+        self.userId = userId
     }
     
     
@@ -86,15 +83,17 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     override func configureNavigation() {
         super.configureNavigation()
-        makeHomeNavigationBar(title: workSpaceInfo.name, workSpaceImageURL: workSpaceInfo.thumbnail)
+        makeHomeNavigationBar(title: workspaceInfo!.name, workSpaceImageURL: workspaceInfo!.thumbnail)
         self.tabBarItem.title = "홈"
         self.tabBarItem.image = UIImage(named: "InactiveHome")
         self.tabBarItem.selectedImage = UIImage(named: "ActiveHome")
     }
     
     override func bind() {
+        super.bind()
+        
         let input = HomeInitialViewModel.Input(
-            workSpaceID: self.workSpaceInfo.workspace_id
+            workSpaceID: self.workspaceInfo!.workspace_id
         )
         
         let output = viewModel.transform(input)
@@ -188,7 +187,7 @@ final class HomeInitialViewController: BaseHomeViewController {
     private func createSectionSnapShot(headerItem: HomeItemModel, items: [HomeItemModel]) -> NSDiffableDataSourceSectionSnapshot<HomeItemModel> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<HomeItemModel>()
         snapshot.append([headerItem])
-        snapshot.expand([headerItem])
+        snapshot.expand([headerItem]) //해당 스냅샷을 펼침
         
         snapshot.append(items, to: headerItem)
         
@@ -222,6 +221,3 @@ final class HomeInitialViewController: BaseHomeViewController {
 }
 
 
-//#Preview {
-//    UINavigationController(rootViewController: HomeInitialViewController(workspaceInfo: GetMyAllChannelResultModel(workspaceId: 116, channelId: 148, name: "일반", description: nil, ownerId: 213, isPrivate: 0, createdAt: "2024-01-16T10:30:58.900Z")))
-//}

@@ -11,7 +11,7 @@ protocol NetworkErrorProtocol: RawRepresentable, Error where RawValue == String{
     var errorMessage: String { get }
 }
 
-enum NetworkError{
+enum NetworkError {
     
     enum commonError: String, NetworkErrorProtocol{
         case noneAccessAuth = "E01"
@@ -96,6 +96,7 @@ enum NetworkError{
         case unknownAccount = "E03"
         case expiredRefreshToken = "E06"
         case failedValidation = "E02"
+        case intentionalError
         
         var errorMessage: String{
             switch self {
@@ -107,6 +108,8 @@ enum NetworkError{
                 return "다시 로그인해주세요."
             case .failedValidation:
                 return "인증에 실패하였습니다."
+            case .intentionalError:
+                return "retry를 위한 의도적 에러입니다."
             }
         }
     }
@@ -141,6 +144,79 @@ enum NetworkError{
         
         var errorMessage: String {
             switch self{
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
+    
+    enum ExitWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case rejectRequest = "E15"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .rejectRequest:
+                return "워크스페이스와 워크스페이스에 속한 채널의 관리자 권한이 있는 경우에는 퇴장을 할 수 없습니다."
+            }
+        }
+    }
+    
+    enum EditWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case duplicatedData = "E12"
+        case wrongRequest = "E11"
+        case noneAuthority = "E14"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .duplicatedData:
+                return "중복된 데이터입니다."
+            case .wrongRequest:
+                return "잘못된 요청입니다."
+            case .noneAuthority:
+                return "권한이 없습니다."
+            }
+        }
+    }
+    
+    enum getWorkspaceMemberError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            }
+        }
+    }
+    
+    enum changeAdminOfWorkSpaceError: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case noneAuthority = "E14"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "존재하지 않는 데이터입니다."
+            case .noneAuthority:
+                return "권한이 없습니다. 워크스페이스 관리자만 워크스페이스에 대한 권한을 양도할 수 있습니다."
+            }
+        }
+    }
+    
+    enum deleteWorkspaceError: String, NetworkErrorProtocol {
+        case noneAuthority = "E14"
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneAuthority:
+                return "권한이 없습니다."
             case .noneData:
                 return "존재하지 않는 데이터입니다."
             }

@@ -22,4 +22,11 @@ extension UIView {
         self.makeToast(toastMessage, point: point, title: nil, image: nil, style: toastStyle, completion: nil)
     }
     
+    func makeAppToast(toastMessage: String) {
+        var toastStyle = ToastStyle()
+        toastStyle.backgroundColor = .BrandColor.brandGreen.withAlphaComponent(0.8)
+        
+        self.makeToast(toastMessage, title: nil, image: nil, style: toastStyle, completion: nil)
+    }
+    
 }

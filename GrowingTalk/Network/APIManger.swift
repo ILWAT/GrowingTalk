@@ -28,56 +28,25 @@ final class APIManger {
         return Single.create { single -> Disposable in
             self.provider.rx.request(requestType)
                 .filterSuccessfulStatusCodes()
-                .catch({ error in
+                .catch({ [weak self] error in
                     guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
                     
                     guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
-                        single(.success(.failure(NetworkError.commonError.decodedError)))
-                        throw moyaError
+                        throw NetworkError.commonError.decodedError
                     }
                     
                     if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
                         if errorType == .expiredToken {
-                            //토큰 갱신 로직 구현
-                            var refreshTokenError: MoyaError?
-                            
-                            self.provider.request(.refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel(RefreshToken: UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .refreshToken)))) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let successResponse = try response.filterSuccessfulStatusCodes()
-                                        guard let decodedData = try? successResponse.map(RefreshAccessTokenResultModel.self) else { return }
-                                        UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: decodedData.accessToken, tokenCase: .accessToken)
-                                    } catch let error {
-                                        refreshTokenError = moyaError
-                                    }
-                                case .failure(let moyaError):
-                                    refreshTokenError = moyaError
-                                }
-                            }
-                            if let refreshMoyaError = refreshTokenError {
-                                guard let decodedError = try? refreshMoyaError.response?.map(NetworkErrorModel.self) else { throw NetworkError.commonError.decodedError }
-                                if let commonError = NetworkError.commonError(rawValue: decodedError.errorCode) {
-                                    throw commonError
-                                } else if let refreshTokenError = NetworkError.RefreshAccessTokenError(rawValue: decodedError.errorCode) {
-                                    throw refreshTokenError
-                                } else {
-                                    throw NetworkError.commonError.unknownError
-                                }
-                            } else {
-                                throw errorType
-                            }
-                            
+                            return try self!.requestRefreshTokenAPI()
                         } else {
-                            single(.success(.failure(errorType)))
                             throw errorType
                         }
                         
                     } else if let errorType = E.init(rawValue: decodedError.errorCode) {
-                        single(.success(.failure(errorType)))
                         throw errorType
+                    } else {
+                        throw moyaError
                     }
-                    throw moyaError
                 })
                 .retry(3)
                 .subscribe({ event in
@@ -89,7 +58,7 @@ final class APIManger {
                         single(.success(.success(decodedData)))
                         
                     case .failure(let error):
-                        single(.success(.failure(NetworkError.commonError.unknownError)))
+                        single(.success(.failure(error)))
                     }
                 })
                 .disposed(by: self.disposeBag)
@@ -97,7 +66,47 @@ final class APIManger {
         }
     }
     
-    func requestByRxNoResponse(requestType: Router) -> Single<Result<Bool, Error>>{
+    func requestNoresponseByRx<E: NetworkErrorProtocol>(requestType: Router, defaultErrorType: E.Type) -> Single<Result<Void, Error>>{
+        return Single.create { single -> Disposable in
+            self.provider.rx.request(requestType)
+                .filterSuccessfulStatusCodes()
+                .catch({ [weak self] error in
+                    guard let moyaError = error as? MoyaError else { throw NetworkError.commonError.unknownError }
+                    
+                    guard let decodedError = try? moyaError.response?.map(NetworkErrorModel.self) else {
+                        throw NetworkError.commonError.decodedError
+                    }
+                    
+                    if let errorType = NetworkError.commonError(rawValue: decodedError.errorCode) {
+                        if errorType == .expiredToken {
+                            return try self!.requestRefreshTokenAPI()
+                        } else {
+                            throw errorType
+                        }
+                        
+                    } else if let errorType = E.init(rawValue: decodedError.errorCode) {
+                        throw errorType
+                    } else {
+                        throw moyaError
+                    }
+                })
+                .retry(3)
+                .subscribe({ event in
+                    switch event {
+                    case .success(let response):
+                        
+                        single(.success(.success(())))
+                        
+                    case .failure(let error):
+                        single(.success(.failure(error)))
+                    }
+                })
+                .disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
+    }
+    
+    func signUpRequestByRx(requestType: Router) -> Single<Result<Bool, Error>>{
         return Single.create { single -> Disposable in
             self.provider.rx.request(requestType)
                 .debug()
@@ -124,6 +133,44 @@ final class APIManger {
             })
             .disposed(by: self.disposeBag)
             return Disposables.create()
+        }
+    }
+    
+    func requestRefreshTokenAPI() throws -> PrimitiveSequence<SingleTrait, Response> {
+        
+        return Single.create { single in
+            self.provider.request(.refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel(RefreshToken: UserDefaultsManager.shared.obtainTokenFromUserDefaults(tokenCase: .refreshToken)))){ result in
+                switch result {
+                case .success(let response):
+                    do {
+                        let successResponse = try response.filterSuccessfulStatusCodes()
+                        guard let decodedData = try? successResponse.map(RefreshAccessTokenResultModel.self) else { return single(.failure(NetworkError.commonError.decodedError)) }
+                        UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: decodedData.accessToken, tokenCase: .accessToken)
+                        single(.failure(NetworkError.RefreshAccessTokenError.intentionalError))
+                    } catch let error {
+                        guard let moyaError = error as? MoyaError else { return single(.failure(NetworkError.commonError.unknownError)) }
+                        guard let decodedError =  try? moyaError.response?.map(NetworkErrorModel.self) else { return single(.failure(NetworkError.commonError.decodedError)) }
+                        if let refreshError = NetworkError.RefreshAccessTokenError(rawValue: decodedError.errorCode) {
+                            return single(.failure(refreshError))
+                        } else if let commonError = NetworkError.commonError(rawValue: decodedError.errorCode) {
+                            single(.failure(commonError))
+                        }
+                    }
+                case .failure(let moyaError):
+                    single(.failure(moyaError))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changeErrorToString<E: NetworkErrorProtocol>(error: Error, targetError: E.Type) -> String {
+        if let commonError = error as? NetworkError.commonError {
+            return commonError.errorMessage
+        } else if let targetError = error as? E {
+            return targetError.errorMessage
+        } else {
+            return NetworkError.commonError.unknownError.errorMessage
         }
     }
 }
