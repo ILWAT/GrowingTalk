@@ -222,4 +222,27 @@ enum NetworkError {
             }
         }
     }
+    
+    enum InviteWorkspaceMember: String, NetworkErrorProtocol {
+        case noneData = "E13"
+        case unknownAccount = "E03"
+        case noneAuthority = "E14"
+        case wrongRequest = "E11"
+        case duplicatedData = "E12"
+        
+        var errorMessage: String {
+            switch self {
+            case .noneData:
+                return "회원 정보를 찾을 수 없습니다."
+            case .unknownAccount:
+                return "알수없는 계정입니다."
+            case .noneAuthority:
+                return "멤버 초대는 관리자만 진행할 수 있어요."
+            case .wrongRequest:
+                return "올바른 이메일을 입력해주세요."
+            case .duplicatedData:
+                return "이미 워크스페이스에 소속된 팀원이에요."
+            }
+        }
+    }
 }

@@ -24,6 +24,7 @@ enum Router {
     case getWorkspaceMembers(workSpaceID: Int)
     case changeAdminOfWorkspace(workspaceID: Int, userID:Int)
     case deleteWorkspace(workSpaceID: Int)
+    case inviteWorkspaceMember(workspaceID: Int, email: InviteWorkspaceMemberBodyModel)
 }
 
 extension Router: TargetType {
@@ -63,12 +64,14 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/members"
         case .changeAdminOfWorkspace(let id, let userID):
             return "/v1/workspaces/\(id)/change/admin/\(userID)"
+        case .inviteWorkspaceMember(let id, _):
+            return "/v1/workspaces/\(id)/members"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup, .addWorkSpace, .login_v2:
+        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember:
             return .post
         case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
             return .get
@@ -99,6 +102,9 @@ extension Router: TargetType {
                 multipartData.append(descriptionData)
             }
             return .uploadMultipart(multipartData)
+            
+        case .inviteWorkspaceMember(_, let body):
+            return .requestJSONEncodable(body)
             
         default:
             return .requestPlain

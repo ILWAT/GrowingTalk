@@ -27,6 +27,8 @@
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
 		DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */; };
 		DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */; };
+		DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */; };
+		DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -108,6 +110,8 @@
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
 		DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceBodyModel.swift; sourceTree = "<group>"; };
 		DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewController.swift; sourceTree = "<group>"; };
+		DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteWorkspaceMemberBodyModel.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -266,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */,
+				DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */,
 			);
 			path = InviteMember;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */,
 				DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */,
 				DE3ADE832B78F03400C81271 /* UserInfo.swift */,
+				DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
 				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
+				DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
@@ -611,6 +618,7 @@
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
 				DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */,
+				DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
 				DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */,
 				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,

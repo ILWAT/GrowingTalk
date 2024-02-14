@@ -132,7 +132,8 @@ final class HomeInitialViewController: BaseHomeViewController {
         
         output.inviteButtonTap
             .drive(with: self) { owner, _ in
-                let nextVC = InviteMemberViewController()
+                guard let workSpaceID = owner.workspaceInfo?.workspace_id else {return}
+                let nextVC = InviteMemberViewController(workspaceID: workSpaceID)
                 let navVC = UINavigationController(rootViewController: nextVC)
                 owner.present(navVC, animated: true)
             }
