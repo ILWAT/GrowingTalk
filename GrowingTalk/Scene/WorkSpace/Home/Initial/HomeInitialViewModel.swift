@@ -15,12 +15,14 @@ final class HomeInitialViewModel: ViewModelType {
     
     struct Input {
         let workSpaceID: Int
+        let inviteButtonTap: ControlEvent<Void>
     }
     
     struct Output {
         let channelCell: Driver<[HomeItemModel]>
         let dmCell: Driver<[HomeItemModel]>
         let profileImage: Driver<UIImage?>
+        let inviteButtonTap: Driver<Void>
     }
     
     func transform(_ input: Input) -> Output {
@@ -91,7 +93,8 @@ final class HomeInitialViewModel: ViewModelType {
         return Output(
             channelCell: channelCellData.asDriver(onErrorJustReturn: []),
             dmCell: directMessageCellData.asDriver(onErrorJustReturn: []),
-            profileImage: profileImage.asDriver()
+            profileImage: profileImage.asDriver(), 
+            inviteButtonTap: input.inviteButtonTap.asDriver()
         )
     }
     

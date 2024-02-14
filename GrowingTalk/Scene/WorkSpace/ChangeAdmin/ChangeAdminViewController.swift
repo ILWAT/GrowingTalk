@@ -54,6 +54,10 @@ final class ChangeAdminViewController: BaseViewController {
     override func configureNavigation() {
         self.navigationItem.title = "워크스페이스 관리자 변경"
         self.navigationItem.setLeftBarButton(closeButton, animated: true)
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .white
+        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
     
     override func bind() {

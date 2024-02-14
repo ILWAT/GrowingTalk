@@ -26,6 +26,7 @@
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
 		DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */; };
+		DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -106,6 +107,7 @@
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
 		DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewController.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -260,6 +262,14 @@
 			path = Add;
 			sourceTree = "<group>";
 		};
+		DE8DD9CE2B7CA0AB00567F7A /* InviteMember */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */,
+			);
+			path = InviteMember;
+			sourceTree = "<group>";
+		};
 		DE91F0662B46922500F44E01 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +310,7 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9CE2B7CA0AB00567F7A /* InviteMember */,
 				DE3ADE7E2B78EA9F00C81271 /* ChangeAdmin */,
 				DE3ADE792B76A52800C81271 /* Edit */,
 				DEA2F7092B57CBDF00C4D0AA /* Home */,
@@ -591,6 +602,7 @@
 				DE3ADE782B73D1D400C81271 /* CustomAlertViewController.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
 				DE91F0A52B510E6400F44E01 /* LoginViewModel.swift in Sources */,
+				DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */,
 				DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,

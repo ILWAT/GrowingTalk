@@ -41,6 +41,16 @@ struct HomeItemModel: Hashable {
 
 final class HomeInitialViewController: BaseHomeViewController {
     //MARK: - UI Properties
+    
+    private let inviteButton = UIButton().then { view in
+        view.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        view.layer.cornerRadius = 27
+        view.backgroundColor = .BrandColor.brandGreen
+        view.tintColor = .white
+        view.layer.shadowOffset = CGSize(width: 3, height: 3)
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+    }
     private lazy var modernCollectionView = UICollectionView(frame: .zero, collectionViewLayout: generateLayout()).then { view in
         view.backgroundColor = .BackgroundColor.backgroundPrimaryColor
     }
@@ -93,7 +103,8 @@ final class HomeInitialViewController: BaseHomeViewController {
         super.bind()
         
         let input = HomeInitialViewModel.Input(
-            workSpaceID: self.workspaceInfo!.workspace_id
+            workSpaceID: self.workspaceInfo!.workspace_id, 
+            inviteButtonTap: inviteButton.rx.tap
         )
         
         let output = viewModel.transform(input)
@@ -118,6 +129,15 @@ final class HomeInitialViewController: BaseHomeViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        output.inviteButtonTap
+            .drive(with: self) { owner, _ in
+                let nextVC = InviteMemberViewController()
+                let navVC = UINavigationController(rootViewController: nextVC)
+                owner.present(navVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
 
     }
     
@@ -125,11 +145,16 @@ final class HomeInitialViewController: BaseHomeViewController {
     override func configureViewHierarchy() {
         super.configureViewHierarchy()
         self.view.addSubview(modernCollectionView)
+        self.view.addSubview(inviteButton)
     }
     
     override func configureViewConstraints() {
         modernCollectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+        inviteButton.snp.makeConstraints { make in
+            make.trailing.bottom.equalTo(self.view.safeAreaLayoutGuide).inset(16)
+            make.size.equalTo(54)
         }
     }
     
