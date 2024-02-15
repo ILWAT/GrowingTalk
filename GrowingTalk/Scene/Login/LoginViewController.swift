@@ -38,7 +38,7 @@ final class LoginViewController: BaseViewController {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
         
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
         
         self.title = "이메일 로그인"
         self.navigationItem.leftBarButtonItem = closeButton

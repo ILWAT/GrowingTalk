@@ -57,7 +57,7 @@ final class ChangeAdminViewController: BaseViewController {
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
     }
     
     override func bind() {

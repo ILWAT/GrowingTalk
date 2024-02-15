@@ -93,7 +93,7 @@ final class EditWorkSpaceViewController: BaseViewController {
         navigationAppearance.titleTextAttributes = [.font: UIFont.boldSystemFont(ofSize: 17)]
         navigationAppearance.backgroundColor = .white
         
-        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationAppearance
+        self.navigationItem.scrollEdgeAppearance = navigationAppearance
         self.navigationItem.setLeftBarButton(closeButton, animated: true)
         self.title = "워크스페이스 생성"
         

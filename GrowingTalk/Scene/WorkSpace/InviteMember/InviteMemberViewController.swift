@@ -51,7 +51,7 @@ final class InviteMemberViewController: BaseViewController {
         self.navigationItem.title = "팀원 초대"
         self.navigationItem.setLeftBarButton(closeButton, animated: true)
         
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
     }
     
     override func bind() {

@@ -23,14 +23,14 @@ final class HomeTabBarController: UITabBarController {
     }
     
     func appendNavigationWrappingVC(viewControllers: [UIViewController]) {
-        var allWrappedVC: [UIViewController] = self.viewControllers ?? []
+        var currentlyManagedVC: [UIViewController] = self.viewControllers ?? []
         
         for viewController in viewControllers {
             let wrappingNaviVC = UINavigationController(rootViewController: viewController)
             wrappingNaviVC.tabBarItem = viewController.tabBarItem
-            allWrappedVC.append(wrappingNaviVC)
+            currentlyManagedVC.append(wrappingNaviVC)
         }
         
-        self.setViewControllers(allWrappedVC, animated: true)
+        self.setViewControllers(currentlyManagedVC, animated: true)
     }
 }
