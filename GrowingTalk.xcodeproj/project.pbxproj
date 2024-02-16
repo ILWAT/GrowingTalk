@@ -29,6 +29,9 @@
 		DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */; };
 		DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */; };
 		DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */; };
+		DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */; };
+		DE8DD9DB2B7E472100567F7A /* CreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */; };
+		DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -86,7 +89,7 @@
 		DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */; };
 		DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */; };
 		DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF42B45911000C9A71C /* ViewModelType.swift */; };
-		DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */; };
+		DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6A3722B6105FE009A0D49 /* ChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +115,9 @@
 		DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewController.swift; sourceTree = "<group>"; };
 		DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewModel.swift; sourceTree = "<group>"; };
 		DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteWorkspaceMemberBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationChannelViewController.swift; sourceTree = "<group>"; };
+		DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelBodyModel.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -161,7 +167,7 @@
 		DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapButton.swift; sourceTree = "<group>"; };
 		DEAB5CF42B45911000C9A71C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyChannelModel.swift; sourceTree = "<group>"; };
+		DED6A3722B6105FE009A0D49 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +281,31 @@
 			path = InviteMember;
 			sourceTree = "<group>";
 		};
+		DE8DD9D52B7E3CBC00567F7A /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9D72B7E3CD100567F7A /* Search */,
+				DE8DD9D62B7E3CC600567F7A /* Creation */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		DE8DD9D62B7E3CC600567F7A /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */,
+				DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		DE8DD9D72B7E3CD100567F7A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		DE91F0662B46922500F44E01 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,11 +335,12 @@
 				DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
 				DEA2F7182B5D66F700C4D0AA /* WorkSpaceModel.swift */,
-				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
+				DED6A3722B6105FE009A0D49 /* ChannelModel.swift */,
 				DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */,
 				DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */,
 				DE3ADE832B78F03400C81271 /* UserInfo.swift */,
 				DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */,
+				DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -395,6 +427,7 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9D52B7E3CBC00567F7A /* Channel */,
 				DE3ADE762B73D1BC00C81271 /* CustomAlert */,
 				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
@@ -596,8 +629,9 @@
 				DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
-				DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */,
+				DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */,
 				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
+				DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
 				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
@@ -617,6 +651,7 @@
 				DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */,
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
+				DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */,
 				DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */,
 				DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
@@ -632,6 +667,7 @@
 				DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */,
+				DE8DD9DB2B7E472100567F7A /* CreationViewModel.swift in Sources */,
 				DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,
 				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,

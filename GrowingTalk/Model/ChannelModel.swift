@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetMyAllChannelResultModel: Decodable {
+struct ChannelModel: Decodable {
     let workspaceId: Int
     let channelId: Int
     let name: String

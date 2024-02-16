@@ -25,6 +25,7 @@ enum Router {
     case changeAdminOfWorkspace(workspaceID: Int, userID:Int)
     case deleteWorkspace(workSpaceID: Int)
     case inviteWorkspaceMember(workspaceID: Int, email: InviteWorkspaceMemberBodyModel)
+    case createChannel(workspaceID: Int, targetChannel: CreateChannelBodyModel)
 }
 
 extension Router: TargetType {
@@ -66,12 +67,14 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/change/admin/\(userID)"
         case .inviteWorkspaceMember(let id, _):
             return "/v1/workspaces/\(id)/members"
+        case .createChannel(let id, _):
+            return "/v1/workspaces/\(id)/channels"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember:
+        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel:
             return .post
         case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
             return .get
@@ -105,6 +108,9 @@ extension Router: TargetType {
             
         case .inviteWorkspaceMember(_, let body):
             return .requestJSONEncodable(body)
+            
+        case .createChannel(_,let targetChannel):
+            return .requestJSONEncodable(targetChannel)
             
         default:
             return .requestPlain
