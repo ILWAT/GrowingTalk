@@ -14,6 +14,8 @@ final class HomeInitialViewModel: ViewModelType {
     let disposeBag = DisposeBag()
     
     struct Input {
+        let channelUpdate: BehaviorRelay<Void>
+        let dmUpdate: BehaviorRelay<Void>
         let workSpaceID: Int
         let inviteButtonTap: ControlEvent<Void>
     }
@@ -31,14 +33,18 @@ final class HomeInitialViewModel: ViewModelType {
         let directMessageCellData = PublishRelay<[HomeItemModel]>()
         let profileImage = BehaviorRelay(value: UIImage(named: "person"))
         
-        APIManger.shared.requestByRx(requestType: .getMyAllChannelInWorkspace(workSpaceID: input.workSpaceID), decodableType: [GetMyAllChannelResultModel].self, defaultErrorType: NetworkError.GetMyChannelError.self)
+        //채널 request
+        input.channelUpdate
+            .flatMapLatest { _ in
+                APIManger.shared.requestByRx(requestType: .getMyAllChannelInWorkspace(workSpaceID: input.workSpaceID), decodableType: [ChannelModel].self, defaultErrorType: NetworkError.GetMyChannelError.self)
+            }
             .subscribe(with: self) { owner, result in
                 switch result{
                 case .success(let channels):
                     print(channels)
                     var cellData: [HomeItemModel] = []
                     for channelData in channels {
-                        let newCellData = HomeItemModel(title: channelData.name, notification: 0, itemType: .cell, image: cellDefaultImage)
+                        let newCellData = HomeItemModel(title: channelData.name, notification: 0, itemType: .defaultCell, image: cellDefaultImage)
                         cellData.append(newCellData)
                     }
                     channelCellData.accept(cellData)
@@ -48,7 +54,11 @@ final class HomeInitialViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
-        APIManger.shared.requestByRx(requestType: .getMyAllDMInWorkspace(workspaceID: input.workSpaceID), decodableType: [GetMyDMResultModel].self, defaultErrorType: NetworkError.GetMyAllDMInWorkspaceError.self)
+        //DM Request
+        input.dmUpdate
+            .flatMapLatest { _ in
+                APIManger.shared.requestByRx(requestType: .getMyAllDMInWorkspace(workspaceID: input.workSpaceID), decodableType: [GetMyDMResultModel].self, defaultErrorType: NetworkError.GetMyAllDMInWorkspaceError.self)
+            }
             .subscribe(with: self) { owner, result in
                 switch result {
                 case .success(let resultModel):
@@ -61,7 +71,7 @@ final class HomeInitialViewModel: ViewModelType {
                         } else {
                             image = UIImage(named: "DefaultProfile_A")
                         }
-                        let newCellData = HomeItemModel(title: dmCelldata.user.nickname, notification: 0, itemType: .cell, image: image)
+                        let newCellData = HomeItemModel(title: dmCelldata.user.nickname, notification: 0, itemType: .defaultCell, image: image)
                         cellData.append(newCellData)
                     }
                 case .failure(let error):

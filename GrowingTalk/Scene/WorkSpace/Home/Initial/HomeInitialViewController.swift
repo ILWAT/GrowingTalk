@@ -33,7 +33,7 @@ struct HomeItemModel: Hashable {
     let image: UIImage?
     
     enum ItemType {
-        case header, cell
+        case header, defaultCell, addChannel, addDM, addMember
     }
 }
 
@@ -57,11 +57,11 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     private var diffableDataSource: UICollectionViewDiffableDataSource<SectionType, HomeItemModel>!
     
-    private lazy var channelAddButtonModel = HomeItemModel(title: "채널 추가", notification: 0, itemType: .cell, image: plusImage)
+    private lazy var channelAddButtonModel = HomeItemModel(title: "채널 추가", notification: 0, itemType: .addChannel, image: plusImage)
     
-    private lazy var dmAddButtonItem = HomeItemModel(title: "새 메세지 추가", notification: 0, itemType: .cell, image: plusImage)
+    private lazy var dmAddButtonItem = HomeItemModel(title: "새 메세지 추가", notification: 0, itemType: .addDM, image: plusImage)
     
-    private lazy var addTeamButtonItem = HomeItemModel(title: "팀원 추가", notification: 0, itemType: .cell, image: plusImage)
+    private lazy var addTeamButtonItem = HomeItemModel(title: "팀원 추가", notification: 0, itemType: .addMember, image: plusImage)
     
     //MARK: - Properties
     private let viewModel = HomeInitialViewModel()
@@ -71,6 +71,10 @@ final class HomeInitialViewController: BaseHomeViewController {
     private var directMessageTitle = HomeItemModel(title: "다이렉트 메세지", notification: 0, itemType: .header, image: nil)
     
     private var plusImage: UIImage? = UIImage(systemName: "plus")?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .TextColor.textSecondaryColor)
+    
+    private let channelEvent = BehaviorRelay<Void>(value: ())
+    
+    private let dmEvent = BehaviorRelay<Void>(value: ())
     
     
     //MARK: - Initialization
@@ -103,7 +107,9 @@ final class HomeInitialViewController: BaseHomeViewController {
         super.bind()
         
         let input = HomeInitialViewModel.Input(
-            workSpaceID: self.workspaceInfo!.workspace_id, 
+            channelUpdate: channelEvent,
+            dmUpdate: dmEvent,
+            workSpaceID: self.workspaceInfo!.workspace_id,
             inviteButtonTap: inviteButton.rx.tap
         )
         
@@ -111,7 +117,6 @@ final class HomeInitialViewController: BaseHomeViewController {
         
         output.channelCell
             .drive(with: self) { owner, channelCell in
-                
                 owner.regenerateSectionSnapshot(sectionType: .channel, subItems: channelCell, item: [])
             }
             .disposed(by: disposeBag)
@@ -136,6 +141,25 @@ final class HomeInitialViewController: BaseHomeViewController {
                 let nextVC = InviteMemberViewController(workspaceID: workSpaceID)
                 let navVC = UINavigationController(rootViewController: nextVC)
                 owner.present(navVC, animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        modernCollectionView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                guard let item = owner.diffableDataSource.itemIdentifier(for: indexPath) else {return}
+                switch item.itemType {
+                case .header:
+                    break
+                case .defaultCell:
+                    print(item)
+                case .addChannel:
+                    owner.selectedAddChannel()
+                    print("addChannel")
+                case .addDM:
+                    print("addDM")
+                case .addMember:
+                    print("addMember")
+                }
             }
             .disposed(by: disposeBag)
         
@@ -167,7 +191,7 @@ final class HomeInitialViewController: BaseHomeViewController {
         return layout
     }
     
-    //MARK: - Helper
+    //MARK: - compositional CollectionView
     func configureDataSource() {
         let headerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, HomeItemModel> { cell, indexPath, itemIdentifier in
             var configuration = cell.defaultContentConfiguration()
@@ -193,7 +217,7 @@ final class HomeInitialViewController: BaseHomeViewController {
             switch itemIdentifier.itemType {
             case .header:
                 return collectionView.dequeueConfiguredReusableCell(using: headerCellRegistration, for: indexPath, item: itemIdentifier)
-            case .cell:
+            default:
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             }
         })
@@ -201,29 +225,28 @@ final class HomeInitialViewController: BaseHomeViewController {
         SectionType.allCases.forEach { sectionType in
             switch sectionType {
             case .channel:
-                diffableDataSource.apply(createSectionSnapShot(headerItem: channelTitleItem, items: [channelAddButtonModel]), to: sectionType)
+                diffableDataSource.apply(createSectionSnapShot(headerItem: channelTitleItem, subItems: [channelAddButtonModel]), to: sectionType)
             case .directMessage:
-                var snapShot = createSectionSnapShot(headerItem: directMessageTitle, items: [dmAddButtonItem])
-                snapShot.append([addTeamButtonItem])
+                let snapShot = createSectionSnapShot(headerItem: directMessageTitle, subItems: [dmAddButtonItem], items: [addTeamButtonItem])
                 diffableDataSource.apply(snapShot, to: sectionType)
             }
         }
     }
     
-    private func createSectionSnapShot(headerItem: HomeItemModel, items: [HomeItemModel]) -> NSDiffableDataSourceSectionSnapshot<HomeItemModel> {
+    private func createSectionSnapShot(headerItem: HomeItemModel, subItems: [HomeItemModel], items: [HomeItemModel] = []) -> NSDiffableDataSourceSectionSnapshot<HomeItemModel> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<HomeItemModel>()
         snapshot.append([headerItem])
         snapshot.expand([headerItem]) //해당 스냅샷을 펼침
         
-        snapshot.append(items, to: headerItem)
+        snapshot.append(subItems, to: headerItem)
+        snapshot.append(items)
         
         return snapshot
     }
         
     
     private func regenerateSectionSnapshot(sectionType: SectionType, subItems: [HomeItemModel], item: [HomeItemModel]) {
-        
-        var snapshot = diffableDataSource.snapshot(for: sectionType)
+        var sectionSnapshot = diffableDataSource.snapshot(for: sectionType)
         
         let addButton: HomeItemModel
         
@@ -234,14 +257,31 @@ final class HomeInitialViewController: BaseHomeViewController {
             addButton = dmAddButtonItem
         }
         
-        if let firstItems = snapshot.items.first {
-            snapshot.append(subItems, to: firstItems)
-            snapshot.delete([addButton])
-            snapshot.append([addButton], to: firstItems)
-            snapshot.append(item)
+        if let headerItem = sectionSnapshot.items.first {
+            sectionSnapshot.deleteAll()
+            let changedSnapshot = createSectionSnapShot(headerItem: headerItem, subItems: subItems+[addButton], items: item)
+            diffableDataSource.apply(changedSnapshot, to: sectionType)
+        }
+    }
+    
+    private func selectedAddChannel() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let creation = UIAlertAction(title: "채널 생성", style: .default) { action in
+            guard let workspaceID = self.workspaceInfo?.workspace_id else {return}
+            let creationChannelVC = CreationChannelViewController(workspaceID: workspaceID, completionEventSubject: self.channelEvent)
+            let navVC = UINavigationController(rootViewController: creationChannelVC)
+            self.present(navVC, animated: true)
+        }
+        let searching = UIAlertAction(title: "채널 탐색", style: .default) { action in
+            print("searching")
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        [creation, searching, cancel].forEach { action in
+            alert.addAction(action)
         }
         
-        diffableDataSource.apply(snapshot, to: sectionType)
+        self.present(alert, animated: true)
     }
     
 }
