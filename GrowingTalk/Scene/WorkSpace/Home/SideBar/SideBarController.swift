@@ -315,8 +315,9 @@ final class SideBarController: BaseViewController {
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view).offset(-self.sideBarView.frame.width)
         }
-        UIView.animate(withDuration: 0.5, delay: 0) {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+            guard let owner = self else {return}
+            owner.view.layoutIfNeeded()
         }
     }
     
@@ -349,8 +350,9 @@ final class SideBarController: BaseViewController {
         sideBarView.snp.updateConstraints { make in
             make.leading.equalTo(self.view).offset(delta)
         }
-        UIView.animate(withDuration: 0) {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0) { [weak self] in
+            guard let owner = self else {return}
+            owner.view.layoutIfNeeded()
         }
     }
     
