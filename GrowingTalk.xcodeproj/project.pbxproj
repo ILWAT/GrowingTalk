@@ -32,6 +32,8 @@
 		DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */; };
 		DE8DD9DB2B7E472100567F7A /* CreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */; };
 		DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */; };
+		DE8DD9DF2B7FB99100567F7A /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */; };
+		DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -118,6 +120,8 @@
 		DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationChannelViewController.swift; sourceTree = "<group>"; };
 		DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewModel.swift; sourceTree = "<group>"; };
 		DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
+		DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewModel.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 		DE8DD9D72B7E3CD100567F7A /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */,
+				DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9D52B7E3CBC00567F7A /* Channel */,
 				DE8DD9CE2B7CA0AB00567F7A /* InviteMember */,
 				DE3ADE7E2B78EA9F00C81271 /* ChangeAdmin */,
 				DE3ADE792B76A52800C81271 /* Edit */,
@@ -427,7 +434,6 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DE8DD9D52B7E3CBC00567F7A /* Channel */,
 				DE3ADE762B73D1BC00C81271 /* CustomAlert */,
 				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
@@ -630,6 +636,7 @@
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
 				DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */,
+				DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */,
 				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
 				DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
@@ -652,6 +659,7 @@
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
 				DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */,
+				DE8DD9DF2B7FB99100567F7A /* SearchChannelViewController.swift in Sources */,
 				DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */,
 				DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,

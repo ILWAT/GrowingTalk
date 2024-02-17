@@ -17,6 +17,7 @@ enum Router {
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
     case specificChannelInfo(workSpaceID: Int, channelName: String)
     case getMyAllChannelInWorkspace(workSpaceID: Int)
+    case getAllChannelInWorkspace(workspaceID: Int)
     case getMyAllDMInWorkspace(workspaceID: Int)
     case getUserProfile
     case exitWorkspace(workSpaceID: Int)
@@ -67,7 +68,7 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/change/admin/\(userID)"
         case .inviteWorkspaceMember(let id, _):
             return "/v1/workspaces/\(id)/members"
-        case .createChannel(let id, _):
+        case .createChannel(let id, _), .getAllChannelInWorkspace(let id):
             return "/v1/workspaces/\(id)/channels"
         }
     }
@@ -76,12 +77,12 @@ extension Router: TargetType {
         switch self {
         case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel:
             return .post
-        case .refreshAccessToken, .getAllWorkSpace, .specificChannelInfo, .getMyAllChannelInWorkspace, .getMyAllDMInWorkspace, .getUserProfile, .exitWorkspace, .getWorkspaceMembers:
-            return .get
         case .editWorkspace, .changeAdminOfWorkspace:
             return .put
         case .deleteWorkspace:
             return .delete
+        default:
+            return .get
         }
     }
     

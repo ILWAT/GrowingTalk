@@ -273,7 +273,10 @@ final class HomeInitialViewController: BaseHomeViewController {
             self.present(navVC, animated: true)
         }
         let searching = UIAlertAction(title: "채널 탐색", style: .default) { action in
-            print("searching")
+            guard let workspaceID = self.workspaceInfo?.workspace_id else {return}
+            let creationChannelVC = SearchChannelViewController(workspaceID: workspaceID, completionEvent: self.dmEvent)
+            let navVC = UINavigationController(rootViewController: creationChannelVC)
+            self.present(navVC, animated: true)
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         

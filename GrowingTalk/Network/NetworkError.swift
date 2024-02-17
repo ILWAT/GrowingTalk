@@ -128,7 +128,7 @@ enum NetworkError {
         }
     }
     
-    enum GetMyChannelError: String, NetworkErrorProtocol {
+    enum GetChannelError: String, NetworkErrorProtocol {
         case noneData = "E13"
         
         var errorMessage: String{

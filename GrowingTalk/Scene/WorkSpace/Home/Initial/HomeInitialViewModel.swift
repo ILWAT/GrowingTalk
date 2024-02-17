@@ -36,7 +36,7 @@ final class HomeInitialViewModel: ViewModelType {
         //채널 request
         input.channelUpdate
             .flatMapLatest { _ in
-                APIManger.shared.requestByRx(requestType: .getMyAllChannelInWorkspace(workSpaceID: input.workSpaceID), decodableType: [ChannelModel].self, defaultErrorType: NetworkError.GetMyChannelError.self)
+                APIManger.shared.requestByRx(requestType: .getMyAllChannelInWorkspace(workSpaceID: input.workSpaceID), decodableType: [ChannelModel].self, defaultErrorType: NetworkError.GetChannelError.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result{
