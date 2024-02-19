@@ -34,6 +34,7 @@
 		DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */; };
 		DE8DD9DF2B7FB99100567F7A /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */; };
 		DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */; };
+		DE8DD9E72B83481900567F7A /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E62B83481900567F7A /* ChattingViewController.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -122,6 +123,7 @@
 		DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelBodyModel.swift; sourceTree = "<group>"; };
 		DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
 		DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9E62B83481900567F7A /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -312,6 +314,22 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		DE8DD9E52B8347FE00567F7A /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9E82B83487000567F7A /* Cell */,
+				DE8DD9E62B83481900567F7A /* ChattingViewController.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		DE8DD9E82B83487000567F7A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		DE91F0662B46922500F44E01 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +452,7 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9E52B8347FE00567F7A /* Chatting */,
 				DE3ADE762B73D1BC00C81271 /* CustomAlert */,
 				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
@@ -635,6 +654,7 @@
 				DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
+				DE8DD9E72B83481900567F7A /* ChattingViewController.swift in Sources */,
 				DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */,
 				DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */,
 				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
