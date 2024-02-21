@@ -12,7 +12,7 @@ struct GetMyDMResultModel: Decodable {
     let workspaceId: Int
     let roomId: Int
     let createdAt: String
-    let user: UserInfo
+    let user: UserInfoModel
     
     enum CodingKeys: String, CodingKey {
         case workspaceId = "workspace_id"
