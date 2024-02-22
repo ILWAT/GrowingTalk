@@ -26,7 +26,7 @@ final class SearchChannelViewController: BaseViewController {
     private let workspaceID: Int
     
     private let viewModel = SearchChannelViewModel()
-    
+
     private let disposeBag = DisposeBag()
     
     //MARK: - Initialization
@@ -54,18 +54,16 @@ final class SearchChannelViewController: BaseViewController {
     }
     
     override func bind() {
+        let presentingChattingVC = PublishRelay<ChannelModel>()
+        let nextVCEvent = PublishSubject<Void>()
+        
         let input = SearchChannelViewModel.Input(
             closedButtonTap: closedButton.rx.tap,
-            workspaceID: workspaceID
+            workspaceID: workspaceID,
+            selectedChannel: tableView.rx.modelSelected(ChannelModel.self)
         )
         
         let output = viewModel.transform(input)
-        
-        tableView.rx.itemSelected
-            .bind(with: self) { owner, indexPath in
-                
-            }
-            .disposed(by: disposeBag)
         
         output.allChannelInWorkspace
             .drive(tableView.rx.items) { (tableView, row, element) in
@@ -79,11 +77,30 @@ final class SearchChannelViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        
-        
         output.closedButtonTap
             .drive(with: self) { owner, _ in
                 owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        output.isUserParticipated
+            .drive(with: self) { owner, combineValue in
+                if combineValue.1 {
+                    let alert = CustomAlertViewController(popUpTitle: "채널 참여", popUpBody: "[\(combineValue.0.name)] 채널에 참여하시겠습니까?", colorButtonTitle: "확인", cancelButtonTitle: "취소")
+                    alert.transform(okObservable: nextVCEvent)
+                    owner.present(alert, animated: true)
+                    print("ChannelJoin 뷰 전환")
+                } else {
+                    nextVCEvent.onNext(())
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        nextVCEvent
+            .withLatestFrom(output.isUserParticipated)
+            .subscribe(with: self) { owner, combineValue in
+                print("다음페이지 띄우기", combineValue.0)
             }
             .disposed(by: disposeBag)
         

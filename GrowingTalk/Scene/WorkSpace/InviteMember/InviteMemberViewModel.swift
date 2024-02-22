@@ -20,7 +20,7 @@ final class InviteMemberViewModel: ViewModelType {
     struct Output {
         let closeButtonTap: ControlEvent<Void>
         let buttonEnable: Driver<Bool>
-        let inviteMemberRequestSuccess: Driver<UserInfo>
+        let inviteMemberRequestSuccess: Driver<UserInfoModel>
         let toastMessage: Driver<String>
     }
     
@@ -28,7 +28,7 @@ final class InviteMemberViewModel: ViewModelType {
     
     func transform(_ input: Input) -> Output {
         let buttonValidation = PublishRelay<Bool>()
-        let inviteMemberRequestSuccess = PublishSubject<UserInfo>()
+        let inviteMemberRequestSuccess = PublishSubject<UserInfoModel>()
         let toastMessage = PublishRelay<String>()
         
         input.inputEmailText
@@ -44,7 +44,7 @@ final class InviteMemberViewModel: ViewModelType {
         input.inviteButtonTap
             .withLatestFrom(input.inputEmailText)
             .flatMapLatest { email in
-                APIManger.shared.requestByRx(requestType: .inviteWorkspaceMember(workspaceID: input.workspaceID, email: .init(email: email)), decodableType: UserInfo.self, defaultErrorType: NetworkError.InviteWorkspaceMember.self)
+                APIManger.shared.requestByRx(requestType: .inviteWorkspaceMember(workspaceID: input.workspaceID, email: .init(email: email)), decodableType: UserInfoModel.self, defaultErrorType: NetworkError.InviteWorkspaceMember.self)
             }
             .subscribe(with: self) { owner, result in
                 switch result {
@@ -62,7 +62,7 @@ final class InviteMemberViewModel: ViewModelType {
         return Output(
             closeButtonTap: input.closeButtonTap,
             buttonEnable: buttonValidation.asDriver(onErrorJustReturn: false), 
-            inviteMemberRequestSuccess: inviteMemberRequestSuccess.asDriver(onErrorJustReturn: UserInfo(userId: 0, email: "", nickname: "", profileImage: nil)),
+            inviteMemberRequestSuccess: inviteMemberRequestSuccess.asDriver(onErrorJustReturn: UserInfoModel(userId: 0, email: "", nickname: "", profileImage: nil)),
             toastMessage: toastMessage.asDriver(onErrorJustReturn: "")
         )
     }

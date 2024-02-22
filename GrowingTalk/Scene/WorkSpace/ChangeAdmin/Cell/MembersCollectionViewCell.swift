@@ -67,7 +67,7 @@ final class MembersCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func settingUI(userInfo: UserInfo) {
+    func settingUI(userInfo: UserInfoModel) {
         if let userProfile = userInfo.profileImage {
             profileImage.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+userProfile)!)
         }

@@ -29,7 +29,7 @@ final class ChangeAdminViewController: BaseViewController {
     
     private let workspaceID: Int
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, UserInfo>?
+    private var dataSource: UICollectionViewDiffableDataSource<Int, UserInfoModel>?
     
     weak var delegate: ChangeAdminProtocol?
     
@@ -146,7 +146,7 @@ final class ChangeAdminViewController: BaseViewController {
     }
     
     private func configureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<MembersCollectionViewCell, UserInfo> { cell, indexPath, itemIdentifier in
+        let cellRegistration = UICollectionView.CellRegistration<MembersCollectionViewCell, UserInfoModel> { cell, indexPath, itemIdentifier in
             cell.settingUI(userInfo: itemIdentifier)
         }
         
@@ -155,8 +155,8 @@ final class ChangeAdminViewController: BaseViewController {
         })
     }
     
-    private func applySnapshot(items: [UserInfo]) {
-        var snapshot = NSDiffableDataSourceSectionSnapshot<UserInfo>()
+    private func applySnapshot(items: [UserInfoModel]) {
+        var snapshot = NSDiffableDataSourceSectionSnapshot<UserInfoModel>()
         snapshot.append(items)
         
         dataSource?.apply(snapshot, to: 0)
