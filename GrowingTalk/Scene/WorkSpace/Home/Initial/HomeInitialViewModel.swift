@@ -44,7 +44,7 @@ final class HomeInitialViewModel: ViewModelType {
                     print(channels)
                     var cellData: [HomeItemModel] = []
                     for channelData in channels {
-                        let newCellData = HomeItemModel(title: channelData.name, notification: 0, itemType: .defaultCell, image: cellDefaultImage)
+                        let newCellData = HomeItemModel(title: channelData.name, ownID: channelData.channelId, itemType: .defaultCell, image: cellDefaultImage)
                         cellData.append(newCellData)
                     }
                     channelCellData.accept(cellData)
@@ -71,7 +71,7 @@ final class HomeInitialViewModel: ViewModelType {
                         } else {
                             image = UIImage(named: "DefaultProfile_A")
                         }
-                        let newCellData = HomeItemModel(title: dmCelldata.user.nickname, notification: 0, itemType: .defaultCell, image: image)
+                        let newCellData = HomeItemModel(title: dmCelldata.user.nickname, ownID: dmCelldata.roomId, itemType: .defaultCell, image: image)
                         cellData.append(newCellData)
                     }
                 case .failure(let error):

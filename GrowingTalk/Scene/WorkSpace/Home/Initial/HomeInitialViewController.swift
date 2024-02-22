@@ -28,7 +28,7 @@ private enum SectionType: Int, CaseIterable {
 
 struct HomeItemModel: Hashable {
     let title: String
-    let notification: Int
+    let ownID: Int
     let itemType: ItemType
     let image: UIImage?
     
@@ -57,18 +57,18 @@ final class HomeInitialViewController: BaseHomeViewController {
     
     private var diffableDataSource: UICollectionViewDiffableDataSource<SectionType, HomeItemModel>!
     
-    private lazy var channelAddButtonModel = HomeItemModel(title: "채널 추가", notification: 0, itemType: .addChannel, image: plusImage)
+    private lazy var channelAddButtonModel = HomeItemModel(title: "채널 추가", ownID: 0, itemType: .addChannel, image: plusImage)
     
-    private lazy var dmAddButtonItem = HomeItemModel(title: "새 메세지 추가", notification: 0, itemType: .addDM, image: plusImage)
+    private lazy var dmAddButtonItem = HomeItemModel(title: "새 메세지 추가", ownID: 0, itemType: .addDM, image: plusImage)
     
-    private lazy var addTeamButtonItem = HomeItemModel(title: "팀원 추가", notification: 0, itemType: .addMember, image: plusImage)
+    private lazy var addTeamButtonItem = HomeItemModel(title: "팀원 추가", ownID: 0, itemType: .addMember, image: plusImage)
     
     //MARK: - Properties
     private let viewModel = HomeInitialViewModel()
     
-    private var channelTitleItem = HomeItemModel(title: "채널", notification: 0, itemType: .header, image: nil)
+    private var channelTitleItem = HomeItemModel(title: "채널", ownID: 0, itemType: .header, image: nil)
     
-    private var directMessageTitle = HomeItemModel(title: "다이렉트 메세지", notification: 0, itemType: .header, image: nil)
+    private var directMessageTitle = HomeItemModel(title: "다이렉트 메세지", ownID: 0, itemType: .header, image: nil)
     
     private var plusImage: UIImage? = UIImage(systemName: "plus")?.resizingByRenderer(size: CGSize(width: 18, height: 18), tintColor: .TextColor.textSecondaryColor)
     
@@ -98,6 +98,9 @@ final class HomeInitialViewController: BaseHomeViewController {
     override func configureNavigation() {
         super.configureNavigation()
         makeHomeNavigationBar(title: workspaceInfo!.name, workSpaceImageURL: workspaceInfo!.thumbnail)
+        let backButton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        backButton.tintColor = .label
+        self.navigationItem.backBarButtonItem = backButton
         self.tabBarItem.title = "홈"
         self.tabBarItem.image = UIImage(named: "InactiveHome")
         self.tabBarItem.selectedImage = UIImage(named: "ActiveHome")
@@ -151,6 +154,9 @@ final class HomeInitialViewController: BaseHomeViewController {
                 case .header:
                     break
                 case .defaultCell:
+                    guard let workSpaceID = owner.workspaceInfo?.workspace_id else {return}
+                    let chattingVC = ChattingViewController(workspaceID: workSpaceID, ownID: item.ownID, ownName: "#"+item.title)
+                    owner.navigationController?.pushViewController(chattingVC, animated: true)
                     print(item)
                 case .addChannel:
                     owner.selectedAddChannel()
