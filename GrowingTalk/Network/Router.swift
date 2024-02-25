@@ -27,6 +27,7 @@ enum Router {
     case deleteWorkspace(workSpaceID: Int)
     case inviteWorkspaceMember(workspaceID: Int, email: InviteWorkspaceMemberBodyModel)
     case createChannel(workspaceID: Int, targetChannel: CreateChannelBodyModel)
+    case getChannelChat(workspaceID: Int, channelName: String, cursorDate: String?)
 }
 
 extension Router: TargetType {
@@ -70,6 +71,10 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/members"
         case .createChannel(let id, _), .getAllChannelInWorkspace(let id):
             return "/v1/workspaces/\(id)/channels"
+        case .getChannelChat(let id, let channelName, _):
+            guard let name = channelName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return "/v1/workspaces/\(id)/channels/\(channelName)/chats"}
+            
+            return "/v1/workspaces/\(id)/channels/\(name)/chats"
         }
     }
     
@@ -112,6 +117,11 @@ extension Router: TargetType {
             
         case .createChannel(_,let targetChannel):
             return .requestJSONEncodable(targetChannel)
+            
+        case .getChannelChat(_, _, let cursorDate):
+            guard let cursor_date = cursorDate else {return .requestPlain}
+            
+            return .requestParameters(parameters: ["cursor_date" : cursor_date], encoding: URLEncoding.queryString)
             
         default:
             return .requestPlain

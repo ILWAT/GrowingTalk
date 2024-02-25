@@ -9,10 +9,20 @@ import Foundation
 
 struct ChannelChatModel: Decodable, Hashable {
     let channelID: Int
-    let chanelName: String
+    let channelName: String
     let chatID: Int
     let content: String
     let createdAt: String
     let files: [String]
     let user: UserInfoModel
+    
+    enum CodingKeys: String, CodingKey {
+        case channelID = "channel_id"
+        case channelName
+        case chatID = "chat_id"
+        case content
+        case createdAt
+        case files
+        case user
+    }
 }

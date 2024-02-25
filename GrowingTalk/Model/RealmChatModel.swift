@@ -45,4 +45,13 @@ class RealmChannelModel: Object {
     @Persisted(primaryKey: true) var channelID: Int
     @Persisted var channelName: String
     @Persisted var finalMessageDate: String
+    @Persisted var ownUser: Int
+    
+    convenience init(channelID: Int, channelName: String, finalMessageDate: String, ownUser: Int) {
+        self.init()
+        self.channelID = channelID
+        self.channelName = channelName
+        self.finalMessageDate = finalMessageDate
+        self.ownUser = ownUser
+    }
 }
