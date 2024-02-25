@@ -42,6 +42,7 @@
 		DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DD9F42B87638700567F7A /* RealmSwift */; };
 		DE8DD9F72B8763A400567F7A /* RealmActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9F62B8763A400567F7A /* RealmActor.swift */; };
 		DE8DD9F92B8766F800567F7A /* RealmChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */; };
+		DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -136,6 +137,7 @@
 		DE8DD9ED2B860B0200567F7A /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
 		DE8DD9F62B8763A400567F7A /* RealmActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmActor.swift; sourceTree = "<group>"; };
 		DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChatModel.swift; sourceTree = "<group>"; };
+		DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				DE8DD9F62B8763A400567F7A /* RealmActor.swift */,
+				DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
+				DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */,
 				DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */,
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,

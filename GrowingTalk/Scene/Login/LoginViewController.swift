@@ -50,7 +50,6 @@ final class LoginViewController: BaseViewController {
             idText: idLabelField.textField.rx.text.orEmpty,
             passwordText: passowrdLabelField.textField.rx.text.orEmpty,
             loginButtonTap: loginButton.rx.tap
-        
         )
         
         let output = viewModel.transform(input)

@@ -112,6 +112,7 @@ final class LoginViewModel: ViewModelType {
                     print("response", response)
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.accessToken, tokenCase: .accessToken)
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.refreshToken, tokenCase: .refreshToken)
+                    UserDefaults.standard.setValue(response.email, forKey: "currentUser")
                     loginResult.onNext(response)
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
@@ -131,7 +132,7 @@ final class LoginViewModel: ViewModelType {
                 switch result{
                 case .success(let response):
                     usersWorkspaces.onNext(response)
-
+                    
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
@@ -149,7 +150,6 @@ final class LoginViewModel: ViewModelType {
             closebuttonTap: input.closeButtonTap.asDriver(),
             wrongType: wrongType.asDriver(onErrorJustReturn: .failure(.all)), 
             LoginButtonActive: loginButtonActive.asDriver(),
-//            userHaveWorkspace: userHaveWorkspace.asDriver(onErrorJustReturn: false),
             usersOwnWorkspace: usersWorkspaces,
             loginResult: loginResult
         )
