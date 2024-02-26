@@ -155,7 +155,7 @@ final class HomeInitialViewController: BaseHomeViewController {
                     break
                 case .defaultCell:
                     guard let workSpaceID = owner.workspaceInfo?.workspace_id else {return}
-                    let chattingVC = ChattingViewController(workspaceID: workSpaceID, ownID: item.ownID, ownName: "#"+item.title)
+                    let chattingVC = ChattingViewController(workspaceID: workSpaceID, ownID: item.ownID, ownName: item.title)
                     owner.navigationController?.pushViewController(chattingVC, animated: true)
                     print(item)
                 case .addChannel:
