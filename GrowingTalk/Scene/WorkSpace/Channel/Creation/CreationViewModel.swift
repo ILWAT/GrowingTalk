@@ -25,6 +25,8 @@ final class CreationViewModel: ViewModelType {
         let createChannelResult: Driver<Result<ChannelModel, Error>>
     }
     
+    private let realmManager = RealmManager()
+    
     private let disposeBag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
@@ -58,11 +60,26 @@ final class CreationViewModel: ViewModelType {
             }
             .disposed(by: disposeBag)
         
+        let createChannelResultDriver = createChannelResult.asDriver(onErrorJustReturn: .failure(DeviceError.unknownError))
+        
+        createChannelResultDriver
+            .drive(with: self) { onwer, result in
+                switch result{
+                case .success(let channel):
+                    Task {[weak self] in
+                        try await self?.realmManager.writeAsyncWriteToRealm(type: RealmChannelModel.self, targetData: RealmChannelModel(channelID: channel.channelId, channelName: channel.name, finalMessageDate: "", ownUser: channel.ownerId))
+                    }
+                case .failure(_):
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+        
         return Output(
             closedButtonTap: input.closeButtonTap.asDriver(),
             toastMessage: toastMessage.asDriver(onErrorJustReturn: DeviceError.unknownError.errorMessage),
             creationButtonIsEnabled: creationButtonIsEnabled.asDriver(),
-            createChannelResult: createChannelResult.asDriver(onErrorJustReturn: .failure(DeviceError.unknownError))
+            createChannelResult: createChannelResultDriver
         )
     }
 }
