@@ -28,6 +28,7 @@ enum Router {
     case inviteWorkspaceMember(workspaceID: Int, email: InviteWorkspaceMemberBodyModel)
     case createChannel(workspaceID: Int, targetChannel: CreateChannelBodyModel)
     case getChannelChat(workspaceID: Int, channelName: String, cursorDate: String?)
+    case postChannelChat(workspaceID: Int, channelName: String, content: String?, files: [Data])
 }
 
 extension Router: TargetType {
@@ -71,7 +72,7 @@ extension Router: TargetType {
             return "/v1/workspaces/\(id)/members"
         case .createChannel(let id, _), .getAllChannelInWorkspace(let id):
             return "/v1/workspaces/\(id)/channels"
-        case .getChannelChat(let id, let channelName, _):
+        case .getChannelChat(let id, let channelName, _), .postChannelChat(let id, let channelName, _, _):
             guard let name = channelName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return "/v1/workspaces/\(id)/channels/\(channelName)/chats"}
             
             return "/v1/workspaces/\(id)/channels/\(name)/chats"
@@ -80,7 +81,7 @@ extension Router: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel:
+        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel, .postChannelChat:
             return .post
         case .editWorkspace, .changeAdminOfWorkspace:
             return .put
@@ -122,6 +123,26 @@ extension Router: TargetType {
             guard let cursor_date = cursorDate else {return .requestPlain}
             
             return .requestParameters(parameters: ["cursor_date" : cursor_date], encoding: URLEncoding.queryString)
+            
+        case .postChannelChat(let workspaceID, _, let content, let files):
+            var multipartData: [MultipartFormData] = []
+            
+            //content
+            let contentString = content?.data(using: .utf8) ?? "".data(using: .utf8)!
+            let contentMultipartForm = MultipartFormData(provider: .data(contentString), name: "content")
+            multipartData.append(contentMultipartForm)
+            
+            files.forEach { imageData in
+                let imageMultipartForm = MultipartFormData(
+                    provider: .data(imageData),
+                    name: "files",
+                    fileName: "chattingImages.jpeg",
+                    mimeType: "image/jpeg"
+                )
+                multipartData.append(imageMultipartForm)
+            }
+            
+            return .uploadMultipart(multipartData)
             
         default:
             return .requestPlain

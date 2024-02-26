@@ -273,4 +273,18 @@ enum NetworkError {
             }
         }
     }
+    
+    enum PostChannelChatError: String, NetworkErrorProtocol {
+        case wrongRequest = "E11"
+        case noneData = "E13"
+        
+        var errorMessage: String {
+            switch self {
+            case .wrongRequest:
+                return "잘못된 요청입니다."
+            case .noneData:
+                return "존재하지 않는 데이터 입니다."
+            }
+        }
+    }
 }

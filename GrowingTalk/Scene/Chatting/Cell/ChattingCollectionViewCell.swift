@@ -133,6 +133,9 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
             make.width.lessThanOrEqualTo(self.contentView.safeAreaLayoutGuide).multipliedBy(0.5)
             make.bottom.equalToSuperview().inset(8)
         }
+        imageContentStack.snp.makeConstraints { make in
+            make.height.equalTo(160)
+        }
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(contentStackView.snp.trailing).offset(8)
             make.bottom.equalTo(contentStackView)
@@ -182,7 +185,7 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
             imageView.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+imagePath[nextLoadingImageIndex]))
         }
         
-        for hiddenImageViewIndex in imageCount ... 4 {
+        for hiddenImageViewIndex in imageCount ..< 5 {
             let imageView = contentImageArray[hiddenImageViewIndex]
             imageView.isHidden = true
         }
@@ -192,12 +195,9 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
             imageContentStack.isHidden = true
         case 1:
             secondRowImageStack.isHidden = true
-            firstRowImageStack.snp.makeConstraints { make in
-                make.height.equalTo(160)
-            }
         case 2...3:
             secondRowImageStack.isHidden = true
-            firstRowImageStack.snp.makeConstraints { make in
+            imageContentStack.snp.updateConstraints { make in
                 make.height.equalTo(80)
             }
         default:
@@ -211,7 +211,7 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
             view.isHidden = false
         }
         
-        firstRowImageStack.snp.removeConstraints()
+        imageContentStack.snp.removeConstraints()
     }
     
     

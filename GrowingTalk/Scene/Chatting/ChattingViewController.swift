@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 import RxCocoa
 import RxSwift
 import Then
@@ -45,8 +46,20 @@ final class ChattingViewController: BaseViewController {
         view.backgroundColor = .BackgroundColor.backgroundPrimaryColor
     }
     
+    private let userTextStackView = UIStackView().then { view in
+        view.axis = .vertical
+        view.distribution = .fillProportionally
+        view.spacing = 5
+        view.alignment = .fill
+
+    }
+    
     private let inputBox = UIView().then { view in
         view.backgroundColor = .white
+    }
+    
+    private lazy var imageCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createImageCollectionViewLayout()).then { view in
+        view.backgroundColor = .clear
     }
     
     private let tapGesture = UITapGestureRecognizer()
@@ -62,6 +75,12 @@ final class ChattingViewController: BaseViewController {
     private let ownID: Int
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, ChannelChatModel>!
+    
+    private var imageDataSource: UICollectionViewDiffableDataSource<Int, UIImage>!
+    
+    private let imageContentSubject = BehaviorSubject<[UIImage]>(value: [])
+    
+    private let deleteActionSubject = PublishRelay<UIImage>()
     
     private let viewWillDisappearTrigger = PublishRelay<String>()
     
@@ -94,6 +113,7 @@ final class ChattingViewController: BaseViewController {
         self.view.addGestureRecognizer(tapGesture)
         createDiffableDataSource()
         generateSnapShot()
+        createImageDataSource()
     }
     
     override func configureNavigation() {
@@ -134,9 +154,41 @@ final class ChattingViewController: BaseViewController {
             })
             .disposed(by: disposBag)
         
+        addFileButton.rx.tap
+            .bind(with: self) { owner, _ in
+                var config = PHPickerConfiguration()
+                config.selectionLimit = 5
+                config.filter = .any(of: [.images, .screenshots])
+                
+                let selectionVC = PHPickerViewController(configuration: config)
+                selectionVC.delegate = owner
+                owner.present(selectionVC, animated: true)
+            }
+            .disposed(by: disposBag)
+        
         tapGesture.rx.event
             .bind(with: self) { owner, tapGesture in
                 owner.view.endEditing(true)
+            }
+            .disposed(by: disposBag)
+        
+        imageContentSubject
+            .subscribe(with: self) { owner, images in
+                if images.isEmpty {
+                    owner.imageCollectionView.isHidden = true
+                    if owner.userTextView.text == owner.placeHolder {
+                        owner.sendButton.isEnabled = false
+                    }
+                } else {
+                    owner.imageCollectionView.isHidden = false
+                    owner.sendButton.isEnabled = true
+                }
+            }
+            .disposed(by: disposBag)
+        
+        deleteActionSubject
+            .bind(with: self) { owner, image in
+                owner.deleteImage(deleteImage: [image])
             }
             .disposed(by: disposBag)
         
@@ -144,7 +196,9 @@ final class ChattingViewController: BaseViewController {
             workspaceID: workspaceID,
             ownName: ownName,
             ownID: ownID,
-            cursorDate: nil,
+            sendButtonTap: sendButton.rx.tap,
+            contentText: userTextView.rx.text.orEmpty,
+            imageContent: imageContentSubject,
             viewWillDisappearTrigger: viewWillDisappearTrigger
         )
         
@@ -156,6 +210,12 @@ final class ChattingViewController: BaseViewController {
             }
             .disposed(by: disposBag)
         
+        output.postChatIsSuccess
+            .drive(with: self) { owner, _ in
+                owner.userTextView.text = ""
+                owner.deleteAllImage()
+            }
+            .disposed(by: disposBag)
         
     }
     
@@ -164,7 +224,9 @@ final class ChattingViewController: BaseViewController {
         super.configureViewHierarchy()
         self.view.addSubViews([collectionView, inputBox])
         inputBox.addSubview(textBox)
-        textBox.addSubViews([addFileButton, userTextView, sendButton])
+        userTextStackView.addArrangedSubview(userTextView)
+        userTextStackView.addArrangedSubview(imageCollectionView)
+        textBox.addSubViews([addFileButton, userTextStackView, sendButton])
     }
     
     override func configureViewConstraints() {
@@ -182,10 +244,13 @@ final class ChattingViewController: BaseViewController {
             make.top.greaterThanOrEqualToSuperview().inset(9)
             make.bottom.equalToSuperview().inset(9)
         }
-        userTextView.snp.makeConstraints { make in
+        userTextStackView.snp.makeConstraints { make in
             make.verticalEdges.equalTo(textBox)
             make.leading.equalTo(addFileButton.snp.trailing).offset(8)
             make.height.lessThanOrEqualTo(self.view.safeAreaLayoutGuide).multipliedBy(0.3)
+        }
+        imageCollectionView.snp.makeConstraints { make in
+            make.height.equalTo(60)
         }
         sendButton.snp.makeConstraints { make in
             make.size.equalTo(22)
@@ -246,9 +311,109 @@ final class ChattingViewController: BaseViewController {
         dataSource.apply(snapshot)
     }
     
+    //MARK: - Image CollectionView
+    private func createImageCollectionViewLayout() -> UICollectionViewLayout {
+        
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(50),
+            heightDimension: .absolute(50)
+        )
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        section.orthogonalScrollingBehavior = .continuous
+        
+        section.interGroupSpacing = 5
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        
+        return layout
+    }
+    
+    
+    private func createImageDataSource() {
+        let cellRegistration = UICollectionView.CellRegistration<ImageCollectionViewCell, UIImage> { [weak self] cell, indexPath, itemIdentifier in
+            guard let owner = self else {return}
+            cell.configureCell(targetImage: itemIdentifier)
+            cell.bindButton(deleteActionSubject: owner.deleteActionSubject, itemIdentifier: itemIdentifier)
+        }
+        
+        imageDataSource = UICollectionViewDiffableDataSource(collectionView: imageCollectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+        })
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, UIImage>()
+        snapshot.appendSections([0])
+        imageDataSource.apply(snapshot)
+    }
+    
+    func regenerateImageDataSource(addImages: [UIImage]) {
+        var snapshot = imageDataSource.snapshot()
+        snapshot.appendItems(addImages)
+        imageDataSource.apply(snapshot)
+        emitImageContent()
+    }
+    
+    private func deleteImage(deleteImage: [UIImage]) {
+        var snapshot = imageDataSource.snapshot()
+        snapshot.deleteItems(deleteImage)
+        imageDataSource.apply(snapshot)
+        emitImageContent()
+    }
+    
+    private func deleteAllImage() {
+        var snapshot = imageDataSource.snapshot(for: 0)
+        snapshot.deleteAll()
+        imageDataSource.apply(snapshot, to: 0)
+        emitImageContent()
+    }
+    
+    private func emitImageContent() {
+        let snapshot = imageDataSource.snapshot()
+        let images = snapshot.itemIdentifiers
+        imageContentSubject.onNext(images)
+    }
+    
+    
+    
+    //MARK: - Helper
+    
     private func getLastChatDate() -> String {
         let snapshot = dataSource.snapshot()
         guard let lastItem = snapshot.itemIdentifiers(inSection: 0).last else {return ""}
         return lastItem.createdAt
+    }
+}
+
+extension ChattingViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        deleteAllImage()
+        
+        picker.dismiss(animated: true)
+        
+        guard !results.isEmpty else {return}
+        
+        results.forEach { pickerResult in
+            
+            let provider = pickerResult.itemProvider
+            
+            if provider.canLoadObject(ofClass: UIImage.self) {
+                provider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    guard let typeCastingImage = image as? UIImage, let owner = self else {return}
+                    DispatchQueue.main.async {
+                        owner.regenerateImageDataSource(addImages: [typeCastingImage])
+                    }
+                }
+            }
+        }
     }
 }
