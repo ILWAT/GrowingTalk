@@ -10,6 +10,7 @@ import Foundation
 extension Date {
     func dateToString(targetString: String? = nil) -> String {
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_kr")
         if targetString != nil {
             dateFormatter.dateFormat = targetString
         } else {
