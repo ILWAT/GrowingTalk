@@ -123,6 +123,7 @@ final class ChattingViewController: BaseViewController {
     override func bind() {
         
         userTextView.rx.text.orEmpty
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, text in
                 if text.isEmpty || text == owner.placeHolder {
                     owner.sendButton.isEnabled = false
@@ -134,6 +135,7 @@ final class ChattingViewController: BaseViewController {
             .disposed(by: disposBag)
         
         userTextView.rx.didEndEditing
+            .observe(on: MainScheduler.instance)
             .withLatestFrom(userTextView.rx.text.orEmpty)
             .filter({ $0.isEmpty })
             .bind(with: self) { owner, text in
@@ -143,6 +145,7 @@ final class ChattingViewController: BaseViewController {
             .disposed(by: disposBag)
         
         userTextView.rx.didBeginEditing
+            .observe(on: MainScheduler.instance)
             .withLatestFrom(userTextView.rx.text.orEmpty)
             .filter({[weak self] in
                 $0 == self?.placeHolder
@@ -207,6 +210,7 @@ final class ChattingViewController: BaseViewController {
         output.willUpdateChatData
             .drive(with: self) { owner, chatDatas in
                 owner.updateNewDataSnapshot(updateData: chatDatas)
+                owner.scrollToBottom(collectionView: owner.collectionView, animated: true)
             }
             .disposed(by: disposBag)
         
@@ -391,6 +395,17 @@ final class ChattingViewController: BaseViewController {
         let snapshot = dataSource.snapshot()
         guard let lastItem = snapshot.itemIdentifiers(inSection: 0).last else {return ""}
         return lastItem.createdAt
+    }
+    
+    private func scrollToBottom(collectionView: UICollectionView, animated: Bool) {
+        if collectionView.contentSize.height < collectionView.bounds.size.height {
+            return
+        }
+        
+        print(collectionView.contentSize.height, collectionView.bounds.size.height, collectionView.frame.size.height)
+        let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
+        print(bottomOffset)
+        collectionView.setContentOffset(bottomOffset, animated: animated)
     }
 }
 
