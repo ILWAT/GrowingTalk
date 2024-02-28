@@ -44,8 +44,8 @@
 		DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */; };
 		DE8DDA002B8CD9F400567F7A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */; };
 		DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA012B8F5D1200567F7A /* SocketManager.swift */; };
-		DE8DDA042B8F60E600567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA032B8F60E600567F7A /* SocketIO */; };
 		DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */; };
+		DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA102B8F988A00567F7A /* SocketIO */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -203,7 +203,7 @@
 				DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */,
 				DE8DD9F32B87638700567F7A /* Realm in Frameworks */,
 				DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */,
-				DE8DDA042B8F60E600567F7A /* SocketIO in Frameworks */,
+				DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */,
 				DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */,
 				DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */,
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
@@ -363,6 +363,13 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		DE8DDA092B8F91AD00567F7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DE91F0662B46922500F44E01 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +463,7 @@
 			children = (
 				DE9AC63C2B43AB7D004D50EF /* GrowingTalk */,
 				DE9AC63B2B43AB7D004D50EF /* Products */,
+				DE8DDA092B8F91AD00567F7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,7 +612,7 @@
 				DE91F08E2B4D1EAF00F44E01 /* IQKeyboardManagerSwift */,
 				DE8DD9F22B87638700567F7A /* Realm */,
 				DE8DD9F42B87638700567F7A /* RealmSwift */,
-				DE8DDA032B8F60E600567F7A /* SocketIO */,
+				DE8DDA102B8F988A00567F7A /* SocketIO */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -643,7 +651,7 @@
 				DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */,
 				DE91F08D2B4D1EAF00F44E01 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */,
-				DE8DD9FC2B8C77A100567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -983,12 +991,12 @@
 				minimumVersion = 10.47.0;
 			};
 		};
-		DE8DD9FC2B8C77A100567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 15.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 		DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
@@ -1060,9 +1068,9 @@
 			package = DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		DE8DDA032B8F60E600567F7A /* SocketIO */ = {
+		DE8DDA102B8F988A00567F7A /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DE8DD9FC2B8C77A100567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 		DE91F0702B4818D300F44E01 /* Toast */ = {
