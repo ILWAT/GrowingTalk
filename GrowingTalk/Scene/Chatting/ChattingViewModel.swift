@@ -9,6 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RealmSwift
+import SocketIO
 
 final class ChattingViewModel: ViewModelType {
     struct Input {
@@ -27,14 +28,18 @@ final class ChattingViewModel: ViewModelType {
     }
     private var realmManger = RealmManager()
     
+    private var socketManger: SocketControlManager!
+    
     private let disposeBag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
         let toastMessage = PublishRelay<String>()
         let localChattingData = BehaviorSubject<[ChannelChatModel]>(value: [])
         let serverRequestTrigger = BehaviorSubject<String>(value: "")
+        let socketTrigger = BehaviorSubject<Bool>(value: false)
         let imageContent = BehaviorSubject<[Data]>(value: [])
         let postChatIsSuccess = PublishRelay<Void>()
+        let receivedDataFromSocket = PublishSubject<ChannelChatModel>()
         let willUpdateChatData = BehaviorRelay<[ChannelChatModel]>(value: [])
         
         let localSavedChatData = realmManger.getAllObjectFromRealm(type: RealmChatModel.self)
@@ -66,16 +71,38 @@ final class ChattingViewModel: ViewModelType {
             }
             .debug("server chat")
             .subscribe(with: self) { owner, result in
+                socketTrigger.onNext(true)
                 switch result{
                 case .success(let chattingDatas):
                     guard !chattingDatas.isEmpty else { return }
                     willUpdateChatData.accept(chattingDatas)
                     owner.saveServerModelInRealm(chattingDatas: chattingDatas)
-                    
                 case .failure(let error):
                     let errorMessage = APIManger.shared.changeErrorToString(error: error, targetError: NetworkError.GetChannelChatError.self)
                     toastMessage.accept(errorMessage)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        socketTrigger
+            .filter({ $0 })
+            .distinctUntilChanged()
+            .subscribe(with: self) { owner, boolean in
+                if boolean {
+                    owner.socketManger = SocketControlManager(target: .channel(id: input.ownID))
+                    owner.socketManger.receivedDataFromSocket(type: ChannelChatModel.self, router: .channel(id: input.ownID), emitEvent: receivedDataFromSocket)
+                    owner.socketManger.connectSocket()
+                } else {
+                    owner.socketManger.disconnectSocket()
+                }
+                
+            }
+            .disposed(by: disposeBag)
+        
+        receivedDataFromSocket
+            .subscribe(with: self) { owner, chatModel in
+                willUpdateChatData.accept([chatModel])
+                owner.saveServerModelInRealm(chattingDatas: [chatModel])
             }
             .disposed(by: disposeBag)
         
@@ -112,7 +139,7 @@ final class ChattingViewModel: ViewModelType {
                 switch result {
                 case .success(let chat):
                     willUpdateChatData.accept([chat])
-                    owner.saveServerModelInRealm(chattingDatas: [chat])
+//                    owner.saveServerModelInRealm(chattingDatas: [chat])
                     postChatIsSuccess.accept(())
                 case .failure(let error):
                     let errorMessage = APIManger.shared.changeErrorToString(error: error, targetError: NetworkError.GetChannelChatError.self)
@@ -132,6 +159,8 @@ final class ChattingViewModel: ViewModelType {
                 Task {
                     try await owner.realmManger.updateAsyncWriteToRealm(type: RealmChannelModel.self, targetData: updatingModel)
                 }
+                
+                socketTrigger.onNext(false)
             }
             .disposed(by: disposeBag)
         

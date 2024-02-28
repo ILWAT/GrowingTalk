@@ -100,7 +100,15 @@ final class ChattingViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("chattingVC deinit")
+    }
+    
     //MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.scrollToBottomInitial(collectionView: collectionView, animated: true)
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         viewWillDisappearTrigger.accept(getLastChatDate())
@@ -274,14 +282,14 @@ final class ChattingViewController: BaseViewController {
         
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(87)
+            heightDimension: .estimated(300)
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(87)
+            heightDimension: .estimated(300)
         )
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
@@ -397,15 +405,30 @@ final class ChattingViewController: BaseViewController {
         return lastItem.createdAt
     }
     
-    private func scrollToBottom(collectionView: UICollectionView, animated: Bool) {
-        if collectionView.contentSize.height < collectionView.bounds.size.height {
-            return
+    private func scrollToBottomInitial(collectionView: UICollectionView, animated: Bool){
+        DispatchQueue.main.async{
+            if collectionView.contentSize.height < collectionView.bounds.size.height {
+                return
+            }
+            
+            repeat {
+                let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
+                collectionView.setContentOffset(bottomOffset, animated: animated)
+            }while collectionView.contentOffset.y == collectionView.contentSize.height - collectionView.bounds.size.height
         }
-        
-        print(collectionView.contentSize.height, collectionView.bounds.size.height, collectionView.frame.size.height)
-        let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
-        print(bottomOffset)
-        collectionView.setContentOffset(bottomOffset, animated: animated)
+    }
+    
+    private func scrollToBottom(collectionView: UICollectionView, animated: Bool) {
+        DispatchQueue.main.async{
+            if collectionView.contentSize.height < collectionView.bounds.size.height {
+                return
+            }
+            
+            if collectionView.contentOffset.y >= (Double(collectionView.contentSize.height)*0.8) {
+                let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
+                collectionView.setContentOffset(bottomOffset, animated: animated)
+            }
+        }
     }
 }
 

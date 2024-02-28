@@ -110,7 +110,7 @@ final class HomeInitialViewModel: ViewModelType {
     
     func getImages(imageURLString: String) -> UIImage? {
         var image: UIImage?
-        if let imageURL = URL(string: SecretKeys.severURL+imageURLString){
+        if let imageURL = URL(string: SecretKeys.serverURL+imageURLString){
             KingfisherManager.shared.retrieveImage(with: imageURL) { result in
                 switch result{
                 case .success(let imageResult):

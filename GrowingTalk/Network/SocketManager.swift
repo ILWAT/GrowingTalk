@@ -16,19 +16,38 @@ final class SocketControlManager {
     
     
     init(target: SocketRouter) {
-        self.manager = SocketManager(socketURL: URL(string: target.baseUrlPath)!, config: [.log(true), .compress])
+        self.manager = SocketManager(socketURL: URL(string: target.baseUrlPath)!, config: [/*.log(true),*/ .compress])
         self.socket = self.manager.socket(forNamespace: target.endPoint)
         
-        socket.on(clientEvent: .connect) { data, ack in
+        socket.on(clientEvent: .connect) {[weak self] data, ack in
+            guard let owner = self else {return}
             print("SOCKET IS CONNECTED", data, ack)
         }
         
-        socket.on(clientEvent: .disconnect) { data, ack in
-            print("SOCKET IS DISCONNECTED")
+        socket.on(clientEvent: .disconnect) {[weak self] data, ack in
+            guard let owner = self else {return}
+            print("SOCKET IS DISCONNECTED", data, ack)
         }
     }
     
+    deinit {
+        print("SocketManager deinit")
+    }
     
+    func openSocket(target: SocketRouter) {
+        socket = self.manager.socket(forNamespace: target.endPoint)
+    }
+    
+    func receivedDataFromSocket<T: Decodable>(type: T.Type, router: SocketRouter, emitEvent: PublishSubject<T>) {
+        socket.on(router.receivedEventType) {[weak self] data, ack in
+            guard let owner = self else {return}
+            print("data received")
+            
+            guard let data = data.first, let jsonData = try? JSONSerialization.data(withJSONObject: data), let decodedData = try? JSONDecoder().decode(type, from: jsonData) else { return }
+            
+            emitEvent.onNext(decodedData)
+        }
+    }
     
     func connectSocket() {
         self.socket.connect()
@@ -36,7 +55,10 @@ final class SocketControlManager {
     
     func disconnectSocket() {
         self.socket.disconnect()
+        self.socket = nil
     }
+    
+    
     
     
     

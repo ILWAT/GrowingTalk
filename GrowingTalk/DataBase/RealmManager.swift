@@ -24,6 +24,10 @@ final class RealmManager {
         return realm.objects(type)
     }
     
+    func getPrimaryKeyObjectFromRealm<T: Object, KeyType>(type: T.Type, primary: KeyType) -> T? {
+        return realm.object(ofType: type, forPrimaryKey: primary)
+    }
+    
     func getSpecificObjectFromRealm<T:Object>(type: T.Type, constraints: ((Query<T>) -> Query<Bool>)) -> Results<T> {
         return realm.objects(type).where(constraints)
     }
