@@ -34,7 +34,7 @@ enum Router {
 extension Router: TargetType {
     var baseURL: URL {
         get{
-           return URL(string: SecretKeys.severURL)!
+           return URL(string: SecretKeys.serverURL)!
         }
     }
     

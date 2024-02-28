@@ -42,8 +42,10 @@
 		DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DD9F42B87638700567F7A /* RealmSwift */; };
 		DE8DD9F92B8766F800567F7A /* RealmChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */; };
 		DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */; };
-		DE8DD9FE2B8C77A200567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DD9FD2B8C77A200567F7A /* SocketIO */; };
 		DE8DDA002B8CD9F400567F7A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */; };
+		DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA012B8F5D1200567F7A /* SocketManager.swift */; };
+		DE8DDA042B8F60E600567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA032B8F60E600567F7A /* SocketIO */; };
+		DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -139,6 +141,8 @@
 		DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChatModel.swift; sourceTree = "<group>"; };
 		DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE8DDA012B8F5D1200567F7A /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRouter.swift; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -199,7 +203,7 @@
 				DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */,
 				DE8DD9F32B87638700567F7A /* Realm in Frameworks */,
 				DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */,
-				DE8DD9FE2B8C77A200567F7A /* SocketIO in Frameworks */,
+				DE8DDA042B8F60E600567F7A /* SocketIO in Frameworks */,
 				DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */,
 				DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */,
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
@@ -374,6 +378,8 @@
 				DE91F0792B4AE75100F44E01 /* Router.swift */,
 				DE91F0832B4C0BBC00F44E01 /* APIManger.swift */,
 				DE91F0852B4C122B00F44E01 /* NetworkError.swift */,
+				DE8DDA012B8F5D1200567F7A /* SocketManager.swift */,
+				DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -598,7 +604,7 @@
 				DE91F08E2B4D1EAF00F44E01 /* IQKeyboardManagerSwift */,
 				DE8DD9F22B87638700567F7A /* Realm */,
 				DE8DD9F42B87638700567F7A /* RealmSwift */,
-				DE8DD9FD2B8C77A200567F7A /* SocketIO */,
+				DE8DDA032B8F60E600567F7A /* SocketIO */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -669,6 +675,7 @@
 				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
 				DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
+				DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
 				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
 				DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */,
@@ -700,6 +707,7 @@
 				DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
 				DE8DD9EA2B85C4BC00567F7A /* ChannelChatModel.swift in Sources */,
+				DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
 				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
 				DE91F0842B4C0BBC00F44E01 /* APIManger.swift in Sources */,
@@ -1052,7 +1060,7 @@
 			package = DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
-		DE8DD9FD2B8C77A200567F7A /* SocketIO */ = {
+		DE8DDA032B8F60E600567F7A /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE8DD9FC2B8C77A100567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
