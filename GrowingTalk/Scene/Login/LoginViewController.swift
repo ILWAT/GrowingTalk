@@ -38,7 +38,7 @@ final class LoginViewController: BaseViewController {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
         
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
         
         self.title = "이메일 로그인"
         self.navigationItem.leftBarButtonItem = closeButton
@@ -50,7 +50,6 @@ final class LoginViewController: BaseViewController {
             idText: idLabelField.textField.rx.text.orEmpty,
             passwordText: passowrdLabelField.textField.rx.text.orEmpty,
             loginButtonTap: loginButton.rx.tap
-        
         )
         
         let output = viewModel.transform(input)

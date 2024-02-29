@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DE3874692B906746005B5CD4 /* FirebaseAnalytics */; };
+		DE38746C2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		DE38746E2B906746005B5CD4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746D2B906746005B5CD4 /* FirebaseMessaging */; };
+		DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */; };
 		DE3ADE612B62739A00C81271 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE602B62739A00C81271 /* HomeTabBarController.swift */; };
 		DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */; };
 		DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE672B6905FA00C81271 /* SideBarController.swift */; };
@@ -20,12 +24,35 @@
 		DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */; };
 		DE3ADE802B78EAB300C81271 /* ChangeAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE7F2B78EAB300C81271 /* ChangeAdminViewController.swift */; };
 		DE3ADE822B78ECDA00C81271 /* ChangeAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */; };
-		DE3ADE842B78F03400C81271 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE832B78F03400C81271 /* UserInfo.swift */; };
+		DE3ADE842B78F03400C81271 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE832B78F03400C81271 /* UserInfoModel.swift */; };
 		DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
 		DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */; };
+		DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */; };
+		DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */; };
+		DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */; };
+		DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */; };
+		DE8DD9DB2B7E472100567F7A /* CreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */; };
+		DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */; };
+		DE8DD9DF2B7FB99100567F7A /* SearchChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */; };
+		DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */; };
+		DE8DD9E72B83481900567F7A /* ChattingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E62B83481900567F7A /* ChattingViewController.swift */; };
+		DE8DD9EA2B85C4BC00567F7A /* ChannelChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9E92B85C4BC00567F7A /* ChannelChatModel.swift */; };
+		DE8DD9EC2B85CD8900567F7A /* ChattingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9EB2B85CD8900567F7A /* ChattingCollectionViewCell.swift */; };
+		DE8DD9EE2B860B0200567F7A /* ChattingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9ED2B860B0200567F7A /* ChattingViewModel.swift */; };
+		DE8DD9F32B87638700567F7A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DD9F22B87638700567F7A /* Realm */; };
+		DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DD9F42B87638700567F7A /* RealmSwift */; };
+		DE8DD9F92B8766F800567F7A /* RealmChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */; };
+		DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */; };
+		DE8DDA002B8CD9F400567F7A /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */; };
+		DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA012B8F5D1200567F7A /* SocketManager.swift */; };
+		DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */; };
+		DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA102B8F988A00567F7A /* SocketIO */; };
+		DE8DDA142B8FC3FF00567F7A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */; };
+		DE8DDA192B8FE7C800567F7A /* FCMdeviceTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */; };
+		DE8DDA1B2B904A8300567F7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -83,7 +110,7 @@
 		DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */; };
 		DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */; };
 		DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAB5CF42B45911000C9A71C /* ViewModelType.swift */; };
-		DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */; };
+		DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED6A3722B6105FE009A0D49 /* ChannelModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,12 +127,32 @@
 		DE3ADE7C2B76A5C300C81271 /* EditWorkSpaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkSpaceViewModel.swift; sourceTree = "<group>"; };
 		DE3ADE7F2B78EAB300C81271 /* ChangeAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewController.swift; sourceTree = "<group>"; };
 		DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewModel.swift; sourceTree = "<group>"; };
-		DE3ADE832B78F03400C81271 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		DE3ADE832B78F03400C81271 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
 		DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewController.swift; sourceTree = "<group>"; };
+		DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteMemberViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteWorkspaceMemberBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationChannelViewController.swift; sourceTree = "<group>"; };
+		DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelBodyModel.swift; sourceTree = "<group>"; };
+		DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewController.swift; sourceTree = "<group>"; };
+		DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchChannelViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9E62B83481900567F7A /* ChattingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewController.swift; sourceTree = "<group>"; };
+		DE8DD9E92B85C4BC00567F7A /* ChannelChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatModel.swift; sourceTree = "<group>"; };
+		DE8DD9EB2B85CD8900567F7A /* ChattingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE8DD9ED2B860B0200567F7A /* ChattingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChattingViewModel.swift; sourceTree = "<group>"; };
+		DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmChatModel.swift; sourceTree = "<group>"; };
+		DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE8DDA012B8F5D1200567F7A /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRouter.swift; sourceTree = "<group>"; };
+		DE8DDA172B8FC8A700567F7A /* GrowingTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GrowingTalk.entitlements; sourceTree = "<group>"; };
+		DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMdeviceTokenModel.swift; sourceTree = "<group>"; };
+		DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -155,7 +202,7 @@
 		DEAB5CEE2B4589BD00C9A71C /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DEAB5CF02B458A3C00C9A71C /* ImageWrapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapButton.swift; sourceTree = "<group>"; };
 		DEAB5CF42B45911000C9A71C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMyChannelModel.swift; sourceTree = "<group>"; };
+		DED6A3722B6105FE009A0D49 /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,10 +210,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */,
+				DE8DD9F32B87638700567F7A /* Realm in Frameworks */,
+				DE8DDA142B8FC3FF00567F7A /* FirebaseMessaging in Frameworks */,
+				DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */,
 				DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */,
+				DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */,
 				DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */,
 				DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */,
+				DE38746C2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
+				DE38746E2B906746005B5CD4 /* FirebaseMessaging in Frameworks */,
+				DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */,
 				DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */,
 				DE91F08F2B4D1EAF00F44E01 /* IQKeyboardManagerSwift in Frameworks */,
 				DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */,
@@ -260,6 +315,76 @@
 			path = Add;
 			sourceTree = "<group>";
 		};
+		DE8DD9CE2B7CA0AB00567F7A /* InviteMember */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9CF2B7CA11C00567F7A /* InviteMemberViewController.swift */,
+				DE8DD9D12B7CAC4200567F7A /* InviteMemberViewModel.swift */,
+			);
+			path = InviteMember;
+			sourceTree = "<group>";
+		};
+		DE8DD9D52B7E3CBC00567F7A /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9D72B7E3CD100567F7A /* Search */,
+				DE8DD9D62B7E3CC600567F7A /* Creation */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		DE8DD9D62B7E3CC600567F7A /* Creation */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9D82B7E3CFA00567F7A /* CreationChannelViewController.swift */,
+				DE8DD9DA2B7E472100567F7A /* CreationViewModel.swift */,
+			);
+			path = Creation;
+			sourceTree = "<group>";
+		};
+		DE8DD9D72B7E3CD100567F7A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9DE2B7FB99100567F7A /* SearchChannelViewController.swift */,
+				DE8DD9E02B7FB9A200567F7A /* SearchChannelViewModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		DE8DD9E52B8347FE00567F7A /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9E82B83487000567F7A /* Cell */,
+				DE8DD9E62B83481900567F7A /* ChattingViewController.swift */,
+				DE8DD9ED2B860B0200567F7A /* ChattingViewModel.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		DE8DD9E82B83487000567F7A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9EB2B85CD8900567F7A /* ChattingCollectionViewCell.swift */,
+				DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		DE8DD9EF2B8761D600567F7A /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				DE8DD9FA2B8A853B00567F7A /* RealmManager.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		DE8DDA092B8F91AD00567F7A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DE91F0662B46922500F44E01 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +400,8 @@
 				DE91F0792B4AE75100F44E01 /* Router.swift */,
 				DE91F0832B4C0BBC00F44E01 /* APIManger.swift */,
 				DE91F0852B4C122B00F44E01 /* NetworkError.swift */,
+				DE8DDA012B8F5D1200567F7A /* SocketManager.swift */,
+				DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -289,10 +416,15 @@
 				DE62BDC72B5504A60008F463 /* WorkSpaceBodyModel.swift */,
 				DEA2F7122B594C4400C4D0AA /* RefreshAccessTokenModel.swift */,
 				DEA2F7182B5D66F700C4D0AA /* WorkSpaceModel.swift */,
-				DED6A3722B6105FE009A0D49 /* GetMyChannelModel.swift */,
+				DED6A3722B6105FE009A0D49 /* ChannelModel.swift */,
 				DE9A0F692B61611000AF24CF /* GetMyDMmodel.swift */,
 				DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */,
-				DE3ADE832B78F03400C81271 /* UserInfo.swift */,
+				DE3ADE832B78F03400C81271 /* UserInfoModel.swift */,
+				DE8DD9D32B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift */,
+				DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */,
+				DE8DD9E92B85C4BC00567F7A /* ChannelChatModel.swift */,
+				DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */,
+				DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -300,6 +432,8 @@
 		DE91F0902B4D4DC100F44E01 /* WorkSpace */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9D52B7E3CBC00567F7A /* Channel */,
+				DE8DD9CE2B7CA0AB00567F7A /* InviteMember */,
 				DE3ADE7E2B78EA9F00C81271 /* ChangeAdmin */,
 				DE3ADE792B76A52800C81271 /* Edit */,
 				DEA2F7092B57CBDF00C4D0AA /* Home */,
@@ -345,6 +479,7 @@
 			children = (
 				DE9AC63C2B43AB7D004D50EF /* GrowingTalk */,
 				DE9AC63B2B43AB7D004D50EF /* Products */,
+				DE8DDA092B8F91AD00567F7A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -359,6 +494,9 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DDA172B8FC8A700567F7A /* GrowingTalk.entitlements */,
+				DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */,
+				DE8DD9EF2B8761D600567F7A /* DataBase */,
 				DE91F0942B4D69DB00F44E01 /* Helper */,
 				DE91F0802B4BBFA900F44E01 /* Model */,
 				DE91F0782B4AE74200F44E01 /* Network */,
@@ -378,6 +516,7 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DD9E52B8347FE00567F7A /* Chatting */,
 				DE3ADE762B73D1BC00C81271 /* CustomAlert */,
 				DE91F0662B46922500F44E01 /* Signup */,
 				DEAB5CEB2B45893100C9A71C /* Onboarding */,
@@ -489,6 +628,14 @@
 				DE91F07C2B4AE78B00F44E01 /* Moya */,
 				DE91F07E2B4AE78B00F44E01 /* RxMoya */,
 				DE91F08E2B4D1EAF00F44E01 /* IQKeyboardManagerSwift */,
+				DE8DD9F22B87638700567F7A /* Realm */,
+				DE8DD9F42B87638700567F7A /* RealmSwift */,
+				DE8DDA102B8F988A00567F7A /* SocketIO */,
+				DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */,
+				DE3874692B906746005B5CD4 /* FirebaseAnalytics */,
+				DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				DE38746D2B906746005B5CD4 /* FirebaseMessaging */,
+				DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -526,6 +673,9 @@
 				DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				DE91F07B2B4AE78B00F44E01 /* XCRemoteSwiftPackageReference "Moya" */,
 				DE91F08D2B4D1EAF00F44E01 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -542,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9AC64A2B43AB7F004D50EF /* LaunchScreen.storyboard in Resources */,
+				DE8DDA1B2B904A8300567F7A /* GoogleService-Info.plist in Resources */,
 				DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */,
 				DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */,
 			);
@@ -556,18 +707,23 @@
 			files = (
 				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
 				DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */,
+				DE8DDA192B8FE7C800567F7A /* FCMdeviceTokenModel.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
+				DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
 				DEA2F70D2B57CC2F00C4D0AA /* HomeEmptyViewModel.swift in Sources */,
+				DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
+				DE8DD9EC2B85CD8900567F7A /* ChattingCollectionViewCell.swift in Sources */,
 				DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */,
 				DE9A0F6A2B61611000AF24CF /* GetMyDMmodel.swift in Sources */,
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
 				DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */,
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
 				DE91F0962B4D69ED00F44E01 /* ToastMessageCase.swift in Sources */,
+				DE8DD9EE2B860B0200567F7A /* ChattingViewModel.swift in Sources */,
 				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
 				DE91F0A02B5010E400F44E01 /* WorkSpaceInitialViewModel.swift in Sources */,
 				DE3ADE802B78EAB300C81271 /* ChangeAdminViewController.swift in Sources */,
@@ -578,9 +734,14 @@
 				DE3ADE7B2B76A53800C81271 /* EditWorkSpaceViewController.swift in Sources */,
 				DE91F09A2B4E385600F44E01 /* UserDefaultsManager.swift in Sources */,
 				DE9AC6692B4519DC004D50EF /* Extension+UIColor.swift in Sources */,
-				DED6A3732B6105FE009A0D49 /* GetMyChannelModel.swift in Sources */,
+				DE8DD9E72B83481900567F7A /* ChattingViewController.swift in Sources */,
+				DED6A3732B6105FE009A0D49 /* ChannelModel.swift in Sources */,
+				DE8DD9E12B7FB9A200567F7A /* SearchChannelViewModel.swift in Sources */,
 				DEA2F71D2B5E7D5600C4D0AA /* HomeInitialViewController.swift in Sources */,
+				DE8DD9D92B7E3CFA00567F7A /* CreationChannelViewController.swift in Sources */,
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
+				DE8DD9EA2B85C4BC00567F7A /* ChannelChatModel.swift in Sources */,
+				DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
 				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
 				DE91F0842B4C0BBC00F44E01 /* APIManger.swift in Sources */,
@@ -588,22 +749,29 @@
 				DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */,
 				DE62BDC82B5504A60008F463 /* WorkSpaceBodyModel.swift in Sources */,
 				DE91F0982B4D6A1B00F44E01 /* SignupRequiredCase.swift in Sources */,
+				DE8DD9F92B8766F800567F7A /* RealmChatModel.swift in Sources */,
 				DE3ADE782B73D1D400C81271 /* CustomAlertViewController.swift in Sources */,
 				DEAB5CE52B456E9C00C9A71C /* OnboardingViewController.swift in Sources */,
 				DE91F0A52B510E6400F44E01 /* LoginViewModel.swift in Sources */,
+				DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */,
 				DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
+				DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */,
 				DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */,
 				DE3ADE742B71F17300C81271 /* Extension+Date.swift in Sources */,
 				DE3ADE702B71E57500C81271 /* SideBarViewModel.swift in Sources */,
+				DE8DD9DD2B7E538900567F7A /* CreateChannelBodyModel.swift in Sources */,
+				DE8DD9DF2B7FB99100567F7A /* SearchChannelViewController.swift in Sources */,
 				DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */,
+				DE8DD9D42B7CB74A00567F7A /* InviteWorkspaceMemberBodyModel.swift in Sources */,
 				DE91F0A92B51543E00F44E01 /* LoginModel.swift in Sources */,
 				DE3ADE7D2B76A5C300C81271 /* EditWorkSpaceViewModel.swift in Sources */,
 				DEA2F71F2B5E7DC600C4D0AA /* HomeInitialViewModel.swift in Sources */,
 				DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */,
 				DE9AC66B2B45337C004D50EF /* BaseViewController.swift in Sources */,
+				DE8DDA002B8CD9F400567F7A /* ImageCollectionViewCell.swift in Sources */,
 				DE91F0772B4AA33200F44E01 /* Extension+String.swift in Sources */,
 				DE3ADE612B62739A00C81271 /* HomeTabBarController.swift in Sources */,
 				DE3ADE6A2B6915C600C81271 /* Extension+KingfisherManger.swift in Sources */,
@@ -612,11 +780,12 @@
 				DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */,
 				DEAB5CE82B456FCB00C9A71C /* Extension+UIView.swift in Sources */,
 				DEA2F71B2B5E58ED00C4D0AA /* DeviceError.swift in Sources */,
+				DE8DD9DB2B7E472100567F7A /* CreationViewModel.swift in Sources */,
 				DEA2F7112B593FD100C4D0AA /* BaseHomeViewController.swift in Sources */,
 				DE91F09C2B4E38C300F44E01 /* UserDefaultsCase.swift in Sources */,
 				DE91F0752B4A6AB300F44E01 /* SecretKeys.swift in Sources */,
 				DE3ADE822B78ECDA00C81271 /* ChangeAdminViewModel.swift in Sources */,
-				DE3ADE842B78F03400C81271 /* UserInfo.swift in Sources */,
+				DE3ADE842B78F03400C81271 /* UserInfoModel.swift in Sources */,
 				DEAB5CF52B45911000C9A71C /* ViewModelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,11 +928,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AYG8MBJF93;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -774,8 +947,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -790,11 +965,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AYG8MBJF93;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -805,8 +984,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -840,6 +1021,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.47.0;
+			};
+		};
+		DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
 		DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift";
@@ -899,6 +1104,46 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE3874692B906746005B5CD4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		DE38746D2B906746005B5CD4 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+		DE8DD9F22B87638700567F7A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		DE8DD9F42B87638700567F7A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+		DE8DDA102B8F988A00567F7A /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+		DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		DE91F0702B4818D300F44E01 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */;

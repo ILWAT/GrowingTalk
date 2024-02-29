@@ -133,4 +133,5 @@ xcuserdata/
 
 #Personal gitignore
 SecretKeys.swift
+GoogleService-Info.plist
 

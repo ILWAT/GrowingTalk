@@ -57,8 +57,8 @@ final class WorkSpaceInitialViewController: BaseViewController {
         
 //        self.navigationController?.navigationBar.isTranslucent = false
 //        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.standardAppearance = appearance
-        self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        self.navigationItem.standardAppearance = appearance
+        self.navigationItem.scrollEdgeAppearance = appearance
         
         navigationItem.leftBarButtonItem = closeButton
         

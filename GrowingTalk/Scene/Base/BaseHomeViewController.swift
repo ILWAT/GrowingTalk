@@ -136,7 +136,9 @@ extension BaseHomeViewController: SideBarProtocol {
     
     func changeWorkSpace(targetWorkSpaceInfo: WorkSpaceModel?) {
         if let targetWorkSpaceInfo = targetWorkSpaceInfo, let userId = userId {
-            self.navigationController?.setViewControllers([HomeInitialViewController(currentWorkspaceInfo: targetWorkSpaceInfo, userId: userId)], animated: true)
+            let changeTargetVC = HomeInitialViewController(currentWorkspaceInfo: targetWorkSpaceInfo, userId: userId)
+            self.navigationController?.setViewControllers([changeTargetVC], animated: true)
+            self.navigationController?.tabBarItem = changeTargetVC.tabBarItem
         }
     }
 }

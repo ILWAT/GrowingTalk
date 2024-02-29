@@ -18,20 +18,20 @@ final class ChangeAdminViewModel: ViewModelType {
     }
     
     struct Output {
-        let getMembersResult: Driver<Result<[UserInfo],Error>>
+        let getMembersResult: Driver<Result<[UserInfoModel],Error>>
         let chagingAdimnResult:Driver<Result<WorkSpaceModel, Error>>
     }
     
     private let disposeBag = DisposeBag()
     
     func transform(_ input: Input) -> Output {
-        let getMembersResult = PublishSubject<Result<[UserInfo], Error>>()
+        let getMembersResult = PublishSubject<Result<[UserInfoModel], Error>>()
         let changingAdminResult = PublishSubject<Result<WorkSpaceModel, Error>>()
         
         
         input.viewUpdateTrigger
             .flatMapLatest({ _ in
-                APIManger.shared.requestByRx(requestType: .getWorkspaceMembers(workSpaceID: input.workspaceID), decodableType: [UserInfo].self, defaultErrorType: NetworkError.getWorkspaceMemberError.self)
+                APIManger.shared.requestByRx(requestType: .getWorkspaceMembers(workSpaceID: input.workspaceID), decodableType: [UserInfoModel].self, defaultErrorType: NetworkError.getWorkspaceMemberError.self)
             })
             .debug("changeAdmin")
             .subscribe(with: self, onNext: { owner, result in
