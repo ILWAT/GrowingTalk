@@ -105,9 +105,9 @@ final class ChattingViewController: BaseViewController {
     }
     
     //MARK: - Life Cycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.scrollToBottomInitial(collectionView: collectionView, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.scrollToBottomInitial(collectionView: collectionView, animated: false)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -122,6 +122,7 @@ final class ChattingViewController: BaseViewController {
         createDiffableDataSource()
         generateSnapShot()
         createImageDataSource()
+        
     }
     
     override func configureNavigation() {
@@ -411,10 +412,8 @@ final class ChattingViewController: BaseViewController {
                 return
             }
             
-            repeat {
-                let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
-                collectionView.setContentOffset(bottomOffset, animated: animated)
-            }while collectionView.contentOffset.y == collectionView.contentSize.height - collectionView.bounds.size.height
+            let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
+            collectionView.setContentOffset(bottomOffset, animated: animated)
         }
     }
     
@@ -424,7 +423,7 @@ final class ChattingViewController: BaseViewController {
                 return
             }
             
-            if collectionView.contentOffset.y >= (Double(collectionView.contentSize.height)*0.8) {
+            if collectionView.contentOffset.y >= collectionView.contentSize.height - collectionView.bounds.size.height - 300 {
                 let bottomOffset = CGPoint(x: 0, y: collectionView.contentSize.height - collectionView.bounds.size.height)
                 collectionView.setContentOffset(bottomOffset, animated: animated)
             }

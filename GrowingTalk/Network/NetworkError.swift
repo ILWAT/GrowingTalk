@@ -91,6 +91,17 @@ enum NetworkError {
         }
     }
     
+    enum RegistDeviceTokenError: String, NetworkErrorProtocol {
+        case wrongRequest = "E11"
+        
+        var errorMessage: String {
+            switch self {
+            case .wrongRequest:
+                return "잘못된 요청입니다."
+            }
+        }
+    }
+    
     enum RefreshAccessTokenError: String, NetworkErrorProtocol {
         case validToken = "E04"
         case unknownAccount = "E03"

@@ -12,6 +12,7 @@ enum Router {
     case email(email: CheckEmailBodyModel)
     case signup(signupData: SignupBodyModel)
     case login_v2(body: LoginBodyModel)
+    case registFCMToken(deviceToken: FCMDeviceTokenModel)
     case addWorkSpace(addWorkSpaceData: WorkSpaceBodyModel)
     case getAllWorkSpace
     case refreshAccessToken(refreshAccessTokenBodyModel: RefreshAccessTokenBodyModel)
@@ -46,6 +47,8 @@ extension Router: TargetType {
             return "/v1/users/validation/email"
         case .login_v2:
             return "/v2/users/login"
+        case .registFCMToken:
+            return "/v1/users/deviceToken"
         case .addWorkSpace, .getAllWorkSpace:
             return"/v1/workspaces"
         case .refreshAccessToken:
@@ -81,7 +84,7 @@ extension Router: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel, .postChannelChat:
+        case .email, .signup, .registFCMToken, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel, .postChannelChat:
             return .post
         case .editWorkspace, .changeAdminOfWorkspace:
             return .put
@@ -100,6 +103,8 @@ extension Router: TargetType {
             return .requestJSONEncodable(body)
         case .login_v2(let body):
             return .requestJSONEncodable(body)
+        case .registFCMToken(let deviceToken):
+            return .requestJSONEncodable(deviceToken)
         case .addWorkSpace(let workspaceData), .editWorkspace(_,let workspaceData):
             
             let imageData = MultipartFormData(provider: .data(workspaceData.image), name: "image", fileName: "\(workspaceData.name).jpeg", mimeType: "image/jpeg")

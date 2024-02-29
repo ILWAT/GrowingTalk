@@ -8,6 +8,8 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import UIKit
+import FirebaseMessaging
 
 final class LoginViewModel: ViewModelType {
     struct Input {
@@ -35,6 +37,7 @@ final class LoginViewModel: ViewModelType {
         let loginButtonActive = BehaviorRelay(value: false)
         let loginResult = PublishSubject<LoginResultModel_V2>()
         let usersWorkspaces = PublishSubject<[WorkSpaceModel]>()
+        let fcmTrigger = PublishSubject<String>()
         
         let inputIDText = input.idText.share()
         let inputPasswordText = input.passwordText.share()
@@ -113,7 +116,16 @@ final class LoginViewModel: ViewModelType {
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.accessToken, tokenCase: .accessToken)
                     UserDefaultsManager.shared.saveTokenInUserDefaults(tokenData: response.token.refreshToken, tokenCase: .refreshToken)
                     UserDefaults.standard.setValue(response.email, forKey: "currentUser")
+                    Messaging.messaging().token { token, error in
+                        if let error = error {
+                            print("Error fetching FCM registration token: \(error)")
+                        } else if let token = token {
+                            print("FCM registration token: \(token)")
+                            fcmTrigger.onNext(token)
+                        }
+                    }
                     loginResult.onNext(response)
+                    
                 case .failure(let error):
                     if let commonError = error as? NetworkError.commonError {
                         print(commonError, commonError.errorMessage)
@@ -139,6 +151,20 @@ final class LoginViewModel: ViewModelType {
                     } else if let getWorkspaceError = error as? NetworkError.GetUserWorkSpaceError {
                         print(getWorkspaceError)
                     }
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        fcmTrigger
+            .flatMapLatest({ token in
+                APIManger.shared.requestNoresponseByRx(requestType: .registFCMToken(deviceToken: FCMDeviceTokenModel(deviceToken: token)), defaultErrorType: NetworkError.RegistDeviceTokenError.self)
+            })
+            .subscribe(with: self) { owner, resposne in
+                switch resposne {
+                case .success(_):
+                    print("FCM Regist Success")
+                case .failure(let error):
+                    print("FCM Regist failed", error)
                 }
             }
             .disposed(by: disposeBag)

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct FCMDeviceTokenModel: Encodable {
+    let deviceToken: String
+}
