@@ -34,7 +34,7 @@ final class RealmManager {
     
     func writeAsyncWriteToRealm<T: Object>(type: T.Type, targetData: T) async throws  {
         try await realm.asyncWrite {
-            realm.create(RealmChatModel.self, value: targetData)
+            realm.create(type, value: targetData)
         }
     }
     
