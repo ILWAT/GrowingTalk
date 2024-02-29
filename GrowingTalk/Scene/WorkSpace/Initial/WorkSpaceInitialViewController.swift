@@ -88,9 +88,9 @@ final class WorkSpaceInitialViewController: BaseViewController {
         output.workSpaceIsExist
             .subscribe(with: self) { owner, result in
                 switch result {
-                case .success(let workspaceData):
+                case .success(_):
                     break
-                case .failure(let error):
+                case .failure(_):
                     let nextVC = HomeEmptyViewController()
                     do {
                         try owner.changeFirstVC(nextVC: nextVC)

@@ -89,7 +89,7 @@ final class CreationChannelViewController: BaseViewController {
                 case .success(_):
                     owner.completionEvent.accept(())
                     owner.dismiss(animated: true)
-                case .failure(let error):
+                case .failure(_):
                     break
                 }
             }

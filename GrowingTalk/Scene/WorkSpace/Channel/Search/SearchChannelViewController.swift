@@ -54,7 +54,7 @@ final class SearchChannelViewController: BaseViewController {
     }
     
     override func bind() {
-        let presentingChattingVC = PublishRelay<ChannelModel>()
+//        let presentingChattingVC = PublishRelay<ChannelModel>()
         let nextVCEvent = PublishSubject<Void>()
         
         let input = SearchChannelViewModel.Input(

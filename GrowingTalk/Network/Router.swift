@@ -129,7 +129,7 @@ extension Router: TargetType {
             
             return .requestParameters(parameters: ["cursor_date" : cursor_date], encoding: URLEncoding.queryString)
             
-        case .postChannelChat(let workspaceID, _, let content, let files):
+        case .postChannelChat(_, _, let content, let files):
             var multipartData: [MultipartFormData] = []
             
             //content
