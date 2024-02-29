@@ -27,7 +27,7 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
         view.axis = .vertical
         view.alignment = .leading
         view.spacing = 5
-        view.distribution = .equalSpacing
+        view.distribution = .fillProportionally
     }
     
     private let textView = UITextView().then { view in
@@ -94,7 +94,9 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    deinit {
+        print("chattingCell deinit")
+    }
     //MARK: - LifeCycle
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -179,10 +181,12 @@ final class ChattingCollectionViewCell: UICollectionViewCell {
         
         let imageCount = imagePath.count
         
+        let downSamplingProcessor = DownsamplingImageProcessor(size: CGSize(width: 160, height: 160))
+        
         for nextLoadingImageIndex in 0 ..< imageCount {
             let imageView = contentImageArray[nextLoadingImageIndex]
             imageView.isHidden = false
-            imageView.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+imagePath[nextLoadingImageIndex]))
+            imageView.kf.setImageWithHeader(with: URL(string: SecretKeys.severURL_V1+imagePath[nextLoadingImageIndex]), options: [.processor(downSamplingProcessor)])
         }
         
         for hiddenImageViewIndex in imageCount ..< 5 {

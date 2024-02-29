@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DE3874692B906746005B5CD4 /* FirebaseAnalytics */; };
+		DE38746C2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		DE38746E2B906746005B5CD4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746D2B906746005B5CD4 /* FirebaseMessaging */; };
+		DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */; };
 		DE3ADE612B62739A00C81271 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE602B62739A00C81271 /* HomeTabBarController.swift */; };
 		DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */; };
 		DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE672B6905FA00C81271 /* SideBarController.swift */; };
@@ -46,6 +50,9 @@
 		DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA012B8F5D1200567F7A /* SocketManager.swift */; };
 		DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */; };
 		DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA102B8F988A00567F7A /* SocketIO */; };
+		DE8DDA142B8FC3FF00567F7A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */; };
+		DE8DDA192B8FE7C800567F7A /* FCMdeviceTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */; };
+		DE8DDA1B2B904A8300567F7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */; };
 		DE91F0682B46923B00F44E01 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0672B46923B00F44E01 /* SignupViewController.swift */; };
 		DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F0692B46980900F44E01 /* LabelTextField.swift */; };
 		DE91F06E2B480C8000F44E01 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */; };
@@ -143,6 +150,9 @@
 		DE8DD9FF2B8CD9F400567F7A /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		DE8DDA012B8F5D1200567F7A /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		DE8DDA052B8F6EE800567F7A /* SocketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketRouter.swift; sourceTree = "<group>"; };
+		DE8DDA172B8FC8A700567F7A /* GrowingTalk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GrowingTalk.entitlements; sourceTree = "<group>"; };
+		DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMdeviceTokenModel.swift; sourceTree = "<group>"; };
+		DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE91F0672B46923B00F44E01 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		DE91F0692B46980900F44E01 /* LabelTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTextField.swift; sourceTree = "<group>"; };
 		DE91F06D2B480C8000F44E01 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -202,11 +212,16 @@
 			files = (
 				DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */,
 				DE8DD9F32B87638700567F7A /* Realm in Frameworks */,
+				DE8DDA142B8FC3FF00567F7A /* FirebaseMessaging in Frameworks */,
+				DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */,
 				DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */,
 				DE8DDA112B8F988A00567F7A /* SocketIO in Frameworks */,
 				DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */,
 				DE91F07D2B4AE78B00F44E01 /* Moya in Frameworks */,
+				DE38746C2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */,
+				DE38746E2B906746005B5CD4 /* FirebaseMessaging in Frameworks */,
+				DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */,
 				DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */,
 				DE91F08F2B4D1EAF00F44E01 /* IQKeyboardManagerSwift in Frameworks */,
 				DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */,
@@ -409,6 +424,7 @@
 				DE8DD9DC2B7E538900567F7A /* CreateChannelBodyModel.swift */,
 				DE8DD9E92B85C4BC00567F7A /* ChannelChatModel.swift */,
 				DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */,
+				DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -478,6 +494,8 @@
 		DE9AC63C2B43AB7D004D50EF /* GrowingTalk */ = {
 			isa = PBXGroup;
 			children = (
+				DE8DDA172B8FC8A700567F7A /* GrowingTalk.entitlements */,
+				DE8DDA1A2B904A8300567F7A /* GoogleService-Info.plist */,
 				DE8DD9EF2B8761D600567F7A /* DataBase */,
 				DE91F0942B4D69DB00F44E01 /* Helper */,
 				DE91F0802B4BBFA900F44E01 /* Model */,
@@ -613,6 +631,11 @@
 				DE8DD9F22B87638700567F7A /* Realm */,
 				DE8DD9F42B87638700567F7A /* RealmSwift */,
 				DE8DDA102B8F988A00567F7A /* SocketIO */,
+				DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */,
+				DE3874692B906746005B5CD4 /* FirebaseAnalytics */,
+				DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				DE38746D2B906746005B5CD4 /* FirebaseMessaging */,
+				DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -652,6 +675,7 @@
 				DE91F08D2B4D1EAF00F44E01 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */,
 				DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -668,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE9AC64A2B43AB7F004D50EF /* LaunchScreen.storyboard in Resources */,
+				DE8DDA1B2B904A8300567F7A /* GoogleService-Info.plist in Resources */,
 				DE9AC6732B45648F004D50EF /* SF-Pro.ttf in Resources */,
 				DE9AC6472B43AB7F004D50EF /* Assets.xcassets in Resources */,
 			);
@@ -682,6 +707,7 @@
 			files = (
 				DE91F0732B4826C600F44E01 /* Extension+UIViewController.swift in Sources */,
 				DE3ADE6E2B6D55A800C81271 /* EmptyWorkSpaceSideView.swift in Sources */,
+				DE8DDA192B8FE7C800567F7A /* FCMdeviceTokenModel.swift in Sources */,
 				DE9AC66F2B454BBA004D50EF /* Extension+UIFont.swift in Sources */,
 				DE8DDA062B8F6EE800567F7A /* SocketRouter.swift in Sources */,
 				DE91F0932B4D4E0200F44E01 /* WorkSpaceInitialViewController.swift in Sources */,
@@ -902,11 +928,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AYG8MBJF93;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -917,8 +947,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -933,11 +965,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AYG8MBJF93;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -948,8 +984,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ILWAT-com.github.GrowingTalk";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -997,6 +1035,14 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
 			};
 		};
 		DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
@@ -1058,6 +1104,26 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE3874692B906746005B5CD4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		DE38746D2B906746005B5CD4 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
 		DE8DD9F22B87638700567F7A /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */;
@@ -1072,6 +1138,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
+		};
+		DE8DDA132B8FC3FF00567F7A /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		DE91F0702B4818D300F44E01 /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
