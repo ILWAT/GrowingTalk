@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseMessaging
+import iamport_ios
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -63,7 +64,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
       // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    
+    //앱이 포그라운드일때 팝업 뜨게 설정해주는 딜리게이트
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification) async
       -> UNNotificationPresentationOptions {
@@ -92,6 +93,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
 
       // Print full message.
       print(userInfo)
+    }
+    
+    //MARK: - PG결제 PortOne
+    // AppDelegate.swift 설정
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        Iamport.shared.receivedURL(url)
+        return true
     }
     
 
