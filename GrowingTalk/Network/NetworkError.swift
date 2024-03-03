@@ -298,4 +298,18 @@ enum NetworkError {
             }
         }
     }
+    
+    enum PostPaymentValidationError: String, NetworkErrorProtocol {
+        case wrongPayment = "E82"
+        case nonePayment = "E81"
+        
+        var errorMessage: String {
+            switch self {
+            case .wrongPayment:
+                return "유효하지 않은 결제건입니다."
+            case .nonePayment:
+                return "존재하지 않는 결제건입니다."
+            }
+        }
+    }
 }

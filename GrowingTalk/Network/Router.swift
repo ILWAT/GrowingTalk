@@ -30,6 +30,8 @@ enum Router {
     case createChannel(workspaceID: Int, targetChannel: CreateChannelBodyModel)
     case getChannelChat(workspaceID: Int, channelName: String, cursorDate: String?)
     case postChannelChat(workspaceID: Int, channelName: String, content: String?, files: [Data])
+    case getCoinShopItem
+    case postPayedCoinValidation(bodyModel: PostPaymentValidationModel)
 }
 
 extension Router: TargetType {
@@ -79,12 +81,16 @@ extension Router: TargetType {
             guard let name = channelName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {return "/v1/workspaces/\(id)/channels/\(channelName)/chats"}
             
             return "/v1/workspaces/\(id)/channels/\(name)/chats"
+        case .getCoinShopItem:
+            return "/v1/store/item/list"
+        case .postPayedCoinValidation:
+            return "/v1/store/pay/validation"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .email, .signup, .registFCMToken, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel, .postChannelChat:
+        case .email, .signup, .registFCMToken, .addWorkSpace, .login_v2, .inviteWorkspaceMember, .createChannel, .postChannelChat, .postPayedCoinValidation:
             return .post
         case .editWorkspace, .changeAdminOfWorkspace:
             return .put
@@ -148,6 +154,9 @@ extension Router: TargetType {
             }
             
             return .uploadMultipart(multipartData)
+            
+        case .postPayedCoinValidation(let paymentBody):
+            return .requestJSONEncodable(paymentBody)
             
         default:
             return .requestPlain
