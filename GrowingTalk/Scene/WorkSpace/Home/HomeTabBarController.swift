@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Then
 
 final class HomeTabBarController: UITabBarController {
+    //MARK: - Properties
+    private let coinShopViewController = UINavigationController(rootViewController: CoinShopViewController()).then { navigationVC in
+        navigationVC.tabBarItem = navigationVC.viewControllers.first?.tabBarItem
+    }
     
+    //MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
         self.configureVC()
@@ -18,19 +24,21 @@ final class HomeTabBarController: UITabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureVC() {
+    //MARK: - Configure
+    private func configureVC() {
         self.tabBar.tintColor = .label
     }
+
     
+    //MARK: - Internal Method
     func appendNavigationWrappingVC(viewControllers: [UIViewController]) {
-        var currentlyManagedVC: [UIViewController] = self.viewControllers ?? []
+        var currentlyManagedVC: [UIViewController] = [coinShopViewController]
         
         for viewController in viewControllers {
             let wrappingNaviVC = UINavigationController(rootViewController: viewController)
             wrappingNaviVC.tabBarItem = viewController.tabBarItem
-            currentlyManagedVC.append(wrappingNaviVC)
+            currentlyManagedVC.insert(wrappingNaviVC, at: 0)
         }
-        
         self.setViewControllers(currentlyManagedVC, animated: true)
     }
 }

@@ -22,9 +22,9 @@ final class UserDefaultsManager {
     }
     
     func savingSignupUserDefaults(data: SignupResultModel) {
-        self.saveTokenInUserDefaults(tokenData: data.token.accessToken, tokenCase: .accessToken)
-        self.saveTokenInUserDefaults(tokenData: data.token.refreshToken, tokenCase: .refreshToken)
-        
+        let token = data.token
+        self.saveTokenInUserDefaults(tokenData: token.accessToken, tokenCase: .accessToken)
+        self.saveTokenInUserDefaults(tokenData: token.refreshToken, tokenCase: .refreshToken)
         if let userProfileImage = data.profileImage {
             UserDefaults.standard.setValue(userProfileImage, forKey: UserDefaultsCase.userProfileImageURL.rawValue)
         }

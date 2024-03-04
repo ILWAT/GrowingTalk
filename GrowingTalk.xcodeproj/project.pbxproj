@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B684AD84A639B09558AA225D /* Pods_GrowingTalk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD4D9FDE850CBDBDBCCAE60D /* Pods_GrowingTalk.framework */; };
 		DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = DE3874692B906746005B5CD4 /* FirebaseAnalytics */; };
 		DE38746C2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		DE38746E2B906746005B5CD4 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746D2B906746005B5CD4 /* FirebaseMessaging */; };
 		DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */; };
+		DE3874732B91163C005B5CD4 /* CoinShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3874722B91163C005B5CD4 /* CoinShopViewController.swift */; };
+		DE3874752B9119B6005B5CD4 /* CoinShopItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3874742B9119B6005B5CD4 /* CoinShopItemModel.swift */; };
+		DE3874772B91D624005B5CD4 /* CoinShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3874762B91D624005B5CD4 /* CoinShopViewModel.swift */; };
+		DE38747C2B91F16C005B5CD4 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DE38747B2B91F16C005B5CD4 /* Then */; };
 		DE3ADE612B62739A00C81271 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE602B62739A00C81271 /* HomeTabBarController.swift */; };
 		DE3ADE652B67C7B400C81271 /* GetUserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */; };
 		DE3ADE682B6905FA00C81271 /* SideBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE672B6905FA00C81271 /* SideBarController.swift */; };
@@ -26,6 +31,7 @@
 		DE3ADE822B78ECDA00C81271 /* ChangeAdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */; };
 		DE3ADE842B78F03400C81271 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE832B78F03400C81271 /* UserInfoModel.swift */; };
 		DE3ADE872B78F56400C81271 /* MembersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */; };
+		DE58A6C52B920133006715A9 /* PostPaymentValidationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58A6C42B920133006715A9 /* PostPaymentValidationModel.swift */; };
 		DE62BDC22B52EF200008F463 /* WorkSpaceAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */; };
 		DE62BDC42B52FD450008F463 /* Extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */; };
 		DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */; };
@@ -87,7 +93,6 @@
 		DE9AC6532B43AD90004D50EF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6522B43AD90004D50EF /* RxCocoa */; };
 		DE9AC6552B43AD90004D50EF /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6542B43AD90004D50EF /* RxRelay */; };
 		DE9AC6572B43AD90004D50EF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6562B43AD90004D50EF /* RxSwift */; };
-		DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC6592B43AD9F004D50EF /* Then */; };
 		DE9AC65D2B43ADAB004D50EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC65C2B43ADAB004D50EF /* Kingfisher */; };
 		DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DE9AC65F2B43ADBF004D50EF /* SnapKit */; };
 		DE9AC6662B451900004D50EF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9AC6652B451900004D50EF /* BaseView.swift */; };
@@ -114,6 +119,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C424ECF7548CEB25F023D78 /* Pods-GrowingTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrowingTalk.debug.xcconfig"; path = "Target Support Files/Pods-GrowingTalk/Pods-GrowingTalk.debug.xcconfig"; sourceTree = "<group>"; };
+		8077D120B15754412F761F0A /* Pods-GrowingTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GrowingTalk.release.xcconfig"; path = "Target Support Files/Pods-GrowingTalk/Pods-GrowingTalk.release.xcconfig"; sourceTree = "<group>"; };
+		BD4D9FDE850CBDBDBCCAE60D /* Pods_GrowingTalk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GrowingTalk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE3874722B91163C005B5CD4 /* CoinShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopViewController.swift; sourceTree = "<group>"; };
+		DE3874742B9119B6005B5CD4 /* CoinShopItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopItemModel.swift; sourceTree = "<group>"; };
+		DE3874762B91D624005B5CD4 /* CoinShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinShopViewModel.swift; sourceTree = "<group>"; };
 		DE3ADE602B62739A00C81271 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		DE3ADE642B67C7B400C81271 /* GetUserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileModel.swift; sourceTree = "<group>"; };
 		DE3ADE672B6905FA00C81271 /* SideBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarController.swift; sourceTree = "<group>"; };
@@ -129,6 +140,7 @@
 		DE3ADE812B78ECDA00C81271 /* ChangeAdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAdminViewModel.swift; sourceTree = "<group>"; };
 		DE3ADE832B78F03400C81271 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		DE3ADE862B78F56400C81271 /* MembersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembersCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE58A6C42B920133006715A9 /* PostPaymentValidationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPaymentValidationModel.swift; sourceTree = "<group>"; };
 		DE62BDC12B52EF200008F463 /* WorkSpaceAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewController.swift; sourceTree = "<group>"; };
 		DE62BDC32B52FD450008F463 /* Extension+UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIImage.swift"; sourceTree = "<group>"; };
 		DE62BDC52B53E3B50008F463 /* WorkSpaceAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpaceAddViewModel.swift; sourceTree = "<group>"; };
@@ -211,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8DD9F52B87638700567F7A /* RealmSwift in Frameworks */,
+				DE38747C2B91F16C005B5CD4 /* Then in Frameworks */,
 				DE8DD9F32B87638700567F7A /* Realm in Frameworks */,
 				DE8DDA142B8FC3FF00567F7A /* FirebaseMessaging in Frameworks */,
 				DE3874702B906746005B5CD4 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -224,16 +237,34 @@
 				DE38746A2B906746005B5CD4 /* FirebaseAnalytics in Frameworks */,
 				DE9AC6602B43ADBF004D50EF /* SnapKit in Frameworks */,
 				DE91F08F2B4D1EAF00F44E01 /* IQKeyboardManagerSwift in Frameworks */,
-				DE9AC65A2B43AD9F004D50EF /* Then in Frameworks */,
 				DE91F07F2B4AE78B00F44E01 /* RxMoya in Frameworks */,
 				DE91F0712B4818D300F44E01 /* Toast in Frameworks */,
 				DE9AC65D2B43ADAB004D50EF /* Kingfisher in Frameworks */,
+				B684AD84A639B09558AA225D /* Pods_GrowingTalk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76103FF34208BA4EBF63FFF9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C424ECF7548CEB25F023D78 /* Pods-GrowingTalk.debug.xcconfig */,
+				8077D120B15754412F761F0A /* Pods-GrowingTalk.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DE3874712B91162D005B5CD4 /* CoinShop */ = {
+			isa = PBXGroup;
+			children = (
+				DE3874722B91163C005B5CD4 /* CoinShopViewController.swift */,
+				DE3874762B91D624005B5CD4 /* CoinShopViewModel.swift */,
+			);
+			path = CoinShop;
+			sourceTree = "<group>";
+		};
 		DE3ADE622B67C5FD00C81271 /* Empty */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +412,7 @@
 		DE8DDA092B8F91AD00567F7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD4D9FDE850CBDBDBCCAE60D /* Pods_GrowingTalk.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -425,6 +457,8 @@
 				DE8DD9E92B85C4BC00567F7A /* ChannelChatModel.swift */,
 				DE8DD9F82B8766F800567F7A /* RealmChatModel.swift */,
 				DE8DDA182B8FE7C800567F7A /* FCMdeviceTokenModel.swift */,
+				DE3874742B9119B6005B5CD4 /* CoinShopItemModel.swift */,
+				DE58A6C42B920133006715A9 /* PostPaymentValidationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -480,6 +514,7 @@
 				DE9AC63C2B43AB7D004D50EF /* GrowingTalk */,
 				DE9AC63B2B43AB7D004D50EF /* Products */,
 				DE8DDA092B8F91AD00567F7A /* Frameworks */,
+				76103FF34208BA4EBF63FFF9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -516,6 +551,7 @@
 		DE9AC6632B4518E8004D50EF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DE3874712B91162D005B5CD4 /* CoinShop */,
 				DE8DD9E52B8347FE00567F7A /* Chatting */,
 				DE3ADE762B73D1BC00C81271 /* CustomAlert */,
 				DE91F0662B46922500F44E01 /* Signup */,
@@ -608,9 +644,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE9AC64E2B43AB7F004D50EF /* Build configuration list for PBXNativeTarget "GrowingTalk" */;
 			buildPhases = (
+				1CA562AA1274E412DF787790 /* [CP] Check Pods Manifest.lock */,
 				DE9AC6362B43AB7D004D50EF /* Sources */,
 				DE9AC6372B43AB7D004D50EF /* Frameworks */,
 				DE9AC6382B43AB7D004D50EF /* Resources */,
+				F6A2AF033EF97F82D34AC34F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -621,7 +659,6 @@
 				DE9AC6522B43AD90004D50EF /* RxCocoa */,
 				DE9AC6542B43AD90004D50EF /* RxRelay */,
 				DE9AC6562B43AD90004D50EF /* RxSwift */,
-				DE9AC6592B43AD9F004D50EF /* Then */,
 				DE9AC65C2B43ADAB004D50EF /* Kingfisher */,
 				DE9AC65F2B43ADBF004D50EF /* SnapKit */,
 				DE91F0702B4818D300F44E01 /* Toast */,
@@ -636,6 +673,7 @@
 				DE38746B2B906746005B5CD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				DE38746D2B906746005B5CD4 /* FirebaseMessaging */,
 				DE38746F2B906746005B5CD4 /* FirebaseRemoteConfigSwift */,
+				DE38747B2B91F16C005B5CD4 /* Then */,
 			);
 			productName = GrowingTalk;
 			productReference = DE9AC63A2B43AB7D004D50EF /* GrowingTalk.app */;
@@ -667,7 +705,6 @@
 			mainGroup = DE9AC6312B43AB7D004D50EF;
 			packageReferences = (
 				DE9AC6512B43AD90004D50EF /* XCRemoteSwiftPackageReference "RxSwift" */,
-				DE9AC6582B43AD9F004D50EF /* XCRemoteSwiftPackageReference "Then" */,
 				DE9AC65B2B43ADAB004D50EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DE9AC65E2B43ADBF004D50EF /* XCRemoteSwiftPackageReference "SnapKit" */,
 				DE91F06F2B4818D300F44E01 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
@@ -676,6 +713,7 @@
 				DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */,
 				DE8DDA0F2B8F988A00567F7A /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 				DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DE38747A2B91F16C005B5CD4 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			productRefGroup = DE9AC63B2B43AB7D004D50EF /* Products */;
 			projectDirPath = "";
@@ -700,6 +738,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1CA562AA1274E412DF787790 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GrowingTalk-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6A2AF033EF97F82D34AC34F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GrowingTalk/Pods-GrowingTalk-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GrowingTalk/Pods-GrowingTalk-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GrowingTalk/Pods-GrowingTalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DE9AC6362B43AB7D004D50EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -715,6 +795,7 @@
 				DE8DD9D22B7CAC4200567F7A /* InviteMemberViewModel.swift in Sources */,
 				DEAB5CEA2B4570E600C9A71C /* InteractionButton.swift in Sources */,
 				DE3ADE722B71E9A100C81271 /* SideBarCell.swift in Sources */,
+				DE3874772B91D624005B5CD4 /* CoinShopViewModel.swift in Sources */,
 				DE91F06A2B46980900F44E01 /* LabelTextField.swift in Sources */,
 				DE8DD9EC2B85CD8900567F7A /* ChattingCollectionViewCell.swift in Sources */,
 				DEA2F70F2B58D93100C4D0AA /* Extension+Kingfisher.swift in Sources */,
@@ -722,6 +803,7 @@
 				DEAB5CEF2B4589BD00C9A71C /* AuthViewController.swift in Sources */,
 				DE62BDC62B53E3B50008F463 /* WorkSpaceAddViewModel.swift in Sources */,
 				DEAB5CF12B458A3C00C9A71C /* ImageWrapButton.swift in Sources */,
+				DE58A6C52B920133006715A9 /* PostPaymentValidationModel.swift in Sources */,
 				DE91F0962B4D69ED00F44E01 /* ToastMessageCase.swift in Sources */,
 				DE8DD9EE2B860B0200567F7A /* ChattingViewModel.swift in Sources */,
 				DE91F0822B4BBFB400F44E01 /* SignupModel.swift in Sources */,
@@ -742,6 +824,7 @@
 				DE91F0862B4C122B00F44E01 /* NetworkError.swift in Sources */,
 				DE8DD9EA2B85C4BC00567F7A /* ChannelChatModel.swift in Sources */,
 				DE8DDA022B8F5D1200567F7A /* SocketManager.swift in Sources */,
+				DE3874752B9119B6005B5CD4 /* CoinShopItemModel.swift in Sources */,
 				DEA2F7132B594C4400C4D0AA /* RefreshAccessTokenModel.swift in Sources */,
 				DE91F0A32B501DB600F44E01 /* LoginViewController.swift in Sources */,
 				DE91F0842B4C0BBC00F44E01 /* APIManger.swift in Sources */,
@@ -756,6 +839,7 @@
 				DE8DD9D02B7CA11C00567F7A /* InviteMemberViewController.swift in Sources */,
 				DE91F0882B4C17D500F44E01 /* NetworkErrorModel.swift in Sources */,
 				DE9AC63E2B43AB7D004D50EF /* AppDelegate.swift in Sources */,
+				DE3874732B91163C005B5CD4 /* CoinShopViewController.swift in Sources */,
 				DE9AC6402B43AB7D004D50EF /* SceneDelegate.swift in Sources */,
 				DE9AC6662B451900004D50EF /* BaseView.swift in Sources */,
 				DE8DD9FB2B8A853C00567F7A /* RealmManager.swift in Sources */,
@@ -841,7 +925,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -904,7 +988,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -925,15 +1009,15 @@
 		};
 		DE9AC64F2B43AB7F004D50EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C424ECF7548CEB25F023D78 /* Pods-GrowingTalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
+				DEVELOPMENT_TEAM = AYG8MBJF93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
@@ -947,10 +1031,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.ILWAT.GrowingTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -962,15 +1045,15 @@
 		};
 		DE9AC6502B43AB7F004D50EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8077D120B15754412F761F0A /* Pods-GrowingTalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GrowingTalk/GrowingTalk.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = VYC9A4SEQS;
+				DEVELOPMENT_TEAM = AYG8MBJF93;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GrowingTalk/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지를 워크스페이스 사진, 사용자 프로필등 다양한 상황에  불러오기 위해 사진 접근 권한이 필요합니다.";
@@ -984,10 +1067,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sesac.SeSACTalkSLP;
+				PRODUCT_BUNDLE_IDENTIFIER = github.com.ILWAT.GrowingTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = SeSACTalkSLP;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1021,6 +1103,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE38747A2B91F16C005B5CD4 /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		DE8DD9F12B87638700567F7A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -1077,14 +1167,6 @@
 				minimumVersion = 6.6.0;
 			};
 		};
-		DE9AC6582B43AD9F004D50EF /* XCRemoteSwiftPackageReference "Then" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/devxoul/Then";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 		DE9AC65B2B43ADAB004D50EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1123,6 +1205,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE8DDA122B8FC3FF00567F7A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
+		};
+		DE38747B2B91F16C005B5CD4 /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE38747A2B91F16C005B5CD4 /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 		DE8DD9F22B87638700567F7A /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1178,11 +1265,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = DE9AC6512B43AD90004D50EF /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
-		};
-		DE9AC6592B43AD9F004D50EF /* Then */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DE9AC6582B43AD9F004D50EF /* XCRemoteSwiftPackageReference "Then" */;
-			productName = Then;
 		};
 		DE9AC65C2B43ADAB004D50EF /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

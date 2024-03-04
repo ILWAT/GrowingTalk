@@ -1,0 +1,60 @@
+PODS:
+  - Alamofire (5.8.0)
+  - iamport-ios (1.4.1):
+    - Alamofire (~> 5.1)
+    - RxBusForPort
+    - RxCocoa
+    - RxOptional
+    - RxRelay
+    - RxSwift (~> 6.0)
+    - RxViewController
+    - Swinject
+    - Then
+  - RxBusForPort (1.3.4):
+    - RxSwift (~> 6.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxOptional (5.0.2):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
+  - RxViewController (2.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - Swinject (2.8.3)
+  - Then (3.0.0)
+
+DEPENDENCIES:
+  - iamport-ios (~> 1.4.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - iamport-ios
+    - RxBusForPort
+    - RxCocoa
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - RxViewController
+    - Swinject
+    - Then
+
+SPEC CHECKSUMS:
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  iamport-ios: 8986c798e4f7beb81325cd5cc453aeaa407e1a02
+  RxBusForPort: 9e2cd767f239f21c88f74df12d5cff9eb46cb48f
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxOptional: 3664964c96b69dd20c9cf78bdfe546615e26eca8
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
+  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+
+PODFILE CHECKSUM: 010c9e9de6bd99e7aed839d9ce8613378332fdc2
+
+COCOAPODS: 1.13.0
