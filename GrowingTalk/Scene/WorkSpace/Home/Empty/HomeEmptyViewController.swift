@@ -10,8 +10,6 @@ import RxCocoa
 import RxSwift
 import Then
 
-import SwiftUI
-
 final class HomeEmptyViewController: BaseHomeViewController {
     //MARK: - UI Properties
     private let titleLabel = UILabel().then { label in
@@ -88,8 +86,4 @@ final class HomeEmptyViewController: BaseHomeViewController {
         
     }
     //MARK: - Helper
-}
-
-#Preview{
-    UINavigationController(rootViewController: HomeEmptyViewController())
 }
