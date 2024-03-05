@@ -27,6 +27,7 @@
 - [`iamPort-iOS SDK`](https://github.com/iamport/iamport-ios.git)를 활용한 **Payment Gateway(PG) 결제 구현**
 - [`RealmSwift`](https://github.com/realm/realm-swift.git) + [`SocketIO`](https://github.com/socketio/socket.io-client-swift.git)를 활용한 **채팅 구현**
 - `RxSwift`를 활용한 `Reactive Programming`
+  - `Input-Output Pattern`을 통한 `MVVM` 구성 
 - `Modern CollectionView` + `DiffableDataSource`를 활용한 다양한 UI 작업 대응
 - `Asyc/Await`를 활용한 Realm Swift `비동기 코드 구현`
 - `Rx operator`를 활용한 `JWT기반 AccessToken, Refresh Token 갱신 로직` 구현
@@ -44,6 +45,7 @@
 ---------
 ***⚙️기술 스택***
 - **BaseSDK**: `UIKit`
+- **Pattern**: `MVVM`, `Singleton`, `Input-Output Pattern`
 - **Reactive Programming**: `RxSwift`
 - **Package Management**: `SPM`, `CocoaPods`
 - **CodeBaseUI**: `PHPickerViewController`, `SnapKit`, `Then`, `Toast`
@@ -153,6 +155,5 @@ private func sideBarAppearAnimation() {
 ## 📔회고
 - 최초로 PG사의 SDK를 통해 결제를 달 수 있어, **결제 시스템 구현에 대한 두려움이 해소**되었다.
 - 열거형을 RawValue로 초기화 해야하는 상황에서 추상화를 하기 위해 많은 고민을 끝에 `RawValue Protocol`을 알게되었고 이를 통해 NetworkError에 관해서 추상화하여 Generic사용이 가능하게 하여 재사용성을 높일 수 있게 되었다.
-
 - Moya의 TargetType(Router Pattern)을 **DI를 통해 분리**를 했다면 유지보수성이 좋고 간결한 코드를 작성할 수 있을 것 같지만 실제로 적용하지 못해 아쉽다.
 
