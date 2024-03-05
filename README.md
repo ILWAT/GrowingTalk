@@ -56,13 +56,22 @@
 - 사이드 바를 구현하기 위해 라이브러리를 사용할 수 있으나, 보편적인 사이드 바 구현 **라이브러리는 지원이 끊긴지 오래 되었음**에 따라 사이드 바 **직접 구현**을 선택.
 - `UIView.animate()`를 통해 ViewWillAppear 시점과 viewWillDisappear 시점에서의 애니메이션을 구현.
 - `UIPanGestureRecognizer`를 통해 뷰의 `Animate`를 적용하고 **View의 dismiss를 결정**할 수 있다.
+
 ### 채팅 로직
+<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/756a373a-0bb1-4887-b3e2-51c894e70cca" width="60%"></img>
 - 서버에서 채팅 내역에 대한 데이터를 받을 때, 모든 채팅 내역을 받게되면 채팅을 하면 할수록 서버 및 통신에 대해서 비용이 너무 커지게 된다.
 - 그렇기 때문에 서버로부터 이미 받은 채팅 내역에 대해서는 로컬에 저장하여 CRD하는 방식으로 구현한 뒤, 로컬에서의 마지막 채팅을 기준으로 그 이후 채팅 내역을 받는 것으로 비용을 절감할 수 있다.
 - 로컬 DB에 저장되어 있는 채팅내역, 서버 통신을 통해 채팅 내역을 받아오고 나면 `Socket`을 통해 실시간 데이터를 받아 채팅을 구현한다.
+  
+
+
 
 ## ⚠Trouble Shooting
 ### 사이드바의 constraints + animate 문제: (`Main event loop`의 이해)
+|오류|정상|
+|:--:|:--:|
+|<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/6a4afd3b-0eb9-4001-b1e0-16a2aef8d715" width="20%"></img> |<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/da5ad0d6-a93c-457b-8363-b7465e8cede3" width="20%"></img>|
+
 - 사이드 바의 등장 애니메이션 효과를 적용하기 위해 사이드 바의 View 초기 위치를 너비만큼 현재 View로부터 음수 방향으로 Constraints를  viewDidLoad시점에 설정한 다음, ViewWillAppear 시점에 Constraints를 현재 View로 맞춰주어 UIView.animate() 메서드를 실행했으나, 뷰의 애니메이션이 **X 좌표 뿐만 아니라 Y좌표도 같이 Animation이 실행되는 문제점**이 발생
 ```Swift
 private func sideBarAppearAnimation() {
@@ -93,9 +102,13 @@ private func sideBarAppearAnimation() {
     }
 ```
 
-- 
-
 ### 네비게이션 바의 UIBarButtonItem의 크기가 조절되지 않는 문제
+
+|오류|정상|
+|:--:|:--:|
+|<img width="341" alt="네비게이션 바 오류" src="https://github.com/ILWAT/GrowingTalk/assets/87518434/8990699d-9f56-41c7-9586-0292c19e1cd7">|<img width="314" alt="네비게이션 바 정상" src="https://github.com/ILWAT/GrowingTalk/assets/87518434/fc514b2e-e4da-4a34-885c-2f8681d8100f">|
+
+
 - Left Bar Button Item을 기획 및 디자인에 맞추어 버튼 크기의 설정이 필요함.
   ```Swift
     let workSpaceImageButton = UIButton().then { view in
