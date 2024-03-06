@@ -24,7 +24,7 @@
 ----------
 
 **📋핵심 기술**
-- [`iamPort-iOS SDK`](https://github.com/iamport/iamport-ios.git)를 활용한 **Payment Gateway(PG) 결제 구현**
+- **Payment Gateway(PG) 결제 구현**
 - [`RealmSwift`](https://github.com/realm/realm-swift.git) + [`SocketIO`](https://github.com/socketio/socket.io-client-swift.git)를 활용한 **채팅 구현**
 - `RxSwift`를 활용한 `Reactive Programming`
   - `Input-Output Pattern`을 통한 `MVVM` 구성 
@@ -129,7 +129,7 @@ private func sideBarAppearAnimation() {
 
     navigationItem.setLeftBarButton(workSpaceImageBarButton, animated: true)
 
-- 이 상황에서 버튼의 사이즈를 **Constraints 혹은 Frame으로 크기를 설정해 주어도 지정한 사이즈대로 구현되지 않는 문제** 확인.
+- 이 상황에서 버튼의 사이즈를 **Constraints 혹은 Frame으로 크기를 설정해 주어도 지정한 사이즈대로 구현되지 않는 문제** 발생.
 - `UIButton`안의 image를 설정하는 경우, **설정한 image의 크기에 따라 button내 ImageView의 크기가 결정되고 button은 해당 imageView의 크기보다 작게 설정될 수 없기 때문에 해당 문제가 발생하는 것을 확인.**
 - button 내 image를 설정하고 싶은 button의 사이즈보다 작게 resizing하여 button의 사이즈를 설정해주면 정상적으로 사이즈 조절이 가능.
 
