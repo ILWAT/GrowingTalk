@@ -70,10 +70,11 @@
 
 ## ⚠Trouble Shooting
 ### 사이드바의 constraints + animate 문제: (`Main event loop`의 이해)
-|오류|정상|
+|문제 상황|정상|
 |:--:|:--:|
 |<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/6a4afd3b-0eb9-4001-b1e0-16a2aef8d715" width="20%"></img> |<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/da5ad0d6-a93c-457b-8363-b7465e8cede3" width="20%"></img>|
 
+#### 문제점
 - 사이드 바의 등장 애니메이션 효과를 적용하기 위해 사이드 바의 View 초기 위치를 너비만큼 현재 View로부터 음수 방향으로 Constraints를  viewDidLoad시점에 설정한 다음, ViewWillAppear 시점에 Constraints를 현재 View로 맞춰주어 UIView.animate() 메서드를 실행했으나, 뷰의 애니메이션이 **X 좌표 뿐만 아니라 Y좌표도 같이 Animation이 실행되는 문제점**이 발생
 ```Swift
 private func sideBarAppearAnimation() {
@@ -85,13 +86,15 @@ private func sideBarAppearAnimation() {
         }
 }
 ```
+
+#### 원인 및 해결
 - 디버깅을 진행했을 때, viewWillAppear시점 전까지 사이드바 View의 초기 크기 및 위치가 모두 정해지지 않는 상태임을 확인
 - `Main event loop`의 개념이 필요함.
   - 무작정 Constraints를 설정했다고 해서 바로 View에 Constraints가 적용되어 뷰의 위치와 크기가 결정되는 것이 아님.
   - `Main run loop`의 시점이 동작되어야 비로소 실질적 Constraints가 적용되어 뷰의 위치와 크기가 결정됨.
   - UIView.animate()는 Scope내에서의 View 변경사항을 그 이전과 비교하여 애니메이션을 실행하는 구조로 동작함.
-  - 그렇기 때문에 ViewDidLoad() 실행 시점과 ViewWillAppear()가 실행 되는 시점의 차이가 굉장히 짧은 경우, 실질적 Constraints가 적용되기 전에 ViewWillAppear가 뷰의 크기와 위치가 잡히기 전의 좌표(0, 0)과 Frame(0, 0)에 상태에서 애니메이션이 실행되는 것이기에 Constraints를 적용해주는 것이 필요함.
-
+  - 그렇기 때문에 ViewDidLoad() 실행 시점과 ViewWillAppear()가 실행되는 시점의 차이가 굉장히 짧은 경우, 실질적인 초기 Constraints가 적용되기 전에 Constratints가 덮어쓰기 되어 좌표(0, 0)과 Frame(0, 0)에 상태에서 최종 애니메이션이 실행되는 것이기에 이러한 문제가 발생.
+  - Constraints가 덮어쓰기 되기 전에 `Main run loop`를 임의로 동작시켜 초기 뷰를 설정해 준 다음, Constraints를 바꾸어 animate를 실행하면 해당 문제가 해결됨.
 ```Swift
 private func sideBarAppearAnimation() {
         self.view.layoutIfNeeded() //AutoLayout을 통해 뷰의 초기 위치와 크기를 잡았기에 애니메이션을 해당 메서드 실행 -> 뷰가 실제로 보여지기 전까지 초기 AutoLayout은 실행되지 않음.
@@ -104,9 +107,11 @@ private func sideBarAppearAnimation() {
     }
 ```
 
+- 이와 같이
+
 ### 네비게이션 바의 UIBarButtonItem의 크기가 조절되지 않는 문제
 
-|오류|정상|
+|문제 상황|정상|
 |:--:|:--:|
 |<img width="341" alt="네비게이션 바 오류" src="https://github.com/ILWAT/GrowingTalk/assets/87518434/8990699d-9f56-41c7-9586-0292c19e1cd7">|<img width="314" alt="네비게이션 바 정상" src="https://github.com/ILWAT/GrowingTalk/assets/87518434/fc514b2e-e4da-4a34-885c-2f8681d8100f">|
 
