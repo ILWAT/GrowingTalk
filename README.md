@@ -1,7 +1,10 @@
 # GrowingTalk
-<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/00f1a045-30e3-44da-8849-4acfe329a697" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/6e4165a1-04b7-4334-99e2-99a14d16bf32" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/28862675-5c06-4378-bf63-9a16cdec941f" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/42e721e5-2805-4ec9-840c-b47ac5ae6e60" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/6c93b115-774d-4bb0-8447-27ec0070c983" width="20%"></img>
+<img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/00f1a045-30e3-44da-8849-4acfe329a697" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/a7e1d4d8-63af-4b3d-9d58-d1ca62916d7b" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/8e944d10-dd5f-4ffe-801e-2ff82a6c2fbb" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/451516cc-0276-4092-a553-0db474408852" width="20%"></img><img src="https://github.com/ILWAT/GrowingTalk/assets/87518434/6c93b115-774d-4bb0-8447-27ec0070c983" width="20%"></img>
+
 
 **🎙️협업을 통한 성장 공간, GrowingTalk**  
+
+
 
 - 이메일 기반 회원 인증
 - 워크스페이스(메인 화면) 내 채팅방 개설 기능 및 회원 초대 기능
@@ -24,16 +27,17 @@
 ----------
 
 **📋핵심 기술**
-- **Payment Gateway(PG) 결제 구현**
-- [`RealmSwift`](https://github.com/realm/realm-swift.git) + [`SocketIO`](https://github.com/socketio/socket.io-client-swift.git)를 활용한 **채팅 구현**
-- `RxSwift`를 활용한 `Reactive Programming`
-  - `Input-Output Pattern`을 통한 `MVVM` 구성 
-- `Modern CollectionView` + `DiffableDataSource`를 활용한 다양한 UI 작업 대응
-- `Asyc/Await`를 활용한 Realm Swift `비동기 코드 구현`
+- [`RxSwift`](https://github.com/ReactiveX/RxSwift) 기반 MVVM 패턴 적용을 통해 비즈니스 로직 분리 및 반응형 프로그래밍 구현
+- [`Realm`](https://github.com/realm/realm-swift.git) DataBase에 기존 채팅 데이터를 쓰기/읽기하여  네트워크 Reqeust 최소화
+- [`SocketIO`](https://github.com/socketio/socket.io-client-swift.git)를 활용한 Socket 통신 기반 실시간 채팅 구현
+- Payment Gateway(PG)를 통한 신용 카드 결제 지원 
+- `Modern CollectionView` + `DiffableDataSource`를 활용한 Expandable List 구현
+- `Async/Await`를 도입한 Realm Transaction 비동기 실행 구현
 - `Rx operator`를 활용한 `JWT기반 AccessToken, Refresh Token 갱신 로직` 구현
-- Reactive programming을 통한 `연속적`, `연계적` API Request 및 데이터 활용
-- `UIGraphicsImageRenderer`를 통한 **이미지 Rendering**
-- `KingFisher`의 `AnyModifier`를 통한 Kingfisher 헤더 포함 Network 통신
+- `UIGraphicsImageRenderer`를 통한 이미지 Rendering resizing
+- 공통 UI Component 분리 및 캡슐화 구현을 통한 재 사용성 향상
+
+
 
 
 ## 🛠️개발
@@ -107,8 +111,6 @@ private func sideBarAppearAnimation() {
     }
 ```
 
-- 이와 같이
-
 ### 네비게이션 바의 UIBarButtonItem의 크기가 조절되지 않는 문제
 
 |문제 상황|정상|
@@ -161,4 +163,5 @@ private func sideBarAppearAnimation() {
 - 최초로 PG사의 SDK를 통해 결제를 달 수 있어, **결제 시스템 구현에 대한 두려움이 해소**되었다.
 - 열거형을 RawValue로 초기화 해야하는 상황에서 추상화를 하기 위해 많은 고민을 끝에 `RawValue Protocol`을 알게되었고 이를 통해 NetworkError에 관해서 추상화하여 Generic사용이 가능하게 하여 재사용성을 높일 수 있게 되었다.
 - Moya의 TargetType(Router Pattern)을 **DI를 통해 분리**를 했다면 유지보수성이 좋고 간결한 코드를 작성할 수 있을 것 같지만 실제로 적용하지 못해 아쉽다.
+
 
